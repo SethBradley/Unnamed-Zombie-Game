@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public class NormalZombie : MonoBehaviour, ISelectable, IPathable
 {
     public IAction queuedAction {get;set;}
-    
+    public MainZombie leader;
     [Header("Locomotion")]
     public LocomotionHandler locomotionHandler;
     [Header("targeting")]
@@ -15,7 +16,7 @@ public class NormalZombie : MonoBehaviour, ISelectable, IPathable
     [Header("Debugging")]
     public bool showDetectionRadius;
 
-    bool isInMeleeRange {get {return Vector2.Distance(transform.position, target.transform.position) <= 2f ? true : false;}}
+    public bool isInMeleeRange {get {return Vector2.Distance(transform.position, target.transform.position) <= 2f ? true : false;}}
 
 
     public void PerformQueuedAction()
@@ -30,15 +31,31 @@ public class NormalZombie : MonoBehaviour, ISelectable, IPathable
 
     private void Update() 
     {
+
         target = DetectNearbyHumans();
-        
+
         if(target != null && !isInMeleeRange)
         {
             locomotionHandler.MoveToTarget(target.transform.position);
         }
 
+        else if (target == null)
+        {
+            if (!locomotionHandler.isMovingToTarget)
+                WanderAroundLeader();
+            
+        }
+
     }
 
+    private void WanderAroundLeader()
+    {
+        float xCoord = UnityEngine.Random.Range((leader.transform.position.x - leader.circleRadius.bounds.extents.x), (leader.transform.position.x + leader.circleRadius.bounds.extents.x));
+        float yCoord = UnityEngine.Random.Range((leader.transform.position.y - leader.circleRadius.bounds.extents.y), (leader.transform.position.y + leader.circleRadius.bounds.extents.y));
+        Vector3 randomPosInLeaderRadius = new Vector3(xCoord,yCoord, 0f);
+
+        locomotionHandler.MoveToTarget(randomPosInLeaderRadius);
+    }
 
     private GameObject DetectNearbyHumans()
     {
@@ -49,7 +66,7 @@ public class NormalZombie : MonoBehaviour, ISelectable, IPathable
         else if (nearbyHumans.Length == 1)
             return nearbyHumans[0].gameObject;
         
-
+        
         for (int i = 0; i < nearbyHumans.Length; i++)
         {
            float distanceFromTarget = Vector2.Distance(transform.position, target.transform.position);
