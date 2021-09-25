@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,15 @@ public class UnitSelectController : MonoBehaviour
         {
             currentSelected = GetUnitUnderMouse();
         }
+        
+
+
+        if (Input.GetMouseButtonDown(1) && currentSelected.GetComponent<KingpinZombie>() != null)
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            currentSelected.GetComponent<LocomotionHandler>().MoveToMouseLocation(mousePos);
+        }       
+        
     }
 
 
@@ -29,13 +39,18 @@ public class UnitSelectController : MonoBehaviour
 
         if (hit.collider != null)
         {
-            if (hit.collider.tag == "KingpinZombie")
+            if (hit.collider.GetComponent<ISelectable>() != null)
             {
                 return hit.collider.gameObject;    
             }
             
         }
-
+        DeselectUnit();
         return null;
+    }
+
+    private void DeselectUnit()
+    {
+        currentSelected = null;
     }
 }

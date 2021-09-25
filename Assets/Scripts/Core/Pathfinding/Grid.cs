@@ -5,12 +5,14 @@ using System.Collections.Generic;
 public class Grid : MonoBehaviour {
 
 	public LayerMask unwalkableMask;
-	public Vector2 gridWorldSize;
+	public Vector3 gridWorldSize;
 	public float nodeRadius;
 	Node[,] grid;
+	public bool displayGridGizmos;
 
 	float nodeDiameter;
 	int gridSizeX, gridSizeY;
+	public int maxSize {get { return gridSizeX * gridSizeY;}}
 
 	void Awake() {
 		nodeDiameter = nodeRadius*2;
@@ -21,12 +23,12 @@ public class Grid : MonoBehaviour {
 
 	void CreateGrid() {
 		grid = new Node[gridSizeX,gridSizeY];
-        Vector2 curPos = new Vector2(transform.position.x, transform.position.y);
-		Vector2 worldBottomLeft = curPos - Vector2.right * gridWorldSize.x/2 - Vector2.up * gridWorldSize.y/2;
+        Vector3 curPos = new Vector3(transform.position.x, transform.position.y);
+		Vector3 worldBottomLeft = curPos - Vector3.right * gridWorldSize.x/2 - Vector3.up * gridWorldSize.y/2;
 
 		for (int x = 0; x < gridSizeX; x ++) {
 			for (int y = 0; y < gridSizeY; y ++) {
-				Vector2 worldPoint = worldBottomLeft + Vector2.right * (x * nodeDiameter + nodeRadius) + Vector2.up * (y * nodeDiameter + nodeRadius);
+				Vector2 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.up * (y * nodeDiameter + nodeRadius);
 				Vector2 box = new Vector2(nodeDiameter - 0.1f, nodeDiameter - 0.1f);
                 bool walkable = !(Physics2D.OverlapBox(worldPoint, box, 90, unwalkableMask));
 
@@ -67,17 +69,17 @@ public class Grid : MonoBehaviour {
 		return grid[x,y];
 	}
 
-	public List<Node> path;
-	void OnDrawGizmos() {
-		//Gizmos.DrawWireCube(transform.position,new Vector2(gridWorldSize.x,gridWorldSize.y));
 
-		if (grid != null) {
-			foreach (Node n in grid) {
-				Gizmos.color = (n.walkable)?Color.clear:Color.red;
-				if (path != null)
-					if (path.Contains(n))
-						Gizmos.color = Color.black;
-				Gizmos.DrawCube(n.worldPosition, Vector2.one * (nodeDiameter-.1f));
+	void OnDrawGizmos() {
+		Gizmos.DrawWireCube(transform.position,new Vector3(gridWorldSize.x,gridWorldSize.y));
+
+		if (grid != null && displayGridGizmos)
+		{
+			foreach (Node node in grid)
+			{
+				Gizmos.color = (node.walkable)?Color.clear:Color.red;
+
+				Gizmos.DrawCube(node.worldPosition, Vector3.one * (nodeDiameter-.1f));
 			}
 		}
 	}
