@@ -2,10 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KingpinZombie : MonoBehaviour, IPathable, ISelectable
+public class KingpinZombie : MainZombie
 {
-    public void PerformQueuedAction()
+    public float radius;
+
+    private void Start() 
     {
-        Debug.Log(this.gameObject.name + " is performing action");
+
+    }
+    public override void PerformQueuedAction()
+    {
+        Debug.Log("Bitch zombie");
     }
 }

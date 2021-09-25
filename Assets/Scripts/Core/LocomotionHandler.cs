@@ -31,19 +31,20 @@ public class LocomotionHandler : MonoBehaviour
 
     IEnumerator FollowPath()
     {
-        Vector3 currentWaypoint = path[0];
-
+        //Debug.Log("Path follow started");
+        Vector3 currentWaypoint = path.Length >= 1 ? path[0] : transform.position;
+        isMovingToTarget = true;
         
-        while (!isMovingToTarget)
+        while (isMovingToTarget)
         {
 
-           Debug.Log(targetIndex + " " + path.Length);
+           //Debug.Log(targetIndex + " " + path.Length);
             if (transform.position == currentWaypoint)
             {
                 targetIndex ++;
                 if (targetIndex >= path.Length)
                 {
-                    isMovingToTarget = true;
+                    isMovingToTarget = false;
                     movingUnit.PerformQueuedAction();
                     yield break;
                 }
@@ -59,6 +60,10 @@ public class LocomotionHandler : MonoBehaviour
     public void MoveToMouseLocation(Vector3 mousePos)
     {
         PathRequestManager.RequestPath(transform.position, mousePos, OnPathFound);
+    }
+        public void MoveToTarget(Vector3 targetPosition)
+    {
+        PathRequestManager.RequestPath(transform.position, targetPosition, OnPathFound);
     }
     
     public void OnDrawGizmos()

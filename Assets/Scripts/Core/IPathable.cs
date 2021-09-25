@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface IPathable
 {
+    IAction queuedAction {get;set;}
     void PerformQueuedAction();
 
 }

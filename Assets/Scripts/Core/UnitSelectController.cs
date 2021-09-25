@@ -22,14 +22,20 @@ public class UnitSelectController : MonoBehaviour
         
 
 
-        if (Input.GetMouseButtonDown(1) && currentSelected.GetComponent<KingpinZombie>() != null)
+        if (Input.GetMouseButtonDown(1) 
+            && currentSelected.GetComponent<IMovable>() != null)
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            currentSelected.GetComponent<LocomotionHandler>().MoveToMouseLocation(mousePos);
+            MoveSelectedUnit();
         }       
         
     }
 
+    private void MoveSelectedUnit()
+    {
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        currentSelected.GetComponent<LocomotionHandler>().MoveToMouseLocation(mousePos);
+
+    }
 
     public GameObject GetUnitUnderMouse()
     {
