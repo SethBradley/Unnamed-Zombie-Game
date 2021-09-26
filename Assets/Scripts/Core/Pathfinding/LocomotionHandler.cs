@@ -7,14 +7,14 @@ public class LocomotionHandler : MonoBehaviour
   public float movespeed;
     [Header("Pathfinding")]
     public Transform target;
-    Vector3[] path;
+    public Vector3[] path;
     int targetIndex = 1;
-    public bool isMovingToTarget;
+    public bool isMoving;
     IPathable movingUnit;
 
     private void Start() 
     {
-        isMovingToTarget = false;
+        isMoving = false;
         movingUnit = GetComponent<IPathable>();
     }
 
@@ -33,9 +33,9 @@ public class LocomotionHandler : MonoBehaviour
     {
         //Debug.Log("Path follow started");
         Vector3 currentWaypoint = path.Length >= 1 ? path[0] : transform.position;
-        isMovingToTarget = true;
+        isMoving = true;
         
-        while (isMovingToTarget)
+        while (isMoving)
         {
 
            //Debug.Log(targetIndex + " " + path.Length);
@@ -44,7 +44,7 @@ public class LocomotionHandler : MonoBehaviour
                 targetIndex ++;
                 if (targetIndex >= path.Length)
                 {
-                    isMovingToTarget = false;
+                    isMoving = false;
                     movingUnit.PerformQueuedAction();
                     yield break;
                 }
@@ -54,7 +54,7 @@ public class LocomotionHandler : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, movespeed);
             yield return null;
         }
-        isMovingToTarget = false;
+        isMoving = false;
     }
 
     public void MoveToMouseLocation(Vector3 mousePos)
@@ -63,6 +63,7 @@ public class LocomotionHandler : MonoBehaviour
     }
         public void MoveToTarget(Vector3 targetPosition)
     {
+        //Debug.Log("Moving to target");
         PathRequestManager.RequestPath(transform.position, targetPosition, OnPathFound);
     }
     

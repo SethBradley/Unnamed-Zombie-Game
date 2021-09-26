@@ -35,6 +35,7 @@ public class PathRequestManager : MonoBehaviour
     {
         currentPathRequest.callback(path, success);
         isProcessingPath = false;
+        Debug.Log("Done Processing Path");
         TryProcessNext();
     }
 

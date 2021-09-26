@@ -8,6 +8,6 @@ public class Human : MonoBehaviour, IPathable, IMovable, ISelectable
 
     public void PerformQueuedAction()
     {
-        Debug.Log(" Human perofrming action");
+        //Debug.Log(" Human perofrming action");
     }
 }

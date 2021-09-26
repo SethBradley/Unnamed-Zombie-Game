@@ -17,35 +17,50 @@ public class NormalZombie : MonoBehaviour, ISelectable, IPathable
     public bool showDetectionRadius;
 
     public bool isInMeleeRange {get {return Vector2.Distance(transform.position, target.transform.position) <= 2f ? true : false;}}
-
+    public bool isMovingToTarget;
 
     public void PerformQueuedAction()
     {
-        Debug.Log("Normal Zombie got to destination");
+        //Debug.Log("Normal Zombie got to destination");
     }
 
     private void Start() 
     {
         locomotionHandler = GetComponent<LocomotionHandler>();
+        isMovingToTarget = false;
     }
 
     private void Update() 
     {
 
         target = DetectNearbyHumans();
-
-        if(target != null && !isInMeleeRange)
+        
+        
+        if(target != null && !isMovingToTarget)
         {
+            
+            isMovingToTarget = true;      
             locomotionHandler.MoveToTarget(target.transform.position);
         }
+        if(target != null && TargetHasMoved())
+            locomotionHandler.MoveToTarget(target.transform.position);
 
-        else if (target == null)
-        {
-            if (!locomotionHandler.isMovingToTarget)
-                WanderAroundLeader();
-            
-        }
+        if (target == null && !locomotionHandler.isMoving)
+            WanderAroundLeader();
 
+    }
+
+    private bool TargetHasMoved()
+    {
+        Vector3 targetPos = locomotionHandler.path.Length > 0 ? locomotionHandler.path[locomotionHandler.path.Length - 1] : target.transform.position;
+        Vector3 newTargetPos = target.transform.position;
+        
+         if(Vector3.Distance(targetPos, newTargetPos) >= 2f)
+         {
+             Debug.Log(Vector3.Distance(targetPos , newTargetPos));
+             return true;
+         }
+         return false;
     }
 
     private void WanderAroundLeader()
@@ -61,7 +76,11 @@ public class NormalZombie : MonoBehaviour, ISelectable, IPathable
     {
         Collider2D[] nearbyHumans = Physics2D.OverlapCircleAll(transform.position, detectionRadius,humanLayerMask);
         if (nearbyHumans.Length == 0)
+        {
+            isMovingToTarget = false;
             return null;
+        }
+            
         
         else if (nearbyHumans.Length == 1)
             return nearbyHumans[0].gameObject;
