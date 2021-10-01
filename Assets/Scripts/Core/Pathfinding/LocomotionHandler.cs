@@ -5,23 +5,25 @@ using UnityEngine;
 public class LocomotionHandler : MonoBehaviour
 {
   public float movespeed;
-    [Header("Pathfinding")]
     public Transform target;
+    [Header("Pathfinding")]
     public Vector3[] path;
     int targetIndex = 1;
     public bool isMoving;
-    IPathable movingUnit;
+    Unit movingUnit;
+    public GameObject wanderPoint;
 
     private void Start() 
     {
-        isMoving = false;
-        movingUnit = GetComponent<IPathable>();
+        movingUnit = GetComponent<Unit>();
     }
 
     public void OnPathFound(Vector3[] newPath, bool pathSuccessful)
     {
         if (pathSuccessful)
         {
+            Unit unit = this.GetComponent<Unit>();
+            target =  unit.target != null ? unit.target.transform : null;
 			path = newPath;
 			targetIndex = 0;
             StopCoroutine("FollowPath");
@@ -29,7 +31,7 @@ public class LocomotionHandler : MonoBehaviour
         }
     }
 
-    IEnumerator FollowPath()
+    public IEnumerator FollowPath()
     {
         //Debug.Log("Path follow started");
         Vector3 currentWaypoint = path.Length >= 1 ? path[0] : transform.position;
@@ -45,28 +47,41 @@ public class LocomotionHandler : MonoBehaviour
                 if (targetIndex >= path.Length)
                 {
                     isMoving = false;
-                    movingUnit.PerformQueuedAction();
                     yield break;
                 }
                 currentWaypoint = path[targetIndex];
             }
+                transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, movespeed);
 
-            transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, movespeed);
             yield return null;
         }
-        isMoving = false;
+        
     }
 
     public void MoveToMouseLocation(Vector3 mousePos)
     {
         PathRequestManager.RequestPath(transform.position, mousePos, OnPathFound);
     }
-        public void MoveToTarget(Vector3 targetPosition)
+    public void MoveToTarget(Vector3 targetPosition)
     {
         //Debug.Log("Moving to target");
         PathRequestManager.RequestPath(transform.position, targetPosition, OnPathFound);
     }
-    
+
+    public void UpdatePathToTarget(Transform _target)
+        {
+            Vector3 targetPos = path.Length > 0 ? path[path.Length - 1] : _target.transform.position;  
+            Vector3 newTargetPos = _target.position;          
+            if(Vector3.Distance(targetPos, newTargetPos) >= 2f)
+            {
+                //StopCoroutine(FollowPath());
+                Debug.Log("Updating path DO NOT WANT TO SEE ME OFTEN");
+                MoveToTarget(_target.position);
+                //StartCoroutine(FollowPath());
+            }
+            return; 
+        }
+
     public void OnDrawGizmos()
     {
         if (path != null)

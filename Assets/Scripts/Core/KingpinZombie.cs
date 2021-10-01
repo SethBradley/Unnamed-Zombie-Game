@@ -9,4 +9,5 @@ public class KingpinZombie : MainZombie
     {
         Debug.Log("Bitch zombie");
     }
+
 }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Pursuit : IState 
 {
-    protected IPathable unit;
+    protected Unit unit;
     protected LocomotionHandler locomotionHandler;
-    public Pursuit(IPathable _unit, LocomotionHandler _locomotionHandler)
+    public Pursuit(Unit _unit, LocomotionHandler _locomotionHandler)
     {
         unit = _unit;
         locomotionHandler = _locomotionHandler;

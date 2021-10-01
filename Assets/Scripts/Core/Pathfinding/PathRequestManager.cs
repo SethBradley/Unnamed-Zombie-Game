@@ -51,8 +51,6 @@ public class PathRequestManager : MonoBehaviour
                 pathStart = _start;
                 pathEnd = _end;
                 callback = _callback;
-
-                //So when I create a PathRequest struct i pass in params and set the fields equal to them.
             }
         }
 
