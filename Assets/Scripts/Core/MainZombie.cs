@@ -14,7 +14,7 @@ public abstract class MainZombie : Unit, ISelectable, IMovable
     public float cooldown { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
     public GameObject target { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
-    private void Start() 
+    private void Awake() 
     {
         circleRadius = GetComponent<CircleCollider2D>();
         circleRadius.radius = minionWanderRadius;

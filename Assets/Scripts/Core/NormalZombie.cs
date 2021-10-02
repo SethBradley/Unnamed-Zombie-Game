@@ -15,15 +15,6 @@ public class NormalZombie : Unit, ISelectable
     public LayerMask unwalkableMask;
     public DetectionHandler detectionHandler;
     public LayerMask humanLayerMask;
-    [Header("Debugging")]
-    public bool showDetectionRadius;
-
-    
-
-    public bool isInsideLeaderRadius {get {return leader.circleRadius.bounds.Contains(this.transform.position);}}
-    
-  
-    public bool moveToTarget;
 
     private void Start() 
     {
@@ -31,6 +22,7 @@ public class NormalZombie : Unit, ISelectable
         locomotionHandler = GetComponent<LocomotionHandler>();
         detectionHandler = GetComponent<DetectionHandler>();
         stateMachine = new StateMachine(this);
+        Debug.Log(leader.name);
 
         stateMachine.ChangeState(wander);
     }

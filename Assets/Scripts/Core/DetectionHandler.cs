@@ -52,11 +52,18 @@ public class DetectionHandler : MonoBehaviour
         
         for (int i = 0; i < nearbyUnits.Count; i++)
             {
-                float distanceFromClosestUnit = Vector3.Distance(unit.transform.position, closestUnit.transform.position);
-                float distanceFromOtherUnit = Vector3.Distance(unit.transform.position, nearbyUnits[i].transform.position);
-                if(distanceFromOtherUnit <= distanceFromClosestUnit)
+                try
                 {
-                    closestUnit = nearbyUnits[i].gameObject;
+                    float distanceFromClosestUnit = Vector3.Distance(unit.transform.position, closestUnit.transform.position);
+                    float distanceFromOtherUnit = Vector3.Distance(unit.transform.position, nearbyUnits[i].transform.position);
+                    if(distanceFromOtherUnit <= distanceFromClosestUnit)
+                    {
+                        closestUnit = nearbyUnits[i].gameObject;
+                    }
+                }
+                catch
+                {
+                    Debug.Log("Unit mightve dissapeared");
                 }
             }
         return closestUnit;

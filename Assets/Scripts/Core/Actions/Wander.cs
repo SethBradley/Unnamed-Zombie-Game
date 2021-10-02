@@ -19,6 +19,8 @@ public class Wander : State
 
     public override IEnumerator Execute()
     {
+        Debug.Log("start of execution Execute");
+        
          while(zombie.locomotionHandler.isMoving)
          {
             //Debug.Log("Is moving");
@@ -33,7 +35,7 @@ public class Wander : State
          }
        
         yield return buffer;
-        Debug.Log("executing Execute");
+        Debug.Log("end of execution Execute");
         yield return Enter();
     }
 
@@ -54,15 +56,15 @@ public class Wander : State
 
 
         Collider2D[] collisions = Physics2D.OverlapCircleAll(randomPosInLeaderRadius, 1f, zombie.unwalkableMask);
-        Debug.Log(collisions.Length);
+        //Debug.Log(collisions.Length);
         if(collisions.Length != 0)
         {
             Debug.Log("UH OH I hit a wall OPSIE! sending again");
             WanderAroundLeader();
-
+            return;
         }
             
-        
+//        Debug.Log("Should be starting to walk " + randomPosInLeaderRadius);
         zombie.locomotionHandler.MoveToTarget(randomPosInLeaderRadius);
     }
 }

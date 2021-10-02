@@ -5,9 +5,12 @@ using UnityEngine;
 public class Attack : State
 {
     public NormalZombie zombie;
+    Wander wander;
     public Attack(Unit _zombie)
     {
         zombie = _zombie as NormalZombie;
+        wander = new Wander(zombie);
+        
     }
     WaitForSeconds buffer = new WaitForSeconds(0.25f);
  
@@ -32,7 +35,6 @@ public class Attack : State
             if (closestUnit == null)
             {
                 zombie.target = null;
-                Wander wander = new Wander(zombie);
                 zombie.stateMachine.ChangeState(wander);
                 yield break;
                 
@@ -47,7 +49,12 @@ public class Attack : State
             
         }
         //if zombie is alive maybe
-
+            if(zombie.target == null && !zombie.isDead)
+            {
+                Debug.Log("Target is now null and zombie is still alive");
+                zombie.stateMachine.ChangeState(wander);
+                yield break;
+            }
         yield return null;
     }
 

@@ -7,4 +7,5 @@ public abstract class Unit : MonoBehaviour
     //IAction queuedAction {get;set;}
     public GameObject target;
     public StateMachine stateMachine;
+    public bool isDead;
 }

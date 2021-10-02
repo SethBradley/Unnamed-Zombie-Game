@@ -11,7 +11,7 @@ public class LocomotionHandler : MonoBehaviour
     int targetIndex = 1;
     public bool isMoving;
     Unit movingUnit;
-    public GameObject wanderPoint;
+
 
     private void Start() 
     {
