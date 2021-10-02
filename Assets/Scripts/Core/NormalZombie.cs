@@ -7,7 +7,7 @@ public class NormalZombie : Unit, ISelectable
 {
     [Header("Stats")]
     public float attackRange;
-    public float cooldown;
+
     public MainZombie leader;
     [Header("Locomotion")]
     public LocomotionHandler locomotionHandler;
@@ -26,4 +26,8 @@ public class NormalZombie : Unit, ISelectable
 
         stateMachine.ChangeState(wander);
     }
+    //TakeDamage();
+    //StartCooldown();
+
+
 }

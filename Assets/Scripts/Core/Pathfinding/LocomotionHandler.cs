@@ -13,9 +13,11 @@ public class LocomotionHandler : MonoBehaviour
     Unit movingUnit;
 
 
+
     private void Start() 
     {
         movingUnit = GetComponent<Unit>();
+
     }
 
     public void OnPathFound(Vector3[] newPath, bool pathSuccessful)
@@ -52,6 +54,7 @@ public class LocomotionHandler : MonoBehaviour
                 currentWaypoint = path[targetIndex];
             }
                 transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, movespeed);
+                
 
             yield return null;
         }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class Attack : State
 {
     public NormalZombie zombie;
+    public Unit target;
     Wander wander;
     public Attack(Unit _zombie)
     {
@@ -18,9 +20,9 @@ public class Attack : State
     public override IEnumerator Enter()
     {
         Debug.Log("Entering new attack");
-        GameObject newTarget = zombie.detectionHandler.GetClosestUnitInRange();
-        zombie.target = newTarget;
-        zombie.locomotionHandler.MoveToTarget(zombie.target.transform.position);        
+        Unit newTarget = zombie.detectionHandler.GetClosestUnitInRange();
+        target = newTarget;
+        zombie.locomotionHandler.MoveToTarget(target.transform.position);        
         yield return Execute();
     }
 
@@ -28,34 +30,41 @@ public class Attack : State
     {
         Debug.Log("executing new attack");
         
-        while(zombie.target != null)
+        while(target != null)
         {
-            
-            GameObject closestUnit = zombie.detectionHandler.GetClosestUnitInRange();
-            if (closestUnit == null)
-            {
-                zombie.target = null;
-                zombie.stateMachine.ChangeState(wander);
-                yield break;
-                
-            }
-            if(closestUnit != zombie.target && closestUnit != null)
+            yield return buffer;
+            Unit closestUnit = zombie.detectionHandler.GetClosestUnitInRange();
+
+            if(closestUnit != target && closestUnit != null)
                 yield return Enter();
             
-            zombie.locomotionHandler.UpdatePathToTarget(zombie.target.transform);
-            
-            yield return buffer;
+            if( !zombie.isOnCooldown && Vector3.Distance(zombie.transform.position, target.transform.position) <= zombie.attackRange)
+            {
+                MeleeAttackHuman();
+            }
+
+            zombie.locomotionHandler.UpdatePathToTarget(target.transform);
+            if (closestUnit == null || target.isDead)
+            {
+                target = null;
+                zombie.stateMachine.ChangeState(wander);
+                yield break;
+            }
+
             yield return null;
             
         }
-        //if zombie is alive maybe
-            if(zombie.target == null && !zombie.isDead)
-            {
-                Debug.Log("Target is now null and zombie is still alive");
-                zombie.stateMachine.ChangeState(wander);
-                yield break;
-            }
+
         yield return null;
+    }
+
+    private void MeleeAttackHuman()
+    {
+        Debug.Log("CHOMP");
+        //play attack anim
+        float damageAmount = zombie.attackDamage; //+ some other modifiers?
+        target.TakeDamage(damageAmount);
+        zombie.StartCoroutine(zombie.StartCooldown());
     }
 
     public override IEnumerator Exit()

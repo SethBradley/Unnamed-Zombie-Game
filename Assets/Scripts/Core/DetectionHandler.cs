@@ -39,7 +39,7 @@ public class DetectionHandler : MonoBehaviour
         }
     }
 
-    public GameObject GetClosestUnitInRange()
+    public Unit GetClosestUnitInRange()
     {
         GameObject closestUnit = null;
         if(nearbyUnits.Count == 0)
@@ -66,7 +66,10 @@ public class DetectionHandler : MonoBehaviour
                     Debug.Log("Unit mightve dissapeared");
                 }
             }
-        return closestUnit;
+            if (!closestUnit.GetComponent<Unit>().isDead)
+                return closestUnit.GetComponent<Unit>();
+            else
+                return null;
 
     }
 

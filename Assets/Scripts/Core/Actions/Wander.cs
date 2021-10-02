@@ -12,8 +12,9 @@ public class Wander : State
         WaitForSeconds buffer = new WaitForSeconds(1.5f);
     public override IEnumerator Enter()
     {
-        WanderAroundLeader();
         Debug.Log("Entering new Wander");
+        WanderAroundLeader();
+        
         yield return Execute();
     }
 
