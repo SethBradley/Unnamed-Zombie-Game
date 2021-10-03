@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DetectionHandler : MonoBehaviour
 {
-    public List<GameObject> nearbyUnits;
+    public List<Unit> nearbyUnits;
     public NormalZombie unit;
     public float detectionRadius;
     public LayerMask detectableUnits;
@@ -13,7 +13,7 @@ public class DetectionHandler : MonoBehaviour
 
     private void Start() 
     {
-        nearbyUnits = new List<GameObject>();
+        nearbyUnits = new List<Unit>();
         StartCoroutine(UpdateNearbyUnits());
         
     }
@@ -31,9 +31,10 @@ public class DetectionHandler : MonoBehaviour
 
             for (int i = 0; i < nearbyUnitsArray.Length; i++)
             {
-                if(!nearbyUnits.Contains(nearbyUnitsArray[i].gameObject))
+                Unit nearbyUnit = nearbyUnitsArray[i].gameObject.GetComponent<Unit>();
+                if(!nearbyUnits.Contains(nearbyUnit) && !nearbyUnit.isDead)
                 {
-                    nearbyUnits.Add(nearbyUnitsArray[i].gameObject);
+                    nearbyUnits.Add(nearbyUnit);
                 }
             }
         }
@@ -41,7 +42,7 @@ public class DetectionHandler : MonoBehaviour
 
     public Unit GetClosestUnitInRange()
     {
-        GameObject closestUnit = null;
+        Unit closestUnit = null;
         if(nearbyUnits.Count == 0)
             return null;
 
@@ -54,20 +55,21 @@ public class DetectionHandler : MonoBehaviour
             {
                 try
                 {
-                    float distanceFromClosestUnit = Vector3.Distance(unit.transform.position, closestUnit.transform.position);
-                    float distanceFromOtherUnit = Vector3.Distance(unit.transform.position, nearbyUnits[i].transform.position);
-                    if(distanceFromOtherUnit <= distanceFromClosestUnit)
-                    {
-                        closestUnit = nearbyUnits[i].gameObject;
-                    }
+                        float distanceFromClosestUnit = Vector3.Distance(unit.transform.position, closestUnit.transform.position);
+                        float distanceFromOtherUnit = Vector3.Distance(unit.transform.position, nearbyUnits[i].transform.position);
+                        if(distanceFromOtherUnit <= distanceFromClosestUnit)
+                        {
+                            closestUnit = nearbyUnits[i];
+                        }
+
                 }
                 catch
                 {
                     Debug.Log("Unit mightve dissapeared");
                 }
             }
-            if (!closestUnit.GetComponent<Unit>().isDead)
-                return closestUnit.GetComponent<Unit>();
+            if (!closestUnit.isDead)
+                return closestUnit;
             else
                 return null;
 

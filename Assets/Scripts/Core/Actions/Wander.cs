@@ -12,7 +12,7 @@ public class Wander : State
         WaitForSeconds buffer = new WaitForSeconds(1.5f);
     public override IEnumerator Enter()
     {
-        Debug.Log("Entering new Wander");
+        //Debug.Log("Entering new Wander");
         WanderAroundLeader();
         
         yield return Execute();
@@ -20,12 +20,12 @@ public class Wander : State
 
     public override IEnumerator Execute()
     {
-        Debug.Log("start of execution Execute");
+//        Debug.Log("start of execution Execute");
         
          while(zombie.locomotionHandler.isMoving)
          {
             //Debug.Log("Is moving");
-
+            
             if(zombie.detectionHandler.GetClosestUnitInRange() != null)
             {
                 Attack attack = new Attack(zombie);
@@ -36,14 +36,14 @@ public class Wander : State
          }
        
         yield return buffer;
-        Debug.Log("end of execution Execute");
+        //Debug.Log("end of execution Execute");
         yield return Enter();
     }
 
     public override IEnumerator Exit()
     {
 
-        Debug.Log("Done with wander");
+        //Debug.Log("Done with wander");
         yield return null;
     }
 
@@ -60,7 +60,7 @@ public class Wander : State
         //Debug.Log(collisions.Length);
         if(collisions.Length != 0)
         {
-            Debug.Log("UH OH I hit a wall OPSIE! sending again");
+            //Debug.Log("UH OH I hit a wall OPSIE! sending again");
             WanderAroundLeader();
             return;
         }

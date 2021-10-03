@@ -11,8 +11,6 @@ public abstract class MainZombie : Unit, ISelectable, IMovable
     public CircleCollider2D circleRadius;
     public List<NormalZombie> zombiesInRadiusList = new List<NormalZombie>();
 
-    public float cooldown { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-    public GameObject target { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
     private void Awake() 
     {

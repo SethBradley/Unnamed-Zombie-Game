@@ -22,7 +22,7 @@ public class NormalZombie : Unit, ISelectable
         locomotionHandler = GetComponent<LocomotionHandler>();
         detectionHandler = GetComponent<DetectionHandler>();
         stateMachine = new StateMachine(this);
-        Debug.Log(leader.name);
+
 
         stateMachine.ChangeState(wander);
     }

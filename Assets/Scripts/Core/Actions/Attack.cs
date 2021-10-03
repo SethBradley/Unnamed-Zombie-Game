@@ -6,7 +6,6 @@ using UnityEngine;
 public class Attack : State
 {
     public NormalZombie zombie;
-    public Unit target;
     Wander wander;
     public Attack(Unit _zombie)
     {
@@ -21,8 +20,8 @@ public class Attack : State
     {
         Debug.Log("Entering new attack");
         Unit newTarget = zombie.detectionHandler.GetClosestUnitInRange();
-        target = newTarget;
-        zombie.locomotionHandler.MoveToTarget(target.transform.position);        
+        zombie.target = newTarget;
+        zombie.locomotionHandler.MoveToTarget(zombie.target.transform.position);        
         yield return Execute();
     }
 
@@ -30,23 +29,23 @@ public class Attack : State
     {
         Debug.Log("executing new attack");
         
-        while(target != null)
+        while(zombie.target != null)
         {
             yield return buffer;
             Unit closestUnit = zombie.detectionHandler.GetClosestUnitInRange();
 
-            if(closestUnit != target && closestUnit != null)
+            if(closestUnit != zombie.target && closestUnit != null)
                 yield return Enter();
             
-            if( !zombie.isOnCooldown && Vector3.Distance(zombie.transform.position, target.transform.position) <= zombie.attackRange)
+            if( !zombie.isOnCooldown && Vector3.Distance(zombie.transform.position, zombie.target.transform.position) <= zombie.attackRange)
             {
-                MeleeAttackHuman();
+                zombie.anim.SetTrigger("MeleeAttack");
             }
 
-            zombie.locomotionHandler.UpdatePathToTarget(target.transform);
-            if (closestUnit == null || target.isDead)
+            zombie.locomotionHandler.UpdatePathToTarget(zombie.target.transform);
+            if (closestUnit == null || zombie.target.isDead)
             {
-                target = null;
+                zombie.target = null;
                 zombie.stateMachine.ChangeState(wander);
                 yield break;
             }
@@ -56,15 +55,6 @@ public class Attack : State
         }
 
         yield return null;
-    }
-
-    private void MeleeAttackHuman()
-    {
-        Debug.Log("CHOMP");
-        //play attack anim
-        float damageAmount = zombie.attackDamage; //+ some other modifiers?
-        target.TakeDamage(damageAmount);
-        zombie.StartCoroutine(zombie.StartCooldown());
     }
 
     public override IEnumerator Exit()

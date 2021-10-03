@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Human : Unit, IMovable, ISelectable
 {
-    public float cooldown { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-    public GameObject target { get;set; }
 
     //public IAction queuedAction {get; set;}
 

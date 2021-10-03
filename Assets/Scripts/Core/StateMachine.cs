@@ -16,7 +16,7 @@ public class StateMachine
         if(currentState != null)
             {
                 
-                Debug.Log("Stopping all coroutines on " + unit.name);
+                //Debug.Log("Stopping all coroutines on " + unit.name);
                 unit.StopAllCoroutines();
                 unit.StartCoroutine(unit.StartCooldown());
                 unit.StartCoroutine(currentState.Exit());
