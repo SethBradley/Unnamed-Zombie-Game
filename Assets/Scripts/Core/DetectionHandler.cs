@@ -5,8 +5,7 @@ using UnityEngine;
 public class DetectionHandler : MonoBehaviour
 {
     public List<Unit> nearbyUnits;
-    public NormalZombie unit;
-    public float detectionRadius;
+    public float unitDetectionRadius;
     public LayerMask detectableUnits;
     
     public bool isDetecting;
@@ -27,7 +26,7 @@ public class DetectionHandler : MonoBehaviour
             yield return buffer;
 
             nearbyUnits.Clear();
-            Collider2D[] nearbyUnitsArray= Physics2D.OverlapCircleAll(unit.transform.position,detectionRadius,detectableUnits);
+            Collider2D[] nearbyUnitsArray= Physics2D.OverlapCircleAll(transform.position,unitDetectionRadius,detectableUnits);
 
             for (int i = 0; i < nearbyUnitsArray.Length; i++)
             {
@@ -39,6 +38,7 @@ public class DetectionHandler : MonoBehaviour
             }
         }
     }
+
 
     public Unit GetClosestUnitInRange()
     {
@@ -55,8 +55,8 @@ public class DetectionHandler : MonoBehaviour
             {
                 try
                 {
-                        float distanceFromClosestUnit = Vector3.Distance(unit.transform.position, closestUnit.transform.position);
-                        float distanceFromOtherUnit = Vector3.Distance(unit.transform.position, nearbyUnits[i].transform.position);
+                        float distanceFromClosestUnit = Vector3.Distance(transform.position, closestUnit.transform.position);
+                        float distanceFromOtherUnit = Vector3.Distance(transform.position, nearbyUnits[i].transform.position);
                         if(distanceFromOtherUnit <= distanceFromClosestUnit)
                         {
                             closestUnit = nearbyUnits[i];
@@ -78,7 +78,7 @@ public class DetectionHandler : MonoBehaviour
 
     private void OnDrawGizmos() 
     {
-        Gizmos.DrawWireSphere(unit.transform.position,detectionRadius);
+        Gizmos.DrawWireSphere(this.transform.position,unitDetectionRadius);
     }
 
 

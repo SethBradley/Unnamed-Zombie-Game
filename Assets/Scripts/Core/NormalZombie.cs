@@ -9,18 +9,13 @@ public class NormalZombie : Unit, ISelectable
     public float attackRange;
 
     public MainZombie leader;
-    [Header("Locomotion")]
-    public LocomotionHandler locomotionHandler;
     [Header("Targeting/Detection")]
     public LayerMask unwalkableMask;
-    public DetectionHandler detectionHandler;
     public LayerMask humanLayerMask;
 
     private void Start() 
     {
         Wander wander = new Wander(this);
-        locomotionHandler = GetComponent<LocomotionHandler>();
-        detectionHandler = GetComponent<DetectionHandler>();
         stateMachine = new StateMachine(this);
 
 

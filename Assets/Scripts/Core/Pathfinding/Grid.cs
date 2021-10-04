@@ -5,6 +5,7 @@ using Sirenix.OdinInspector;
 public class Grid : MonoBehaviour {
 
 	public LayerMask unwalkableMask;
+	public TerrainType[] walkableRegions;
 	public Vector3 gridWorldSize;
 	public float nodeRadius;
 	Node[,] grid;
@@ -31,8 +32,11 @@ public class Grid : MonoBehaviour {
 				Vector2 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.up * (y * nodeDiameter + nodeRadius);
 				Vector2 box = new Vector2(nodeDiameter - 0.1f, nodeDiameter - 0.1f);
                 bool walkable = !(Physics2D.OverlapBox(worldPoint, box, 90, unwalkableMask));
+				
+				int movementPenalty = 0;
 
-				grid[x,y] = new Node(walkable,worldPoint, x,y);
+
+				grid[x,y] = new Node(walkable,worldPoint, x,y,movementPenalty);
 			}
 		}
 	}
@@ -83,4 +87,11 @@ public class Grid : MonoBehaviour {
 			}
 		}
 	}
+	[System.Serializable]
+	public class TerrainType
+	{
+		public LayerMask terrainMask;
+		public int terrainPenalty;
+	}
 }
+

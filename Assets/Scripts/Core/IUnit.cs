@@ -15,10 +15,15 @@ public abstract class Unit : MonoBehaviour
     public bool isOnCooldown;
     EffectsHandler effectsHandler;
     public Animator anim;
+    public DetectionHandler detectionHandler;
+    public LocomotionHandler locomotionHandler;
 
     private void Awake() 
     {
         effectsHandler = GetComponent<EffectsHandler>();
+        locomotionHandler = GetComponent<LocomotionHandler>();
+        detectionHandler = GetComponent<DetectionHandler>();
+
         anim = GetComponent<Animator>();
     }
     public IEnumerator StartCooldown()

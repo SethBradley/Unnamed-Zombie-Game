@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Human : Unit, IMovable, ISelectable
 {
-
-    //public IAction queuedAction {get; set;}
-
-    public void PerformQueuedAction()
+    //Public Item equippedItem;
+    public bool isArmed;
+    private void Start() 
     {
-        //Debug.Log(" Human perofrming action");
+        CivilianWander civilianWander = new CivilianWander(this);
+        stateMachine = new StateMachine(this);
+        stateMachine.ChangeState(civilianWander);
     }
 }
