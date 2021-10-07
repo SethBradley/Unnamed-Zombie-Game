@@ -43,10 +43,7 @@ public class Panic : State
     }
     private void PanicAwayFromNearestZombie()
     {
-        
-        
         GetDirectionAwayFromZombie();
-        
     }
 
     private void GetDirectionAwayFromZombie()

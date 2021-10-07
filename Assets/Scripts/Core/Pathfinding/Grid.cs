@@ -5,6 +5,8 @@ using Sirenix.OdinInspector;
 public class Grid : MonoBehaviour {
 
 	public LayerMask unwalkableMask;
+	public LayerMask walkableMask;
+	public Dictionary<int,int> walkableRegionsDictionary = new Dictionary<int, int>();
 	public TerrainType[] walkableRegions;
 	public Vector3 gridWorldSize;
 	public float nodeRadius;
@@ -15,11 +17,19 @@ public class Grid : MonoBehaviour {
 	int gridSizeX, gridSizeY;
 	public int maxSize {get { return gridSizeX * gridSizeY;}}
 
+
 	void Awake() {
 		nodeDiameter = nodeRadius*2;
 		gridSizeX = Mathf.RoundToInt(gridWorldSize.x/nodeDiameter);
 		gridSizeY = Mathf.RoundToInt(gridWorldSize.y/nodeDiameter);
 		CreateGrid();
+
+		foreach(TerrainType region in walkableRegions)
+		{
+			float terrainMaskValue = (float)region.terrainMask.value;
+			walkableMask.value += region.terrainMask.value;
+			walkableRegionsDictionary.Add((int)Mathf.Log(terrainMaskValue, 2f) ,region.terrainPenalty);
+		}
 	}
 
 	void CreateGrid() {
@@ -35,6 +45,15 @@ public class Grid : MonoBehaviour {
 				
 				int movementPenalty = 0;
 
+				if(walkable)
+				{
+					Ray ray = new Ray(worldPoint + Vector2.up * 50, Vector2.down);
+					RaycastHit hit;
+					if(Physics.Raycast(ray, out hit, 100, walkableMask))
+					{
+						walkableRegionsDictionary.TryGetValue(hit.collider.gameObject.layer, out movementPenalty);
+					}
+				}
 
 				grid[x,y] = new Node(walkable,worldPoint, x,y,movementPenalty);
 			}
