@@ -6,7 +6,8 @@ using UnityEngine;
 public class UnitSelectController : MonoBehaviour
 {
     public static UnitSelectController instance;
-    public Unit currentSelected;
+    public GameObject currentSelected;
+    
 
     private void Awake() 
     {
@@ -18,19 +19,19 @@ public class UnitSelectController : MonoBehaviour
 
     private void Update() 
     {
-        
-        if (Input.GetMouseButtonDown(0))
+        if(!AbilityCastController.instance.isCastingAbility)
         {
-            currentSelected = GetUnitUnderMouse();
-        }
-        
-
-
-        if (Input.GetMouseButtonDown(1) 
-            && currentSelected.GetComponent<IMovable>() != null)
-        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                currentSelected = GetUnitUnderMouse();
+            }
+            
+            if (Input.GetMouseButtonDown(1) && currentSelected.GetComponent<IMovable>() != null)
+            {
             MoveSelectedUnit();
-        }       
+            }
+        }
+     
         
     }
 
@@ -41,7 +42,7 @@ public class UnitSelectController : MonoBehaviour
 
     }
 
-    public Unit GetUnitUnderMouse()
+    public GameObject GetUnitUnderMouse()
     {
         //Camera.main is nasty toss this
         Vector2 raycastPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -51,7 +52,7 @@ public class UnitSelectController : MonoBehaviour
         {
             if (hit.collider.GetComponent<ISelectable>() != null)
             {
-                return hit.collider.GetComponent<Unit>();    
+                return hit.collider.gameObject;    
             }
             
         }

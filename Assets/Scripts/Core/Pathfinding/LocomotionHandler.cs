@@ -53,7 +53,7 @@ public class LocomotionHandler : MonoBehaviour
                 }
                 currentWaypoint = path[targetIndex];
             }
-                transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, movespeed);
+                transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, movespeed * Time.deltaTime);
                 
 
             yield return null;
@@ -75,7 +75,7 @@ public class LocomotionHandler : MonoBehaviour
         {
             Vector3 targetPos = path.Length > 0 ? path[path.Length - 1] : _target.transform.position;  
             Vector3 newTargetPos = _target.position;          
-            if(Vector3.Distance(targetPos, newTargetPos) >= 2f)
+            if(Vector3.Distance(targetPos, newTargetPos) >= 1.5f)
             {
                 //StopCoroutine(FollowPath());
                 Debug.Log("Updating path DO NOT WANT TO SEE ME OFTEN");

@@ -20,12 +20,12 @@ public class Wander : State
 
     public override IEnumerator Execute()
     {
-//        Debug.Log("start of execution Execute");
+        Debug.Log("start of wander execute ");
         
          while(zombie.locomotionHandler.isMoving)
          {
             //Debug.Log("Is moving");
-            
+            yield return buffer;
             if(zombie.detectionHandler.GetClosestUnitInRange() != null)
             {
                 Attack attack = new Attack(zombie);
@@ -35,8 +35,8 @@ public class Wander : State
             yield return null;
          }
        
-        yield return buffer;
-        //Debug.Log("end of execution Execute");
+        
+        Debug.Log("end of wander execute ");
         yield return Enter();
     }
 
