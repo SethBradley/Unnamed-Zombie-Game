@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //using Sirenix.OdinInspector;
-public class NormalZombie : Unit, ISelectable
+public class NormalZombie : Zombie, ISelectable
 {
     [Header("Stats")]
     public float attackRange;
 
-    public MainZombie leader;
+    public LeaderZombie leader;
     [Header("Targeting/Detection")]
     public LayerMask unwalkableMask;
     public LayerMask humanLayerMask;

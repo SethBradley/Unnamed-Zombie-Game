@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IState
+public class KingpinZombie : LeaderZombie
 {
-    void Enter();
-
-    void Update();
-    void Exit();
+    
 
 }

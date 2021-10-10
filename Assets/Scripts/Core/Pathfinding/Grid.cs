@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 public class Grid : MonoBehaviour {
 
 	public LayerMask unwalkableMask;
-	public LayerMask walkableMask;
+	private LayerMask walkableMask;
 	public Dictionary<int,int> walkableRegionsDictionary = new Dictionary<int, int>();
 	public TerrainType[] walkableRegions;
 	public Vector3 gridWorldSize;
@@ -47,12 +47,15 @@ public class Grid : MonoBehaviour {
 
 				if(walkable)
 				{
-					Ray ray = new Ray(worldPoint + Vector2.up * 50, Vector2.down);
-					RaycastHit hit;
-					if(Physics.Raycast(ray, out hit, 100, walkableMask))
+					
+					RaycastHit2D hit = Physics2D.Raycast((worldPoint + Vector2.up), -Vector2.down, walkableMask);
+					if (hit.collider != null)
 					{
-						walkableRegionsDictionary.TryGetValue(hit.collider.gameObject.layer, out movementPenalty);
+						walkableRegionsDictionary.TryGetValue(hit.collider.gameObject.layer, out movementPenalty);	
+//						Debug.Log("Adding Movement penalty to " + hit.collider.name);
 					}
+					
+					
 				}
 
 				grid[x,y] = new Node(walkable,worldPoint, x,y,movementPenalty);

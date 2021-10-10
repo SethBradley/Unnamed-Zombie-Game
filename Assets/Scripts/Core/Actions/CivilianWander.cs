@@ -29,7 +29,7 @@ public class CivilianWander : State
                 Panic panic = new Panic(unit);
                 unit.stateMachine.ChangeState(panic);
             }
-            Debug.Log("Human is wandering");
+            //Debug.Log("Human is wandering");
             yield return null;
         }
         yield return buffer;

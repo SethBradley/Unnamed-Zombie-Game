@@ -5,11 +5,15 @@ using UnityEngine;
 
 public class UnitSelectController : MonoBehaviour
 {
-    public GameObject currentSelected;
+    public static UnitSelectController instance;
+    public Unit currentSelected;
 
     private void Awake() 
     {
-
+        if (instance != null && instance != this)
+            Destroy(this.gameObject);
+         else 
+            instance = this;
     }
 
     private void Update() 
@@ -37,7 +41,7 @@ public class UnitSelectController : MonoBehaviour
 
     }
 
-    public GameObject GetUnitUnderMouse()
+    public Unit GetUnitUnderMouse()
     {
         //Camera.main is nasty toss this
         Vector2 raycastPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -47,7 +51,7 @@ public class UnitSelectController : MonoBehaviour
         {
             if (hit.collider.GetComponent<ISelectable>() != null)
             {
-                return hit.collider.gameObject;    
+                return hit.collider.GetComponent<Unit>();    
             }
             
         }
