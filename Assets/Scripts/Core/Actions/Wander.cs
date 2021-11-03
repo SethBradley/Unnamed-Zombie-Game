@@ -20,7 +20,7 @@ public class Wander : State
 
     public override IEnumerator Execute()
     {
-        Debug.Log("start of wander execute ");
+//        Debug.Log("start of wander execute ");
         
          while(zombie.locomotionHandler.isMoving)
          {
@@ -36,7 +36,7 @@ public class Wander : State
          }
        
         
-        Debug.Log("end of wander execute ");
+        //Debug.Log("end of wander execute ");
         yield return Enter();
     }
 

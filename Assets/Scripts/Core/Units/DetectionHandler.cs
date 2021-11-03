@@ -5,8 +5,10 @@ using UnityEngine;
 public class DetectionHandler : MonoBehaviour
 {
     public List<Unit> nearbyUnits;
+    public List<Transform> nearbyWeapons;
     public float unitDetectionRadius;
     public LayerMask detectableUnits;
+    public LayerMask detectableWeapons;
     
     public bool isDetecting;
 
@@ -46,11 +48,9 @@ public class DetectionHandler : MonoBehaviour
         if(nearbyUnits.Count == 0)
             return null;
 
-        
         else if(nearbyUnits.Count >= 1)
             closestUnit = nearbyUnits[0];
 
-        
         for (int i = 0; i < nearbyUnits.Count; i++)
             {
                 try
@@ -61,7 +61,6 @@ public class DetectionHandler : MonoBehaviour
                         {
                             closestUnit = nearbyUnits[i];
                         }
-
                 }
                 catch
                 {
@@ -72,10 +71,31 @@ public class DetectionHandler : MonoBehaviour
                 return closestUnit;
             else
                 return null;
-
     }
 
 
+    public Transform DetectNearestWeapon()
+    {
+        Collider2D[] nearbyWeaponsArray= Physics2D.OverlapCircleAll(transform.position,unitDetectionRadius,detectableWeapons);
+        Transform closestWeapon = null;
+        if(nearbyWeaponsArray.Length == 0)
+            return null;
+
+        else if(nearbyWeaponsArray.Length == 1)
+            return nearbyWeaponsArray[0].transform;
+        
+        closestWeapon = nearbyWeaponsArray[0].transform;
+        for (int i = 0; i < nearbyWeaponsArray.Length; i++)
+            {   
+                if(Vector3.Distance(transform.position, nearbyWeaponsArray[i].transform.position) > Vector3.Distance(transform.position, closestWeapon.position))
+                {
+                    closestWeapon = nearbyWeaponsArray[i].transform;
+                }
+                
+            }
+        Debug.Log(closestWeapon.name);
+        return closestWeapon;
+    }
     private void OnDrawGizmos() 
     {
         Gizmos.DrawWireSphere(this.transform.position,unitDetectionRadius);

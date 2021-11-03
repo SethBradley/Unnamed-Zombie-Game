@@ -78,7 +78,7 @@ public class LocomotionHandler : MonoBehaviour
             if(Vector3.Distance(targetPos, newTargetPos) >= 1.5f)
             {
                 //StopCoroutine(FollowPath());
-                Debug.Log("Updating path DO NOT WANT TO SEE ME OFTEN");
+//                Debug.Log("Updating path DO NOT WANT TO SEE ME OFTEN");
                 MoveToTarget(_target.position);
                 //StartCoroutine(FollowPath());
             }

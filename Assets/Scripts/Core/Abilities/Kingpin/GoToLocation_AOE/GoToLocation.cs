@@ -75,12 +75,20 @@ public class GoToLocation : Ability
 
         Collider2D[] collisions = Physics2D.OverlapCircleAll(randomPosInAbilityRadius, 1f, zombie.unwalkableMask);
         //Debug.Log(collisions.Length);
-        if(collisions.Length != 0)
+        try
         {
-            //Debug.Log("UH OH I hit a wall OPSIE! sending again");
-            WalkToAbilityLocation(zombie);
-            return;
+            if(collisions.Length != 0)
+            {
+                //Debug.Log("UH OH I hit a wall OPSIE! sending again");
+                WalkToAbilityLocation(zombie);
+                return;
+            }
         }
+        catch
+            {
+                //Display red indicator
+                return;
+            }
             
 //        Debug.Log("Should be starting to walk " + randomPosInAbilityRadius);
         zombie.locomotionHandler.MoveToTarget(randomPosInAbilityRadius);

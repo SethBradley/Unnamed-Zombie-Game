@@ -6,10 +6,17 @@ public class Human : Unit, IMovable, ISelectable
 {
     //Public Item equippedItem;
     public bool isArmed;
+    public WeaponHandler weaponHandler;
+
     private void Start() 
     {
-        CivilianWander civilianWander = new CivilianWander(this);
+        //If heldWeapon != null
+        HumanWander humanWander = new HumanWander(this);
         stateMachine = new StateMachine(this);
-        stateMachine.ChangeState(civilianWander);
+        stateMachine.ChangeState(humanWander);
+        weaponHandler = GetComponent<WeaponHandler>();
     }
+
+    
+
 }

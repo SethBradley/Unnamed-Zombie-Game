@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CivilianWander : State
+public class HumanWander : State
 {
     protected Unit unit;
     protected WaitForSeconds buffer = new WaitForSeconds(0.5f);
-    public CivilianWander(Unit _unit)
+    public HumanWander(Unit _unit)
     {
         unit = _unit;
 

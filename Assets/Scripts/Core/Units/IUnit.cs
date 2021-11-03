@@ -46,16 +46,12 @@ public abstract class Unit : MonoBehaviour
         }
         StartCoroutine(effectsHandler.TakeDamageEffect());
     }
-    public void MeleeAttack()
-    {
-        if(target == null || target.isDead)
-            return;
 
-        Debug.Log("CHOMP");
+    public void GetKnockedBack()
+    {
         
-        float damageAmount = attackDamage; //+ some other modifiers?
-        target.TakeDamage(damageAmount);
-        StartCoroutine(StartCooldown());
     }
+
+    
 
 }

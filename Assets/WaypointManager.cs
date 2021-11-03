@@ -33,16 +33,18 @@ public class WaypointManager : MonoBehaviour
         Transform waypoint = waypoints[random];
         return waypoint;
     }
-    public Transform GetFarthestExit(Unit unit)
+    public Transform GetNearestExit(Transform unit)
     {
         //could change this to nearest easily
+        //Debug.Log("Nearest Exit is being determined");
         int random = UnityEngine.Random.Range(0, exits.Count);
         Transform currentExit = exits[random];
-        float currentExitDistance = Vector3.Distance(currentExit.transform.position, unit.transform.position);
+        //Debug.Log("Nearest Exit is " + currentExit.name);
+        float currentExitDistance = Vector3.Distance(currentExit.transform.position, unit.position);
         for (int i = 0; i < exits.Count; i++)
         {
-            Debug.Log($"current exit distance is {currentExitDistance} and new exit distance is{Vector3.Distance(exits[i].transform.position, unit.transform.position)} if second is bigger, set that to current exit");
-            if(currentExitDistance < Vector3.Distance(exits[i].transform.position, unit.transform.position))
+            Debug.Log($"current exit distance is {currentExitDistance} and new exit distance is{Vector3.Distance(exits[i].transform.position, unit.position)} if second is bigger, set that to current exit");
+            if(currentExitDistance > Vector3.Distance(exits[i].transform.position, unit.position))
             {
                 
                 currentExit = exits[i].transform;

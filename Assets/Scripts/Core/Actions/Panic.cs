@@ -7,32 +7,50 @@ public class Panic : State
 {
     protected Human unit;
     protected Unit nearestZombie;
-    protected Transform farthestExit;
+    protected Transform nearestExit;
+    private bool isPanicing;
+    private bool weaponIsNearby;
     public Panic(Unit _unit)
     {
-        unit = _unit as Human;        
+        unit = _unit as Human;
+                
     }
+
+    public WaitForSeconds buffer = new WaitForSeconds(1.5f);
+    public WaitForSeconds shortbuffer = new WaitForSeconds(0.25f);
     public override IEnumerator Enter()
     {
         Debug.Log("Entering Panic state");
-        farthestExit = WaypointManager.instance.GetFarthestExit(unit);
+        
+        nearestExit = WaypointManager.instance.GetNearestExit(unit.transform);
         nearestZombie = unit.detectionHandler.GetClosestUnitInRange();
-        PanicAwayFromNearestZombie();
         yield return Execute();
     }
 
     public override IEnumerator Execute()
     {
-        //If (equippedWeapon == null)
-         /*   //Seek
+        Debug.Log("Executing panic");
+        unit.locomotionHandler.StopCoroutine("FollowPath");
+        Transform nearbyWeapon = unit.detectionHandler.DetectNearestWeapon();
+        Debug.Log("Nearest Weapon is " + nearbyWeapon);
         
-         
-         */
-        while(nearestZombie != null && !unit.isArmed)
+        PanicAwayFromNearestZombie();
+        yield return buffer; 
+        
+        if (nearbyWeapon != null && !unit.isArmed)
+        {
+             yield return PickUpWeapon(nearbyWeapon);
+        }
+            
+
+        unit.locomotionHandler.MoveToTarget(nearestExit.position);
+        /*while(nearestZombie  && !unit.isArmed)
         {
             //run for the exit
             yield return null;
-        }        
+        }*/
+
+        yield return buffer;
         yield return null;
     }
 
@@ -43,10 +61,39 @@ public class Panic : State
     }
     private void PanicAwayFromNearestZombie()
     {
-        GetDirectionAwayFromZombie();
+        isPanicing = true;
+
+        Vector3 humanPos = unit.transform.position;
+        Vector3 zombiePos = nearestZombie.transform.position;
+        Vector3 directionAwayFromZombie = (humanPos -zombiePos);
+
+        unit.locomotionHandler.MoveToTarget(directionAwayFromZombie);
+        
     }
 
-    private void GetDirectionAwayFromZombie()
+    private IEnumerator PickUpWeapon(Transform nearbyWeapon)
     {
+        
+        while(Vector2.Distance(unit.transform.position, nearbyWeapon.position) > 1f)
+        {
+            Debug.Log("Running to weapon  " + Vector2.Distance(unit.transform.position, nearbyWeapon.position) );
+            unit.locomotionHandler.MoveToTarget(nearbyWeapon.position);
+
+            if(Vector2.Distance(unit.transform.position, nearbyWeapon.position) < 1f)
+            {
+                Debug.Log("Close enough; breaking");
+                break;
+            }
+                
+                
+            yield return shortbuffer;
+        }
+        Debug.Log("Should be picking up weapon now");
+        unit.weaponHandler.EquipWeapon(nearbyWeapon);
+        HumanAttack humanAttack = new HumanAttack(unit);
+        unit.stateMachine.ChangeState(humanAttack);
+        //enter civilianAttack state
+        yield return null;
     }
+
 }

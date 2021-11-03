@@ -27,7 +27,7 @@ public class Attack : State
 
     public override IEnumerator Execute()
     {
-        Debug.Log("executing new attack");
+//        Debug.Log("executing new attack");
         
         while(zombie.target != null)
         {
@@ -36,7 +36,7 @@ public class Attack : State
 
             if(closestUnit != zombie.target && closestUnit != null)
                 yield return Enter();
-            
+
             if( !zombie.isOnCooldown && Vector3.Distance(zombie.transform.position, zombie.target.transform.position) <= zombie.attackRange)
             {
                 zombie.anim.SetTrigger("MeleeAttack");
