@@ -3548,6 +3548,7 @@ GameObject:
   - component: {fileID: 633971812}
   - component: {fileID: 633971811}
   - component: {fileID: 633971816}
+  - component: {fileID: 633971817}
   m_Layer: 7
   m_Name: Human
   m_TagString: Untagged
@@ -3616,10 +3617,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 633971809}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6eeab8c2e2c7c0d4c8eb2720359c6b82, type: 3}
+  m_Script: {fileID: 11500000, guid: da40a0c8810f15243a448f19274531a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 17.72
+  health: 0
   attackDamage: 0
   target: {fileID: 0}
   isDead: 0
@@ -3630,7 +3631,7 @@ MonoBehaviour:
   detectionHandler: {fileID: 0}
   locomotionHandler: {fileID: 0}
   isArmed: 0
-  heldWeapon: {fileID: 0}
+  weaponHandler: {fileID: 0}
 --- !u!61 &633971814
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3665,7 +3666,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 633971809}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.13, y: 3.23, z: 0}
+  m_LocalPosition: {x: 8.45, y: 0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1131394710}
@@ -3695,6 +3696,23 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   isDetecting: 1
+--- !u!114 &633971817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633971809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd2ea7b37043a84c954a182bb45e663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  human: {fileID: 0}
+  heldWeapon: {fileID: 0}
+  isReadyToAttack: 0
+  heldWeaponGameObject: {fileID: 0}
+  attackPoint: {fileID: 0}
 --- !u!1 &668959744
 GameObject:
   m_ObjectHideFlags: 0
@@ -16959,7 +16977,7 @@ GameObject:
   - component: {fileID: 1998996534}
   - component: {fileID: 1998996535}
   m_Layer: 7
-  m_Name: Equipped
+  m_Name: EquippedWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

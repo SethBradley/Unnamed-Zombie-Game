@@ -15,6 +15,7 @@ public class NormalZombie : Zombie, ISelectable
 
     private void Start() 
     {
+        threshold = 1;
         Wander wander = new Wander(this);
         stateMachine = new StateMachine(this);
 

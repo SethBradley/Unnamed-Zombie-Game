@@ -5,6 +5,8 @@ using UnityEngine;
 public class DetectionHandler : MonoBehaviour
 {
     public List<Unit> nearbyUnits;
+    public List<Human> nearbyHumans;
+    public List<Zombie> nearbyZombies;
     public List<Transform> nearbyWeapons;
     public float unitDetectionRadius;
     public LayerMask detectableUnits;
@@ -20,6 +22,7 @@ public class DetectionHandler : MonoBehaviour
     }
     WaitForSeconds buffer = new WaitForSeconds(0.5f);
     
+    //need to create an UpdateNearbyHumans and UpdateNearbyZombies
     public IEnumerator UpdateNearbyUnits()
     {
         while(isDetecting)
@@ -38,6 +41,7 @@ public class DetectionHandler : MonoBehaviour
                     nearbyUnits.Add(nearbyUnit);
                 }
             }
+
         }
     }
 
@@ -96,9 +100,14 @@ public class DetectionHandler : MonoBehaviour
         Debug.Log(closestWeapon.name);
         return closestWeapon;
     }
+
+
+
     private void OnDrawGizmos() 
     {
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(this.transform.position,unitDetectionRadius);
+        
     }
 
 

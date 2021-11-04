@@ -7,6 +7,7 @@ public abstract class Unit : MonoBehaviour
     //IAction queuedAction {get;set;}
     public float health;
     public float attackDamage;
+    public int threshold; 
     public Unit target;
     public StateMachine stateMachine;
     public bool isDead;

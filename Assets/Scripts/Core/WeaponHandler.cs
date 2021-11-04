@@ -40,12 +40,13 @@ public class WeaponHandler : MonoBehaviour
         heldWeaponGameObject = weapon.gameObject;
         
         heldWeapon = weapon.GetComponent<WeaponModel>().weapon;
-        //SetAttackPoint();
+        SetAttackPoint();
         
         equippedWeapon.transform.position = Vector3.zero;
         equippedWeapon.localPosition = heldWeapon.offsetPosition;
         equippedWeapon.localRotation = heldWeapon.offsetRotation;
         equippedWeapon.GetComponent<SpriteRenderer>().sprite = heldWeapon.sprite;
+        //equippedWeapon.gameObject.AddComponent<BoxCollider2D>();
 
 
         Object.Destroy(weapon.gameObject);
@@ -83,6 +84,8 @@ public class WeaponHandler : MonoBehaviour
 
     private void OnDrawGizmosSelected() 
     {
+        if(attackPoint == null)
+            return;
 
         Gizmos.DrawWireSphere(attackPoint.transform.position, heldWeapon.attackRadius);
     }
