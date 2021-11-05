@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public class DetectionHandler : MonoBehaviour
 {
     public List<Unit> nearbyUnits;
-    public List<Human> nearbyHumans;
+    public List<GameObject> nearbyHumans;
     public List<Zombie> nearbyZombies;
     public List<Transform> nearbyWeapons;
     public float unitDetectionRadius;
@@ -17,6 +18,9 @@ public class DetectionHandler : MonoBehaviour
     private void Start() 
     {
         nearbyUnits = new List<Unit>();
+        nearbyHumans = new List<GameObject>();
+        nearbyZombies = new List<Zombie>();
+
         StartCoroutine(UpdateNearbyUnits());
         
     }
@@ -29,22 +33,39 @@ public class DetectionHandler : MonoBehaviour
         {
             
             yield return buffer;
-
+            nearbyHumans.Clear();
+            nearbyZombies.Clear();
             nearbyUnits.Clear();
             Collider2D[] nearbyUnitsArray= Physics2D.OverlapCircleAll(transform.position,unitDetectionRadius,detectableUnits);
 
             for (int i = 0; i < nearbyUnitsArray.Length; i++)
             {
                 Unit nearbyUnit = nearbyUnitsArray[i].gameObject.GetComponent<Unit>();
-                if(!nearbyUnits.Contains(nearbyUnit) && !nearbyUnit.isDead)
+                if(!nearbyUnits.Contains(nearbyUnit) && !nearbyUnit.isDead && nearbyUnit != this.GetComponent<Unit>())
                 {
                     nearbyUnits.Add(nearbyUnit);
                 }
             }
 
+            AllocateNearbyUnitsIntoLists();
         }
     }
 
+    private void AllocateNearbyUnitsIntoLists()
+    {
+//        Debug.Log("Allocating");
+        foreach (var unit in nearbyUnits)
+        {
+            if (unit.gameObject.layer == 7)
+            {
+                nearbyHumans.Add(unit.gameObject);
+            }
+            else if(unit.gameObject.layer == 8)
+            {
+                nearbyZombies.Add(unit.GetComponent<Zombie>());
+            }
+        }
+    }
 
     public Unit GetClosestUnitInRange()
     {

@@ -25,11 +25,18 @@ public class HumanAttack : State
             //if nearbyUnits is greater than 0 Foreach zombie in nearbyUnits add to threat Threshold
             
 
-            if(unit.detectionHandler.nearbyUnits.Count > 0)
+            if(unit.detectionHandler.nearbyZombies.Count > 0)
             {
                 //there is a zombie detected
-                GetZombieThreshold();
-                GetHumanThreshold();
+                UpdateThresholds();
+                if(unitThreshold >= zombieThreshold)
+                {
+                    yield return EngageInCombat();
+                    yield break;
+                }
+
+                
+                //GetHumanThreshold();
                 
             }
             // if nearbyUnits is 0 or greater than human attackThreshold, Walk to sanctuary
@@ -41,10 +48,50 @@ public class HumanAttack : State
         
         yield return null;
     }
-
-    private void GetHumanThreshold()
+    public IEnumerator EngageInCombat()
     {
-        throw new NotImplementedException();
+        float chanceToFlee;
+        Debug.Log("Engaging in combat");
+        while(unit.detectionHandler.nearbyZombies.Count > 0)
+        {
+            UpdateThresholds();
+            if(zombieThreshold > unitThreshold)
+            {
+                chanceToFlee = UnityEngine.Random.Range(0f, 1f);
+                if (chanceToFlee >= 0.75f)
+                {
+                    yield return Execute();
+                    yield break;
+                }
+            }
+
+            else
+            {
+                //actually fight
+            }
+        
+        }
+        yield return null;
+    }
+
+    private void UpdateThresholds()
+    {
+        unitThreshold += unit.threshold;
+        foreach (var unit in unit.detectionHandler.nearbyUnits)
+        {
+            Debug.Log(unit.gameObject.layer);
+            if (unit.gameObject.layer == 7)
+            {
+                unitThreshold += unit.threshold;
+            }
+
+            else if(unit.gameObject.layer == 8)
+            {
+                zombieThreshold += unit.threshold;
+            }
+        }
+
+        Debug.Log($"Human threshold is {unitThreshold} and Zombie threshold is {zombieThreshold}");
     }
 
     private void GetZombieThreshold()
