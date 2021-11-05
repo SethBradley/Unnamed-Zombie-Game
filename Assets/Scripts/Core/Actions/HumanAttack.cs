@@ -12,42 +12,53 @@ public class HumanAttack : State
     {
         unit = _unit;
     }
+    WaitForSeconds buffer = new WaitForSeconds(0.5f);
     public override IEnumerator Enter()
     {
         Debug.Log("Entering civilian attack state");
+        unit.isInCombat = true;
+        unit.target = unit.detectionHandler.nearbyZombies[0];
         yield return Execute();
     }
 
     public override IEnumerator Execute()
     {
-        while(!unit.isDefendingSanctuary)
+        while(unit.isInCombat)
         {
-            //if nearbyUnits is greater than 0 Foreach zombie in nearbyUnits add to threat Threshold
-            
-
-            if(unit.detectionHandler.nearbyZombies.Count > 0)
+            if(unit.detectionHandler.nearbyZombies.Count <= 0)
             {
-                //there is a zombie detected
-                UpdateThresholds();
-                if(unitThreshold >= zombieThreshold)
+                Debug.Log("All zombies gone, returning to previous task");
+                //ReturnToPreviousTask();
+            }
+
+            UpdateThresholds();
+            if(unitThreshold >= zombieThreshold)
                 {
-                    yield return EngageInCombat();
-                    yield break;
+                    ShareTargetWithNearbyHumans();
+                    unit.locomotionHandler.MoveToTarget(unit.target.transform.position);
+                    
+                    while(Vector3.Distance(unit.transform.position, unit.target.transform.position) > unit.weaponHandler.heldWeapon.attackRange)
+                    {                        
+                        unit.locomotionHandler.UpdatePathToTarget(unit.target.transform);
+                        yield return buffer;
+                    }
+                
+                    Debug.Log("SWING");
+
                 }
 
-                
-                //GetHumanThreshold();
-                
-            }
-            // if nearbyUnits is 0 or greater than human attackThreshold, Walk to sanctuary
-            
-            
 
-            yield return null;
+            
+            yield return buffer;
         }
         
         yield return null;
     }
+
+    private void ShareTargetWithNearbyHumans()
+    {
+    }
+
     public IEnumerator EngageInCombat()
     {
         float chanceToFlee;
@@ -76,10 +87,11 @@ public class HumanAttack : State
 
     private void UpdateThresholds()
     {
+        unitThreshold = 0;
+        zombieThreshold = 0;
         unitThreshold += unit.threshold;
         foreach (var unit in unit.detectionHandler.nearbyUnits)
         {
-            Debug.Log(unit.gameObject.layer);
             if (unit.gameObject.layer == 7)
             {
                 unitThreshold += unit.threshold;

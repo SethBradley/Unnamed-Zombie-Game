@@ -90,8 +90,8 @@ public class Panic : State
         }
         Debug.Log("Should be picking up weapon now");
         unit.weaponHandler.EquipWeapon(nearbyWeapon);
-        HumanAttack humanAttack = new HumanAttack(unit);
-        unit.stateMachine.ChangeState(humanAttack);
+        GoToSanctuary goToSanctuary = new GoToSanctuary(unit);
+        unit.stateMachine.ChangeState(goToSanctuary);
         //enter civilianAttack state
         yield return null;
     }

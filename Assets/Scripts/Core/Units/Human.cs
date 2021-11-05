@@ -7,6 +7,7 @@ public class Human : Unit, IMovable, ISelectable
     //Public Item equippedItem;
     public bool isArmed;
     public bool isDefendingSanctuary;
+    public bool isInCombat;
     public WeaponHandler weaponHandler;
 
     private void Start() 
