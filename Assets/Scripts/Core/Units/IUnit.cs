@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Unit : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public abstract class Unit : MonoBehaviour
     public Animator anim;
     public DetectionHandler detectionHandler;
     public LocomotionHandler locomotionHandler;
+    public Image Healthbar;
+    
 
     private void Awake() 
     {
@@ -36,7 +39,9 @@ public abstract class Unit : MonoBehaviour
     }
     public void TakeDamage(float damageAmount)
     {
+        
         health -= damageAmount;
+        
         Debug.Log(health);
         //Apply slowdown on attack
         if(health <= 0)

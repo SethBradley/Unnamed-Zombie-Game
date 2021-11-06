@@ -313,6 +313,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1776109025}
   particles:
   - {fileID: 7519513295245187952, guid: a27a3d75ddd88cf4299135857a86f89f, type: 3}
+  unit: {fileID: 0}
+  Healthbar: {fileID: 0}
 --- !u!114 &106196511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,6 +354,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   detectionHandler: {fileID: 0}
   locomotionHandler: {fileID: 0}
+  Healthbar: {fileID: 0}
   isArmed: 0
   isDefendingSanctuary: 0
   weaponHandler: {fileID: 0}
@@ -842,7 +845,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &332289503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1462,7 +1465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &446668719
 Transform:
   m_ObjectHideFlags: 0
@@ -1959,6 +1962,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1131394709}
   particles:
   - {fileID: 7519513295245187952, guid: a27a3d75ddd88cf4299135857a86f89f, type: 3}
+  unit: {fileID: 0}
+  Healthbar: {fileID: 0}
 --- !u!114 &633971812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1987,7 +1992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da40a0c8810f15243a448f19274531a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 1
   attackDamage: 0
   threshold: 3
   target: {fileID: 0}
@@ -1998,6 +2003,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   detectionHandler: {fileID: 0}
   locomotionHandler: {fileID: 0}
+  Healthbar: {fileID: 0}
   isArmed: 0
   isDefendingSanctuary: 0
   weaponHandler: {fileID: 0}
@@ -2035,11 +2041,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 633971809}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.01, y: 0.03, z: 0}
+  m_LocalPosition: {x: 4.01, y: -4.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1131394710}
   - {fileID: 1998996534}
+  - {fileID: 1797850215}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10195,7 +10202,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &810705987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10434,7 +10441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  attackDamage: 9.11
+  attackDamage: 0.25
   threshold: 1
   target: {fileID: 0}
   isDead: 0
@@ -10444,6 +10451,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   detectionHandler: {fileID: 0}
   locomotionHandler: {fileID: 0}
+  Healthbar: {fileID: 0}
   attackRange: 1.18
   leader: {fileID: 885140172}
   unwalkableMask:
@@ -10721,7 +10729,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &885140172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10745,6 +10753,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   detectionHandler: {fileID: 0}
   locomotionHandler: {fileID: 0}
+  Healthbar: {fileID: 0}
   minionWanderRadius: 3
   circleRadius: {fileID: 0}
   zombiesInCommandList:
@@ -10819,7 +10828,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 111
-  m_Sprite: {fileID: 21300000, guid: 2c24da3105b640841b61c2e1a60b94e5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c84b40f5764e1cc47957e375aa6b8a0a, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10838,7 +10847,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885140171}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.77, y: 8.77, z: 0}
+  m_LocalPosition: {x: -7.7, y: -9.2, z: 0}
   m_LocalScale: {x: 1.5517144, y: 1.4123962, z: 1}
   m_Children:
   - {fileID: 1065659339}
@@ -12305,7 +12314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  attackDamage: 9.11
+  attackDamage: 0.25
   threshold: 1
   target: {fileID: 0}
   isDead: 0
@@ -12315,6 +12324,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   detectionHandler: {fileID: 0}
   locomotionHandler: {fileID: 0}
+  Healthbar: {fileID: 0}
   attackRange: 1.18
   leader: {fileID: 885140172}
   unwalkableMask:
@@ -13329,6 +13339,76 @@ Transform:
   m_Father: {fileID: 1486886871}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1797850214
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 633971815}
+    m_Modifications:
+    - target: {fileID: 8246379911496020058, guid: 3a3cf46c148efaf468bb5718dd1b00bf, type: 3}
+      propertyPath: m_Name
+      value: HealthbarUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246379911496020059, guid: 3a3cf46c148efaf468bb5718dd1b00bf, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246379911496020059, guid: 3a3cf46c148efaf468bb5718dd1b00bf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246379911496020059, guid: 3a3cf46c148efaf468bb5718dd1b00bf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246379911496020059, guid: 3a3cf46c148efaf468bb5718dd1b00bf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246379911496020059, guid: 3a3cf46c148efaf468bb5718dd1b00bf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246379911496020059, guid: 3a3cf46c148efaf468bb5718dd1b00bf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246379911496020059, guid: 3a3cf46c148efaf468bb5718dd1b00bf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246379911496020059, guid: 3a3cf46c148efaf468bb5718dd1b00bf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246379911496020059, guid: 3a3cf46c148efaf468bb5718dd1b00bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246379911496020059, guid: 3a3cf46c148efaf468bb5718dd1b00bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246379911496020059, guid: 3a3cf46c148efaf468bb5718dd1b00bf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246379912192346707, guid: 3a3cf46c148efaf468bb5718dd1b00bf, type: 3}
+      propertyPath: m_Name
+      value: Background
+      objectReference: {fileID: 0}
+    - target: {fileID: 8246379913109239748, guid: 3a3cf46c148efaf468bb5718dd1b00bf, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3a3cf46c148efaf468bb5718dd1b00bf, type: 3}
+--- !u!4 &1797850215 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8246379911496020059, guid: 3a3cf46c148efaf468bb5718dd1b00bf, type: 3}
+  m_PrefabInstance: {fileID: 1797850214}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1823181102
 GameObject:
   m_ObjectHideFlags: 0
@@ -14197,7 +14277,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2080323812
 MonoBehaviour:
   m_ObjectHideFlags: 0
