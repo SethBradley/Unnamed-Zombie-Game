@@ -354,6 +354,7 @@ MonoBehaviour:
   locomotionHandler: {fileID: 0}
   isArmed: 0
   isDefendingSanctuary: 0
+  isInCombat: 0
   weaponHandler: {fileID: 0}
 --- !u!95 &106196513
 Animator:
@@ -2000,6 +2001,7 @@ MonoBehaviour:
   locomotionHandler: {fileID: 0}
   isArmed: 0
   isDefendingSanctuary: 0
+  isInCombat: 0
   weaponHandler: {fileID: 0}
 --- !u!61 &633971814
 BoxCollider2D:
@@ -12331,7 +12333,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1435572715}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.53, y: -1.33, z: 0}
+  m_LocalPosition: {x: 14.58, y: 10.89, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 227782104}
