@@ -15,6 +15,7 @@ MonoBehaviour:
   weaponName: Baseball Bat
   isRanged: 0
   attackRange: 1
+  knockbackAmount: 6.09
   attackRadius: 0
   cooldown: 0
   damage: 10

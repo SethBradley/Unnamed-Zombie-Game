@@ -28,7 +28,10 @@ public class HumanAttack : State
             if(unit.detectionHandler.nearbyZombies.Count <= 0)
             {
                 Debug.Log("All zombies gone, returning to previous task");
-                //ReturnToPreviousTask();
+                GoToSanctuary goToSanctuary = new GoToSanctuary(unit);
+                unit.stateMachine.ChangeState(goToSanctuary);
+                yield return null;
+                break;
             }
 
             UpdateThresholds();
@@ -44,9 +47,14 @@ public class HumanAttack : State
                     }
                 
                     Debug.Log("SWING");
+                    unit.target.TakeDamage(unit.weaponHandler.heldWeapon.damage);
+                    unit.target.StartCoroutine(unit.target.GetKnockedBack(unit.weaponHandler.heldWeapon.knockbackAmount, unit.transform.position)); 
 
                 }
-
+            else
+            {
+                //Continue to santuary 
+            }
 
             
             yield return buffer;
