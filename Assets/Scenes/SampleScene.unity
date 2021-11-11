@@ -361,6 +361,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  pfDamagePopup: {fileID: 0}
   isArmed: 0
   isDefendingSanctuary: 0
   isInCombat: 0
@@ -818,7 +819,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 332289502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.44, y: 0.13, z: -5.49466}
+  m_LocalPosition: {x: 3.73, y: -7.34, z: -5.49466}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 443074004}
@@ -10292,6 +10293,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  pfDamagePopup: {fileID: 0}
   minionWanderRadius: 3
   circleRadius: {fileID: 0}
   zombiesInCommandList:
@@ -12712,11 +12714,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400376189103800393, guid: 0c6cad2d9a2afd14ea8d5b69afdef609, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.2303281
+      value: 0.98
       objectReference: {fileID: 0}
     - target: {fileID: 400376189103800393, guid: 0c6cad2d9a2afd14ea8d5b69afdef609, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.3138771
+      value: -12.51
       objectReference: {fileID: 0}
     - target: {fileID: 400376189103800393, guid: 0c6cad2d9a2afd14ea8d5b69afdef609, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12750,6 +12752,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 400376189103800397, guid: 0c6cad2d9a2afd14ea8d5b69afdef609, type: 3}
+      propertyPath: health
+      value: 72.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 400376189103800397, guid: 0c6cad2d9a2afd14ea8d5b69afdef609, type: 3}
+      propertyPath: pfDamagePopup
+      value: 
+      objectReference: {fileID: 2259615961701665482, guid: 4aa1603177dc4c24e85221b59bb9f90e, type: 3}
     - target: {fileID: 400376189103800400, guid: 0c6cad2d9a2afd14ea8d5b69afdef609, type: 3}
       propertyPath: m_Name
       value: Zambie
@@ -12959,6 +12969,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2616147060283581617, guid: 3a17454cde38305499fd0a9093331399, type: 3}
+      propertyPath: attackDamage
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2616147060283581617, guid: 3a17454cde38305499fd0a9093331399, type: 3}
+      propertyPath: pfDamagePopup
+      value: 
+      objectReference: {fileID: 2259615961701665482, guid: 4aa1603177dc4c24e85221b59bb9f90e, type: 3}
+    - target: {fileID: 2616147060283581617, guid: 3a17454cde38305499fd0a9093331399, type: 3}
       propertyPath: animationCurve.m_PostInfinity
       value: 2
       objectReference: {fileID: 0}
@@ -13080,7 +13098,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2616147060283581619, guid: 3a17454cde38305499fd0a9093331399, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.52
+      value: -12.12
       objectReference: {fileID: 0}
     - target: {fileID: 2616147060283581619, guid: 3a17454cde38305499fd0a9093331399, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13118,6 +13136,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Human
       objectReference: {fileID: 0}
+    - target: {fileID: 2616147060283581623, guid: 3a17454cde38305499fd0a9093331399, type: 3}
+      propertyPath: damagePopupUI
+      value: 
+      objectReference: {fileID: 4217814441916724487, guid: 4aa1603177dc4c24e85221b59bb9f90e, type: 3}
+    - target: {fileID: 2616147060283581623, guid: 3a17454cde38305499fd0a9093331399, type: 3}
+      propertyPath: pfDamagePopup
+      value: 
+      objectReference: {fileID: 4217814441916724487, guid: 4aa1603177dc4c24e85221b59bb9f90e, type: 3}
     - target: {fileID: 6411992323122451787, guid: 3a17454cde38305499fd0a9093331399, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.23

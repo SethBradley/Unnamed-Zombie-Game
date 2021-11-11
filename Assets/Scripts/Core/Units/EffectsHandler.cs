@@ -11,12 +11,17 @@ public class EffectsHandler : MonoBehaviour
     private Animator anim;
     public Unit unit;
     public Image Healthbar;
+    
+    
 
     private void Start() {
         unit = GetComponent<Unit>();
         anim = GetComponent<Animator>();
         spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
         spriteEffectOffset = transform.Find("Sprite").transform.localPosition;
+        
+        
+
 //        Healthbar = unit.transform.Find("Healthbar").GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
 //        Healthbar.transform.parent.gameObject.SetActive(false);
     }
@@ -44,7 +49,7 @@ public class EffectsHandler : MonoBehaviour
             yield return null;
         }
     }
-    public void DecreaseHealthUI()
+ public void DecreaseHealthUI()
     {
         
         
