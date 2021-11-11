@@ -5,42 +5,60 @@ using UnityEngine;
 //Change to WeaponHandler
 public class WeaponHandler : MonoBehaviour
 {
-    public Human human;
+    public Unit unit;
     public Weapon heldWeapon;
     Transform equippedWeapon;
-    public bool isReadyToAttack;
+    public bool isOnCooldown;
     
     public GameObject heldWeaponGameObject;
     public GameObject attackPoint;
 
+    public Vector3 AoESize;
+    public Vector3 AoEOffset;
+    [Header("Debugging")]
+    public bool enableAoESizeDebugger;
+
     private void Start() 
     {
-        human = GetComponent<Human>();
+        unit = GetComponent<Unit>();
         equippedWeapon = transform.Find("EquippedWeapon"); 
     }
     
 
 
-    public IEnumerator UseMeleeWeapon()
+    public IEnumerator UseMeleeWeapon(Unit target)
     {
-        if(isReadyToAttack)
+
+        if (!isOnCooldown)
         {
-            
+            if(!heldWeapon.isSingleTarget)
+                AoeMeleeAttack(target);
         }
-        isReadyToAttack = false;
+        else
+            yield break;
+        isOnCooldown = true;
 
         yield return new WaitForSeconds(heldWeapon.cooldown);
 
-        isReadyToAttack = true;
+        isOnCooldown = false;
     }
 
+    private void AoeMeleeAttack(Unit target)
+    {
+        RaycastHit2D[] targetsInRange = Physics2D.BoxCastAll(target.transform.position + AoEOffset, AoESize, 0, Vector2.zero, 10f, 256 );
+        for (int i = 0; i < targetsInRange.Length; i++)
+        {
+            Unit currentTarget = targetsInRange[i].transform.gameObject.GetComponent<Unit>();
+            currentTarget.TakeDamage(heldWeapon.damage);
+            currentTarget.StartCoroutine(currentTarget.locomotionHandler.GetKnockedBack(heldWeapon.knockbackAmount, transform.position));
+        }
+    }
     public void EquipWeapon(Transform weapon)
     {
         Debug.Log("Equipping Weapon");
         heldWeaponGameObject = weapon.gameObject;
         
         heldWeapon = weapon.GetComponent<WeaponModel>().weapon;
-        SetAttackPoint();
         
         equippedWeapon.transform.position = Vector3.zero;
         equippedWeapon.localPosition = heldWeapon.offsetPosition;
@@ -55,31 +73,10 @@ public class WeaponHandler : MonoBehaviour
         //weapon.SetPositionAndRotation(heldWeapon.offsetPosition, heldWeapon.offsetRotation);
     }
 
-    private void SetAttackPoint()
-    {
-        //heldWeaponGameObject.transform
-    }
 
-    public IEnumerator Attack()
-    {
-        
-        human.anim.SetTrigger("MeleeAttack");
-        HashSet<Unit> attackedUnits = new HashSet<Unit>();
 
-        while(!human.isOnCooldown)
-        {
-            Collider2D[] enemiesAttackedArray = Physics2D.OverlapCircleAll(attackPoint.transform.position, heldWeapon.attackRadius,256);
 
-            foreach(var enemy in enemiesAttackedArray)
-            {
-                Unit uniqueTarget = enemy.GetComponent<Unit>(); 
-                attackedUnits.Add(uniqueTarget);
-            }
-        }
 
-        attackedUnits.Clear(); 
-        yield return null;
-    }
 
 
     private void OnDrawGizmosSelected() 
@@ -88,5 +85,22 @@ public class WeaponHandler : MonoBehaviour
             return;
 
         Gizmos.DrawWireSphere(attackPoint.transform.position, heldWeapon.attackRadius);
+    }
+
+    private void OnDrawGizmos() 
+    {
+
+        if(enableAoESizeDebugger)
+        {
+            try
+            {
+                if (unit.target != null)
+                {
+                    Gizmos.DrawWireCube(unit.target.transform.position + AoEOffset, AoESize);   
+                }
+            }
+            catch{} 
+        }
+
     }
 }

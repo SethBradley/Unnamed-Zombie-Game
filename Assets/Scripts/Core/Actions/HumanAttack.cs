@@ -30,6 +30,7 @@ public class HumanAttack : State
                 Debug.Log("All zombies gone, returning to previous task");
                 GoToSanctuary goToSanctuary = new GoToSanctuary(unit);
                 unit.stateMachine.ChangeState(goToSanctuary);
+
                 yield return null;
                 break;
             }
@@ -47,9 +48,7 @@ public class HumanAttack : State
                     }
                 
                     Debug.Log("SWING");
-                    unit.target.TakeDamage(unit.weaponHandler.heldWeapon.damage);
-                    unit.target.StartCoroutine(unit.target.GetKnockedBack(unit.weaponHandler.heldWeapon.knockbackAmount, unit.transform.position)); 
-
+                    unit.StartCoroutine(unit.weaponHandler.UseMeleeWeapon(unit.target));
                 }
             else
             {
@@ -125,6 +124,7 @@ public class HumanAttack : State
 
     public override IEnumerator Exit()
     {
+        unit.isInCombat = false;
         yield return null;
     }   
 }

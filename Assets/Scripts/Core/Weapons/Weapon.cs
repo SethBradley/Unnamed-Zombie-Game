@@ -7,6 +7,7 @@ public class Weapon : ScriptableObject
 {
     public string weaponName;
     public bool isRanged;
+    public bool isSingleTarget;
     public float attackRange;
     public float knockbackAmount;
     public float attackRadius;

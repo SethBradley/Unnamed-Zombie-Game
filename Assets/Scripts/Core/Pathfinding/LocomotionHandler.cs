@@ -11,7 +11,10 @@ public class LocomotionHandler : MonoBehaviour
     int targetIndex = 1;
     public bool isMoving;
     Unit movingUnit;
-
+    [Header("Knockback Collision")]
+    public Vector3 collisionSize;
+    public Vector3 collisionPosOffset;
+    public AnimationCurve knockbackSpeedCurve;
 
 
     private void Start() 
@@ -85,8 +88,47 @@ public class LocomotionHandler : MonoBehaviour
             return; 
         }
 
+public IEnumerator GetKnockedBack(float knockbackAmount, Vector3 attackOrigin)
+    {
+        StopCoroutine(FollowPath());
+
+        Vector3 unitPos = transform.position;
+        Vector3 knockbackDirection = (unitPos - attackOrigin ).normalized;
+        Vector3 knockbackLocation = transform.position + (knockbackDirection * knockbackAmount); 
+        
+        float timeElapsed = 0;
+        float lerpDuration = 1f;
+
+        while(timeElapsed < lerpDuration)
+        {
+            Collider2D[] collisions = Physics2D.OverlapBoxAll(transform.position + collisionPosOffset, collisionSize, 0f) ; 
+
+            Vector3 newUnitpos = Vector3.Lerp(unitPos, knockbackLocation, knockbackSpeedCurve.Evaluate(timeElapsed));
+            transform.position = newUnitpos;
+
+            timeElapsed += Time.deltaTime;
+
+             for (int i = 0; i < collisions.Length; i++)
+             {
+                 if(collisions[i].gameObject.layer == 6)
+                 {
+                     CollideWithWall();
+                     yield break;
+                 }
+                     
+             }
+
+            yield return null;
+        }
+        yield return null;
+    }
+    private void CollideWithWall()
+    {
+        Debug.Log("HIT WALL");
+    }
     public void OnDrawGizmos()
     {
+        Gizmos.DrawWireCube(transform.position + collisionPosOffset, collisionSize);
         if (path != null)
         {
             for (int i = targetIndex; i < path.Length; i++)

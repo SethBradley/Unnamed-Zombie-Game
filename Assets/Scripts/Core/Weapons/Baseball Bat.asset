@@ -15,9 +15,9 @@ MonoBehaviour:
   weaponName: Baseball Bat
   isRanged: 0
   attackRange: 1
-  knockbackAmount: 6.09
+  knockbackAmount: 3.35
   attackRadius: 0
-  cooldown: 0
+  cooldown: 1.25
   damage: 10
   attackPoint: {x: 0, y: 0, z: 0}
   sprite: {fileID: 21300000, guid: a58b3ab5aac8abf44a5f77e9aa091391, type: 2}

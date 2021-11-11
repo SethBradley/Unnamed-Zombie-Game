@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public abstract class Unit : MonoBehaviour
 {
     //IAction queuedAction {get;set;}
+
     public float health;
     public float attackDamage;
     public int threshold; 
@@ -18,7 +20,6 @@ public abstract class Unit : MonoBehaviour
     public Animator anim;
     public DetectionHandler detectionHandler;
     public LocomotionHandler locomotionHandler;
-    public AnimationCurve animationCurve;
     private void Awake() 
     {
         effectsHandler = GetComponent<EffectsHandler>();
@@ -48,28 +49,8 @@ public abstract class Unit : MonoBehaviour
         StartCoroutine(effectsHandler.TakeDamageEffect());
     }
 
-    public IEnumerator GetKnockedBack(float knockbackAmount, Vector3 attackOrigin)
-    {
-        locomotionHandler.StopCoroutine(locomotionHandler.FollowPath());
-
-        Vector3 unitPos = transform.position;
-        Vector3 knockbackDirection = (unitPos - attackOrigin ).normalized;
-        Vector3 knockbackLocation = transform.position + (knockbackDirection * knockbackAmount); 
-        
-        float timeElapsed = 0;
-        float lerpDuration = 1f;
-
-        while(timeElapsed < lerpDuration)
-        {
-            Vector3 newUnitpos = Vector3.Lerp(unitPos, knockbackLocation, animationCurve.Evaluate(timeElapsed));
-            transform.position = newUnitpos;
-
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
-        yield return null;
-    }
-
     
+
+
 
 }
