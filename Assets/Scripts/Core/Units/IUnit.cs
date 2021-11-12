@@ -9,6 +9,7 @@ public abstract class Unit : MonoBehaviour
 
     public float health;
     public float attackDamage;
+    public int xpYield; 
     public int threshold; 
     public Unit target;
     public StateMachine stateMachine;

@@ -36,11 +36,13 @@ public class WeaponHandler : MonoBehaviour
         }
         else
             yield break;
-        isOnCooldown = true;
 
+        isOnCooldown = true;
+        Debug.Log("is on cooldown");
         yield return new WaitForSeconds(heldWeapon.cooldown);
 
         isOnCooldown = false;
+        Debug.Log("is off cooldown");
     }
 
     private void AoeMeleeAttack(Unit target)

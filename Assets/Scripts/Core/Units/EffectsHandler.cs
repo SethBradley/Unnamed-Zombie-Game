@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class EffectsHandler : MonoBehaviour
     private Animator anim;
     public Unit unit;
     public Image Healthbar;
+    public GameObject xpGameObj;
     
     
 
@@ -50,9 +52,7 @@ public class EffectsHandler : MonoBehaviour
         }
     }
  public void DecreaseHealthUI()
-    {
-        
-        
+    { 
         if (!Healthbar.transform.parent.gameObject.activeSelf)
         {
             Healthbar.transform.parent.gameObject.SetActive(true);
@@ -66,4 +66,17 @@ public class EffectsHandler : MonoBehaviour
 
     }
     
+
+    public IEnumerator DropExp()
+    {
+        //for each xpYield
+        //Instantiate ExpOrb
+        //GenerateRandomDirection(expOrb);
+        yield return null;
+    }
+
+    private void SendInRandomDirection()
+    {
+        
+    }
 }

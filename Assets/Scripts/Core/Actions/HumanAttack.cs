@@ -27,9 +27,9 @@ public class HumanAttack : State
         {
             if(unit.detectionHandler.nearbyZombies.Count <= 0)
             {
+                unit.isInCombat = false;
                 Debug.Log("All zombies gone, returning to previous task");
-                GoToSanctuary goToSanctuary = new GoToSanctuary(unit);
-                unit.stateMachine.ChangeState(goToSanctuary);
+                GoToSanctuary();
 
                 yield return null;
                 break;
@@ -38,11 +38,22 @@ public class HumanAttack : State
             UpdateThresholds();
             if(unitThreshold >= zombieThreshold)
                 {
-                    ShareTargetWithNearbyHumans();
                     unit.locomotionHandler.MoveToTarget(unit.target.transform.position);
                     
                     while(Vector3.Distance(unit.transform.position, unit.target.transform.position) > unit.weaponHandler.heldWeapon.attackRange)
-                    {                        
+                    {
+                        if(unit.target.isDead)
+                        {
+                            unit.target = unit.detectionHandler.nearbyZombies[0];
+                        }
+                        else if(!unit.detectionHandler.nearbyZombies.Contains((Zombie)unit.target))
+                        {
+                            GoToSanctuary();
+                        }
+
+                    
+                            
+                        
                         unit.locomotionHandler.UpdatePathToTarget(unit.target.transform);
                         yield return buffer;
                     }
@@ -52,8 +63,9 @@ public class HumanAttack : State
                 }
             else
             {
-                //Continue to santuary 
+                GoToSanctuary();
             }
+
 
             
             yield return buffer;
@@ -62,36 +74,11 @@ public class HumanAttack : State
         yield return null;
     }
 
-    private void ShareTargetWithNearbyHumans()
+    private void GoToSanctuary()
     {
+        GoToSanctuary goToSanctuary = new GoToSanctuary(unit);
+        unit.stateMachine.ChangeState(goToSanctuary);
     }
-
-    public IEnumerator EngageInCombat()
-    {
-        float chanceToFlee;
-        Debug.Log("Engaging in combat");
-        while(unit.detectionHandler.nearbyZombies.Count > 0)
-        {
-            UpdateThresholds();
-            if(zombieThreshold > unitThreshold)
-            {
-                chanceToFlee = UnityEngine.Random.Range(0f, 1f);
-                if (chanceToFlee >= 0.75f)
-                {
-                    yield return Execute();
-                    yield break;
-                }
-            }
-
-            else
-            {
-                //actually fight
-            }
-        
-        }
-        yield return null;
-    }
-
     private void UpdateThresholds()
     {
         unitThreshold = 0;
@@ -111,15 +98,6 @@ public class HumanAttack : State
         }
 
         Debug.Log($"Human threshold is {unitThreshold} and Zombie threshold is {zombieThreshold}");
-    }
-
-    private void GetZombieThreshold()
-    {
-        foreach (Unit zombie in unit.detectionHandler.nearbyUnits)
-        {
-            zombieThreshold += zombie.threshold;
-        }
-        Debug.Log("Zombie Threshold is " + zombieThreshold);
     }
 
     public override IEnumerator Exit()
