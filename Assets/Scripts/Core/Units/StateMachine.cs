@@ -26,5 +26,15 @@ public class StateMachine
         
         currentState = newState;
         unit.StartCoroutine(currentState.Enter());
-    }    
+    }
+
+    public void StopStateMachine()
+    {
+        //unit.StartCoroutine(currentState.Exit());
+        unit.StopAllCoroutines();
+        currentState = null;
+        
+
+    }
+    
 }

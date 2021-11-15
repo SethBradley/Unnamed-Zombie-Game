@@ -13,6 +13,7 @@ public class EffectsHandler : MonoBehaviour
     public Unit unit;
     public Image Healthbar;
     public GameObject xpGameObj;
+    public AnimationCurve xpPositionCurve;
     
     
 
@@ -21,7 +22,7 @@ public class EffectsHandler : MonoBehaviour
         anim = GetComponent<Animator>();
         spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
         spriteEffectOffset = transform.Find("Sprite").transform.localPosition;
-        
+        //StartCoroutine(DropExp());
         
 
 //        Healthbar = unit.transform.Find("Healthbar").GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
@@ -67,16 +68,39 @@ public class EffectsHandler : MonoBehaviour
     }
     
 
-    public IEnumerator DropExp()
+    public IEnumerator DropExpFor()
     {
-        //for each xpYield
-        //Instantiate ExpOrb
-        //GenerateRandomDirection(expOrb);
-        yield return null;
+        for (int i = 0; i < unit.xpYield; i++)
+        {
+            GameObject expOrb = Instantiate(xpGameObj,transform.position,this.transform.rotation);
+            StartCoroutine(SendExpInRandomDirection(expOrb));
+            yield return new WaitForSeconds(0.15f);
+        }
+        
+
     }
 
-    private void SendInRandomDirection()
+    private IEnumerator SendExpInRandomDirection(GameObject expOrb)
     {
+
+        Vector3 unitPos = unit.transform.position;
+        Vector3 peakOfHeight = new Vector3(unit.transform.position.x, unit.transform.position.y + 10, 0f);
+        Vector3 endDestination = new Vector3(UnityEngine.Random.Range(unit.transform.position.x - 2, unit.transform.position.x + 2 ), UnityEngine.Random.Range(unit.transform.position.y - 2, unit.transform.position.y + 2 ), 0f);
+        // peakOfHeight = B \ endDestination = C
+
+        float elapsedTime = 0f;
+        float timeToWait = 1f;
+        while(elapsedTime <= timeToWait)
+        {
+            elapsedTime += Time.deltaTime;
+            Vector3 ab = Vector3.Lerp(unitPos, peakOfHeight, elapsedTime / timeToWait);
+            Vector3 bc = Vector3.Lerp(peakOfHeight, endDestination, elapsedTime/timeToWait);
+
+            expOrb.transform.position = Vector3.Lerp(ab, bc, elapsedTime / timeToWait);
+            
+            yield return null;
+
+        }
         
     }
 }

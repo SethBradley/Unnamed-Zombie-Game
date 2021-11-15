@@ -31,6 +31,7 @@ public class WeaponHandler : MonoBehaviour
 
         if (!isOnCooldown)
         {
+           
             if(!heldWeapon.isSingleTarget)
                 AoeMeleeAttack(target);
         }

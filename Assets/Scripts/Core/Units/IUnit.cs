@@ -38,19 +38,31 @@ public abstract class Unit : MonoBehaviour
     }
     public void TakeDamage(float damageAmount)
     {
+        StartCoroutine(effectsHandler.TakeDamageEffect());
         health -= damageAmount;
         Debug.Log(health);
+        
         //Apply slowdown on attack
         if(health <= 0)
         {
             isDead = true;
-            StopAllCoroutines();
+            if(this is Human)
+            {
+                DropExp();
+            }
+            detectionHandler.StopAllCoroutines();
+            locomotionHandler.StopAllCoroutines();
+            
+            
             //anim playdeath?
         }
-        StartCoroutine(effectsHandler.TakeDamageEffect());
+        
     }
 
-    
+    private void DropExp()
+    {
+        effectsHandler.StartCoroutine(effectsHandler.DropExpFor());
+    }
 
 
 

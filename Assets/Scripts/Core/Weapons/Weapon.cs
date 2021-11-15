@@ -14,7 +14,7 @@ public class Weapon : ScriptableObject
     public float cooldown;
     public int damage;
     public Vector3 attackPoint; 
-    
+    public AudioClip weaponAttackSound;
     public Sprite sprite;
     public Sprite projectile;
     public Vector3 offsetPosition;

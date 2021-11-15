@@ -120,6 +120,7 @@ public IEnumerator GetKnockedBack(float knockbackAmount, Vector3 attackOrigin)
 
             yield return null;
         }
+        //StartCoroutine(FollowPath());
         yield return null;
     }
     private void CollideWithWall()
