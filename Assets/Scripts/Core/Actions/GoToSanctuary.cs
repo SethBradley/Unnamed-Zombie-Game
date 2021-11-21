@@ -43,6 +43,7 @@ public class GoToSanctuary : State
 
     public override IEnumerator Exit()
     {
+        
         yield return null;
     }
 

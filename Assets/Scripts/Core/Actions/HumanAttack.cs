@@ -16,18 +16,17 @@ public class HumanAttack : State
     public override IEnumerator Enter()
     {
         Debug.Log("Entering civilian attack state");
-        unit.isInCombat = true;
         unit.target = unit.detectionHandler.nearbyZombies[0];
         yield return Execute();
     }
 
     public override IEnumerator Execute()
     {
-        while(unit.isInCombat)
+        while(unit.target != null)
         {
             if(unit.detectionHandler.nearbyZombies.Count <= 0)
             {
-                unit.isInCombat = false;
+                unit.target = null;
                 Debug.Log("All zombies gone, returning to previous task");
                 GoToSanctuary();
 
@@ -40,7 +39,7 @@ public class HumanAttack : State
                 {
                     unit.locomotionHandler.MoveToTarget(unit.target.transform.position);
                     
-                    while(Vector3.Distance(unit.transform.position, unit.target.transform.position) > unit.weaponHandler.heldWeapon.attackRange)
+                    while(Vector3.Distance(unit.transform.position, unit.target.transform.position) > unit.weaponHandler.heldWeapon.attackRange + 0.25f)
                     {
                         if(unit.target.isDead)
                         {
@@ -52,14 +51,14 @@ public class HumanAttack : State
                         }
 
                     
-                            
+                        Debug.Log("Current distance is " + Vector3.Distance(unit.transform.position, unit.target.transform.position) + " Must be under " + unit.weaponHandler.heldWeapon.attackRange + 0.25f ); 
                         
                         unit.locomotionHandler.UpdatePathToTarget(unit.target.transform);
                         yield return buffer;
                     }
                 
                     Debug.Log("SWING");
-                    unit.StartCoroutine(unit.weaponHandler.UseMeleeWeapon(unit.target));
+                    unit.weaponHandler.UseMeleeWeapon();
                 }
             else
             {
@@ -67,9 +66,15 @@ public class HumanAttack : State
             }
 
 
-            
+         
             yield return buffer;
         }
+            if(unit.detectionHandler.nearbyZombies.Count > 0 || unit.target.isDead)
+            {
+                unit.target = null;
+                yield return Enter();
+               
+            }   
         
         yield return null;
     }
@@ -102,7 +107,7 @@ public class HumanAttack : State
 
     public override IEnumerator Exit()
     {
-        unit.isInCombat = false;
+    
         yield return null;
     }   
 }

@@ -18,7 +18,7 @@ public class StateMachine
                 
                 //Debug.Log("Stopping all coroutines on " + unit.name);
                 unit.StopAllCoroutines();
-                unit.StartCoroutine(unit.StartCooldown());
+                unit.effectsHandler.ResetEffects();
                 unit.StartCoroutine(currentState.Exit());
                 currentState = null;
             }
@@ -31,10 +31,13 @@ public class StateMachine
     public void StopStateMachine()
     {
         //unit.StartCoroutine(currentState.Exit());
-        unit.StopAllCoroutines();
+        if(currentState != null)
+        {
+            unit.StartCoroutine(currentState.Exit());
+            
+        }
+            
         currentState = null;
-        
-
     }
     
 }

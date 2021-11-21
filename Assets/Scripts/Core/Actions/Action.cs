@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class State
 {
-    //change below to IUnit
+
     
     public virtual IEnumerator Enter()
     {

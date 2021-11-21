@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Ability : MonoBehaviour
 {
-    public LeaderZombie leaderZombie;
+    public KingpinZombie leaderZombie;
     public bool isAimingAbility;
     public GameObject abilityIndicator;
     public Camera mainCamera;
@@ -14,7 +14,7 @@ public abstract class Ability : MonoBehaviour
     private void Awake() 
     {
         mainCamera = Camera.main;
-        leaderZombie = transform.parent.parent.GetComponent<LeaderZombie>();        
+        leaderZombie = transform.parent.parent.GetComponent<KingpinZombie>();        
     }
     public virtual IEnumerator Enter()
     {

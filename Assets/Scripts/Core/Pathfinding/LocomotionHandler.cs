@@ -71,7 +71,8 @@ public class LocomotionHandler : MonoBehaviour
     public void MoveToTarget(Vector3 targetPosition)
     {
         //Debug.Log("Moving to target");
-        PathRequestManager.RequestPath(transform.position, targetPosition, OnPathFound);
+        Vector3 newPos = new Vector3(UnityEngine.Random.Range(targetPosition.x -0.5f , targetPosition.x + 0.5f), UnityEngine.Random.Range(targetPosition.y -0.5f , targetPosition.y + 0.5f), 0f);
+        PathRequestManager.RequestPath(transform.position, newPos, OnPathFound);
     }
 
     public void UpdatePathToTarget(Transform _target)

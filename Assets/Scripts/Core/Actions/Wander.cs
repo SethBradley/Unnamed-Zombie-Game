@@ -44,6 +44,8 @@ public class Wander : State
     {
 
         //Debug.Log("Done with wander");
+        zombie.StopCoroutine(Execute());
+        zombie.StopCoroutine(Enter());
         yield return null;
     }
 

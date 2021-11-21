@@ -8,7 +8,6 @@ public class Panic : State
     protected Human unit;
     protected Unit nearestZombie;
     protected Transform nearestExit;
-    private bool isPanicing;
     private bool weaponIsNearby;
     public Panic(Unit _unit)
     {
@@ -61,7 +60,6 @@ public class Panic : State
     }
     private void PanicAwayFromNearestZombie()
     {
-        isPanicing = true;
 
         Vector3 humanPos = unit.transform.position;
         Vector3 zombiePos = nearestZombie.transform.position;

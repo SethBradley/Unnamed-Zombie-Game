@@ -8,7 +8,6 @@ public class WeaponHandler : MonoBehaviour
     public Unit unit;
     public Weapon heldWeapon;
     Transform equippedWeapon;
-    public bool isOnCooldown;
     
     public GameObject heldWeaponGameObject;
     public GameObject attackPoint;
@@ -26,32 +25,36 @@ public class WeaponHandler : MonoBehaviour
     
 
 
-    public IEnumerator UseMeleeWeapon(Unit target)
+    public void UseMeleeWeapon()
     {
-
-        if (!isOnCooldown)
+        if(unit.target.isDead)
         {
-           
-            if(!heldWeapon.isSingleTarget)
-                AoeMeleeAttack(target);
+            unit.target = null;
+            return;
         }
-        else
-            yield break;
+            
 
-        isOnCooldown = true;
-        Debug.Log("is on cooldown");
-        yield return new WaitForSeconds(heldWeapon.cooldown);
+        if (!unit.isOnCooldown)
+        {
+            if(!heldWeapon.isSingleTarget)
+                AoeMeleeAttack(unit.target);
+        }
+        // else
+        //     singleTargetATtack();
+        
+        
+        StartCoroutine(unit.StartCooldown());
 
-        isOnCooldown = false;
-        Debug.Log("is off cooldown");
+
     }
 
     private void AoeMeleeAttack(Unit target)
     {
-        RaycastHit2D[] targetsInRange = Physics2D.BoxCastAll(target.transform.position + AoEOffset, AoESize, 0, Vector2.zero, 10f, 256 );
+        Collider2D[] targetsInRange = Physics2D.OverlapBoxAll(target.transform.position + AoEOffset, AoESize, 0f, 256);
         for (int i = 0; i < targetsInRange.Length; i++)
         {
             Unit currentTarget = targetsInRange[i].transform.gameObject.GetComponent<Unit>();
+            Debug.Log(currentTarget.name);
             currentTarget.TakeDamage(heldWeapon.damage);
             currentTarget.StartCoroutine(currentTarget.locomotionHandler.GetKnockedBack(heldWeapon.knockbackAmount, transform.position));
         }
@@ -69,6 +72,7 @@ public class WeaponHandler : MonoBehaviour
         equippedWeapon.GetComponent<SpriteRenderer>().sprite = heldWeapon.sprite;
         //equippedWeapon.gameObject.AddComponent<BoxCollider2D>();
 
+        unit.attackDamage += heldWeapon.damage;
 
         Object.Destroy(weapon.gameObject);
         //weapon.transform.SetParent(this.transform);

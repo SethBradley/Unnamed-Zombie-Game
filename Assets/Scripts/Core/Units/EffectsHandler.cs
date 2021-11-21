@@ -15,6 +15,7 @@ public class EffectsHandler : MonoBehaviour
     public GameObject xpGameObj;
     public AnimationCurve xpPositionCurve;
     
+    public bool onHitEffectRunning;
     
 
     private void Start() {
@@ -32,6 +33,8 @@ public class EffectsHandler : MonoBehaviour
 
     public IEnumerator TakeDamageEffect()
     {
+        onHitEffectRunning = true;
+        spriteRenderer.color = Color.white;
         anim.SetTrigger("Hit");
         //DecreaseHealthUI();
         Instantiate(particles[0], this.transform.position + spriteEffectOffset, this.transform.rotation, this.transform);
@@ -51,6 +54,8 @@ public class EffectsHandler : MonoBehaviour
             spriteRenderer.color = Color.Lerp(Color.red,Color.white,elapsedTime/waitTime);
             yield return null;
         }
+        onHitEffectRunning = false;
+        
     }
  public void DecreaseHealthUI()
     { 
@@ -66,9 +71,12 @@ public class EffectsHandler : MonoBehaviour
         }
 
     }
-    
+    public void ResetEffects()
+    {
+        spriteRenderer.color = Color.white;
+    }
 
-    public IEnumerator DropExpFor()
+    public IEnumerator DropExpFor(Unit leader)
     {
         for (int i = 0; i < unit.xpYield; i++)
         {
@@ -77,7 +85,7 @@ public class EffectsHandler : MonoBehaviour
             yield return new WaitForSeconds(0.15f);
         }
         
-
+        
     }
 
     private IEnumerator SendExpInRandomDirection(GameObject expOrb)

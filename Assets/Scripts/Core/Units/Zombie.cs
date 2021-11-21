@@ -12,7 +12,7 @@ public class Zombie : Unit
         Debug.Log("CHOMP");
         
         float damageAmount = attackDamage; //+ some other modifiers?
-        target.TakeDamage(damageAmount);
+        target.TakeDamage(damageAmount, this);
         StartCoroutine(StartCooldown());
     }
 }

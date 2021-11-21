@@ -40,6 +40,7 @@ public class Attack : State
             if( !zombie.isOnCooldown && Vector3.Distance(zombie.transform.position, zombie.target.transform.position) <= zombie.attackRange)
             {
                 zombie.anim.SetTrigger("MeleeAttack");
+                zombie.StartCoroutine(zombie.StartCooldown());
             }
 
             zombie.locomotionHandler.UpdatePathToTarget(zombie.target.transform);
@@ -59,6 +60,8 @@ public class Attack : State
 
     public override IEnumerator Exit()
     {
+        zombie.StopCoroutine(Execute());
+        zombie.StopCoroutine(Enter());
         yield return null;
     }
 }

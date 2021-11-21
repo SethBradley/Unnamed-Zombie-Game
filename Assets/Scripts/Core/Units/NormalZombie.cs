@@ -8,7 +8,7 @@ public class NormalZombie : Zombie, ISelectable
     [Header("Stats")]
     public float attackRange;
 
-    public LeaderZombie leader;
+    public KingpinZombie leader;
     [Header("Targeting/Detection")]
     public LayerMask unwalkableMask;
     public LayerMask humanLayerMask;

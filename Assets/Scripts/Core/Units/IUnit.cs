@@ -26,7 +26,7 @@ public abstract class Unit : MonoBehaviour
         effectsHandler = GetComponent<EffectsHandler>();
         locomotionHandler = GetComponent<LocomotionHandler>();
         detectionHandler = GetComponent<DetectionHandler>();
-
+        stateMachine = new StateMachine(this);
         anim = GetComponent<Animator>();
     }
     public IEnumerator StartCooldown()
@@ -38,30 +38,60 @@ public abstract class Unit : MonoBehaviour
     }
     public void TakeDamage(float damageAmount)
     {
-        StartCoroutine(effectsHandler.TakeDamageEffect());
+        if(health <= 0)
+            return;
+        
+        if(!effectsHandler.onHitEffectRunning)
+            StartCoroutine(effectsHandler.TakeDamageEffect());
+        
         health -= damageAmount;
         Debug.Log(health);
         
         //Apply slowdown on attack
         if(health <= 0)
         {
-            isDead = true;
-            if(this is Human)
-            {
-                DropExp();
-            }
-            detectionHandler.StopAllCoroutines();
-            locomotionHandler.StopAllCoroutines();
-            
-            
+            Die();
+
             //anim playdeath?
         }
+    }
+
+    private void Die()
+    {
+        if(this is Human)
+        {
+            Debug.Log("Transition to Human Death state"); 
+            HumanDeath humanDeath = new HumanDeath(this);
+            stateMachine.ChangeState(humanDeath);
+        }
+
+        else if (this is Zombie)
+        {
+            Debug.Log("Transition to Zombie Death state"); 
+            ZombieDeath zombieDeath = new ZombieDeath(this);
+            stateMachine.ChangeState(zombieDeath);
+        }
+    }
+
+    public void TakeDamage(float damageAmount, Unit attacker)
+    {
+        TakeDamage(damageAmount);
+        Unit expOwner = null;
+        
+        if(attacker is NormalZombie)
+            expOwner = attacker.GetComponent<NormalZombie>().leader;
+        else if(attacker is LeaderZombie)
+            expOwner = attacker.GetComponent<LeaderZombie>();
+        
+        if(health <= 0)
+            effectsHandler.StartCoroutine(effectsHandler.DropExpFor(expOwner));
+        
         
     }
 
     private void DropExp()
     {
-        effectsHandler.StartCoroutine(effectsHandler.DropExpFor());
+        
     }
 
 
