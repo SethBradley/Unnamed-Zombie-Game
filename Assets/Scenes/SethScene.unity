@@ -398,7 +398,6 @@ MonoBehaviour:
   locomotionHandler: {fileID: 0}
   isArmed: 0
   isDefendingSanctuary: 0
-  isInCombat: 0
   weaponHandler: {fileID: 0}
 --- !u!95 &106196513
 Animator:
@@ -2184,9 +2183,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da40a0c8810f15243a448f19274531a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 322.83
+  health: 5
   attackDamage: 0
-  xpYield: 69
+  xpYield: 10
   threshold: 51
   target: {fileID: 0}
   isDead: 0
@@ -2199,7 +2198,6 @@ MonoBehaviour:
   locomotionHandler: {fileID: 0}
   isArmed: 0
   isDefendingSanctuary: 0
-  isInCombat: 0
   weaponHandler: {fileID: 0}
 --- !u!61 &633971814
 BoxCollider2D:

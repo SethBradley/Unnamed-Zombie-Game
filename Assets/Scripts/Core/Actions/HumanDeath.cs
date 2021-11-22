@@ -26,6 +26,7 @@ public class HumanDeath : State
 
     public override IEnumerator Execute()
     {
+        //Determine turning 
         yield return null;
     }
 

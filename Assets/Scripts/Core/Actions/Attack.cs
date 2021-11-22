@@ -14,7 +14,7 @@ public class Attack : State
         
     }
     WaitForSeconds buffer = new WaitForSeconds(0.25f);
- 
+    
 
     public override IEnumerator Enter()
     {
@@ -40,7 +40,11 @@ public class Attack : State
             if( !zombie.isOnCooldown && Vector3.Distance(zombie.transform.position, zombie.target.transform.position) <= zombie.attackRange)
             {
                 zombie.anim.SetTrigger("MeleeAttack");
+
+                yield return buffer;
+
                 zombie.StartCoroutine(zombie.StartCooldown());
+                zombie.target.TakeDamage(zombie.attackDamage, zombie); 
             }
 
             zombie.locomotionHandler.UpdatePathToTarget(zombie.target.transform);
