@@ -6,6 +6,7 @@ using UnityEngine;
 public class AbilityCastController : MonoBehaviour
 {
     public static AbilityCastController instance;
+    GameObject selectedLeaderZombie;
     public bool isCastingAbility;
     private void Start() 
     {
@@ -19,17 +20,49 @@ public class AbilityCastController : MonoBehaviour
     {
         if (UnitSelectController.instance.currentSelected != null)
         {
+            
             if(Input.GetKeyDown(KeyCode.Alpha1))
             {
                 CastAbilityOne();
-                isCastingAbility = true;
+            }
+            if(Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                CastAbilityTwo();
             }
         }
     }
 
     private void CastAbilityOne()
     {
-        GameObject selectedLeaderZombie = UnitSelectController.instance.currentSelected;
+        if(isCastingAbility)
+        {
+            CancelAllAbilities();
+        }
+        selectedLeaderZombie = UnitSelectController.instance.currentSelected;
+        CancelAllAbilities();
+        isCastingAbility = true;
         StartCoroutine(selectedLeaderZombie.transform.Find("Abilities").GetChild(0).GetComponent<Ability>().Enter());
+    }
+
+    private void CastAbilityTwo()
+    {
+        if(isCastingAbility)
+        {
+            CancelAllAbilities();
+        }
+        selectedLeaderZombie = UnitSelectController.instance.currentSelected;
+        CancelAllAbilities();
+        isCastingAbility = true;
+        StartCoroutine(selectedLeaderZombie.transform.Find("Abilities").GetChild(1).GetComponent<Ability>().Enter());
+    }
+
+    private void CancelAllAbilities()
+    {
+        Transform abilitiesParent = selectedLeaderZombie.transform.Find("Abilities").transform;
+
+        for (int i = 0; i < abilitiesParent.childCount; i++)
+        {
+            StartCoroutine(abilitiesParent.GetChild(i).GetComponent<Ability>().Exit());
+        }
     }
 }

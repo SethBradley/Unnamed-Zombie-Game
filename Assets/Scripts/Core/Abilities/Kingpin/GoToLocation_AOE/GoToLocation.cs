@@ -26,6 +26,7 @@ public class GoToLocation : Ability
     {
         Debug.Log("Beginning to cast GoToLocation");
         isAimingAbility = true;
+        
         indicator = Instantiate(abilityIndicator, Input.mousePosition, transform.rotation);
         Vector3 abilityRadiusVector = new Vector3(abilityRadius, abilityRadius, 0f);
         abilityIndicator.transform.localScale = abilityRadiusVector;
@@ -42,16 +43,15 @@ public class GoToLocation : Ability
             }
             yield return null;
         }
-
-        
-
     }
     public override IEnumerator Execute()
     {
+        isAimingAbility = false; 
         foreach (NormalZombie zombie in leaderZombie.zombiesInCommandList)
         {
             WalkToAbilityLocation(zombie);
         }
+        
         
 
         yield return Exit();
@@ -62,7 +62,7 @@ public class GoToLocation : Ability
         Debug.Log("Exiting GotoLocation");
         AbilityCastController.instance.isCastingAbility = false;
         Object.Destroy(indicator);
-        yield return null;
+        yield return new WaitForSeconds(0.10f);
     }
 
     void WalkToAbilityLocation(NormalZombie zombie)
