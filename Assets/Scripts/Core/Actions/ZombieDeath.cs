@@ -18,7 +18,7 @@ public class ZombieDeath : State
         unit.stateMachine.StopStateMachine();
         unit.StopAllCoroutines();
         unit.effectsHandler.ResetEffects();
-        
+        unit.locomotionHandler.isMoving = false;
         yield return Execute();
     }
 

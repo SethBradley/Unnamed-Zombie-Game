@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,16 +11,49 @@ public class LocomotionHandler : MonoBehaviour
     public Vector3[] path;
     int targetIndex = 1;
     public bool isMoving;
-    Unit movingUnit;
+    Unit unit;
     [Header("Knockback Collision")]
+    public bool isGettingKnockedBack;
     public Vector3 collisionSize;
     public Vector3 collisionPosOffset;
     public AnimationCurve knockbackSpeedCurve;
-
+    public bool isCheckingForOutOfBounds; 
+    public Vector3 knockbackLocation;
+    public Vector2 OOBDetectionSize;
 
     private void Start() 
     {
-        movingUnit = GetComponent<Unit>();
+        unit = GetComponent<Unit>();
+        //isCheckingForOutOfBounds = true;
+        //StartCoroutine(CheckForOutOfBounds());
+    }
+
+    private IEnumerator CheckForOutOfBounds()
+    {
+        while(isCheckingForOutOfBounds)
+        {
+            Debug.Log("Checking for OOB");
+            Collider2D[] wallCollisionsArray= Physics2D.OverlapBoxAll(transform.position,OOBDetectionSize,0f, 64);
+            if(wallCollisionsArray.Length > 0)
+            {
+                Vector3 entryDirection = wallCollisionsArray[0].transform.position - transform.position; 
+                    //wallCollisionsArray = Physics2D.OverlapBoxAll(transform.position,OOBDetectionSize,0f, 64);
+                    Debug.Log("Fixing player position");
+                    transform.position = (transform.position - (entryDirection.normalized / 3) );
+
+            }
+            yield return new WaitForSeconds(0.25f);
+        }
+        
+
+
+    }
+
+    private void UnstuckUnit(Collider2D collider)
+    {
+        Debug.Log(collider.ClosestPoint(transform.position));
+        
+        isMoving = false;
 
     }
 
@@ -73,6 +107,7 @@ public class LocomotionHandler : MonoBehaviour
         //Debug.Log("Moving to target");
         Vector3 newPos = new Vector3(UnityEngine.Random.Range(targetPosition.x -0.5f , targetPosition.x + 0.5f), UnityEngine.Random.Range(targetPosition.y -0.5f , targetPosition.y + 0.5f), 0f);
         PathRequestManager.RequestPath(transform.position, newPos, OnPathFound);
+        isMoving = true;
     }
 
     public void UpdatePathToTarget(Transform _target)
@@ -93,43 +128,72 @@ public IEnumerator GetKnockedBack(float knockbackAmount, Vector3 attackOrigin)
     {
         StopCoroutine(FollowPath());
 
+        /*if(!isCheckingForOutOfBounds)
+        {
+            isCheckingForOutOfBounds = true;
+            StartCoroutine(CheckForOutOfBounds());
+        }*/
+
+        isGettingKnockedBack = true;
         Vector3 unitPos = transform.position;
         Vector3 knockbackDirection = (unitPos - attackOrigin ).normalized;
-        Vector3 knockbackLocation = transform.position + (knockbackDirection * knockbackAmount); 
-        
+        knockbackLocation = transform.position + (knockbackDirection * knockbackAmount); 
+        Debug.Log("knockback location " + knockbackLocation);
         float timeElapsed = 0;
         float lerpDuration = 1f;
 
         while(timeElapsed < lerpDuration)
         {
-            Collider2D[] collisions = Physics2D.OverlapBoxAll(transform.position + collisionPosOffset, collisionSize, 0f) ; 
+            Collider2D[] collisions = Physics2D.OverlapBoxAll(transform.position + collisionPosOffset, collisionSize, 0f); 
+            
 
+             for (int i = 0; i < collisions.Length; i++)
+             {
+                 if(collisions[i].gameObject.layer == 6)
+                 {  
+                    Vector3 entryDirection = collisions[0].transform.position - transform.position; 
+                    Debug.Log("Fixing player position");
+                    transform.position = (transform.position - (entryDirection.normalized / 3) );
+                     //unitPos = transform.position;
+                     //knockbackLocation = Vector3.Reflect(knockbackLocation, unitPos).normalized + (unitPos);// + new Vector3(knockbackLocation.x - knockbackSpeedCurve.Evaluate(timeElapsed), knockbackLocation.y - knockbackSpeedCurve.Evaluate(timeElapsed), 0f);
+                     CollideWithWall();
+                     //StartCoroutine(FollowPath());
+                     yield break;
+                 }
+             }
             Vector3 newUnitpos = Vector3.Lerp(unitPos, knockbackLocation, knockbackSpeedCurve.Evaluate(timeElapsed));
             transform.position = newUnitpos;
 
             timeElapsed += Time.deltaTime;
 
-             for (int i = 0; i < collisions.Length; i++)
-             {
-                 if(collisions[i].gameObject.layer == 6)
-                 {
-                     CollideWithWall();
-                     yield break;
-                 }
-                     
-             }
+
 
             yield return null;
         }
         //StartCoroutine(FollowPath());
+        isGettingKnockedBack = false;
+        
+       /* if(isCheckingForOutOfBounds)
+        {
+            StopCoroutine(CheckForOutOfBounds());
+            isCheckingForOutOfBounds = false;
+        }*/
+        unit.isAgainstWall = false; 
+        Debug.Log("Done getting knocked back");
         yield return null;
     }
     private void CollideWithWall()
     {
         Debug.Log("HIT WALL");
+        unit.isAgainstWall = true;
+        isGettingKnockedBack = false;
+        
     }
+
     public void OnDrawGizmos()
     {
+        Gizmos.DrawLine(this.transform.position,knockbackLocation);
+        Gizmos.DrawWireCube(transform.position, OOBDetectionSize);
         Gizmos.DrawWireCube(transform.position + collisionPosOffset, collisionSize);
         if (path != null)
         {

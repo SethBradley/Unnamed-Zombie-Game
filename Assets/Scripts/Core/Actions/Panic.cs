@@ -71,9 +71,11 @@ public class Panic : State
 
     private IEnumerator PickUpWeapon(Transform nearbyWeapon)
     {
-        
-        while(Vector2.Distance(unit.transform.position, nearbyWeapon.position) > 1f)
+
+        while(nearbyWeapon != null && Vector2.Distance(unit.transform.position, nearbyWeapon.position) > 1f)
         {
+            if(nearbyWeapon.gameObject == null)
+                yield break;
             Debug.Log("Running to weapon  " + Vector2.Distance(unit.transform.position, nearbyWeapon.position) );
             unit.locomotionHandler.MoveToTarget(nearbyWeapon.position);
 
@@ -86,6 +88,10 @@ public class Panic : State
                 
             yield return shortbuffer;
         }
+
+        if(nearbyWeapon == null)
+            yield break;
+            
         Debug.Log("Should be picking up weapon now");
         unit.weaponHandler.EquipWeapon(nearbyWeapon);
         GoToSanctuary goToSanctuary = new GoToSanctuary(unit);

@@ -31,7 +31,6 @@ public class HumanAttack : State
                 GoToSanctuary();
 
                 yield return null;
-                break;
             }
 
             UpdateThresholds();
@@ -43,7 +42,15 @@ public class HumanAttack : State
                     {
                         if(unit.target.isDead)
                         {
-                            unit.target = unit.detectionHandler.nearbyZombies[0];
+                            try
+                            {
+                                 unit.target = unit.detectionHandler.nearbyZombies[0];
+                            }
+                            catch
+                            {
+                                
+                                Debug.Log("Enemy died while walking, continuing");
+                            }
                         }
                         else if(!unit.detectionHandler.nearbyZombies.Contains((Zombie)unit.target))
                         {
@@ -63,20 +70,26 @@ public class HumanAttack : State
             else
             {
                 GoToSanctuary();
+
             }
 
 
-         
+
             yield return buffer;
         }
-            if(unit.detectionHandler.nearbyZombies.Count > 0 || unit.target.isDead)
+
+            if(unit.detectionHandler.nearbyZombies.Count > 0)
             {
                 unit.target = null;
                 yield return Enter();
-               
             }   
-        
-        yield return null;
+            else if(unit.detectionHandler.nearbyZombies.Count <= 0)
+            {
+                unit.target = null;
+                Debug.Log("All zombies gone, returning to previous task");
+                GoToSanctuary();
+            }
+        yield return Exit();
     }
 
     private void GoToSanctuary()

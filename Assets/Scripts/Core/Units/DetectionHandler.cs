@@ -92,10 +92,7 @@ public class DetectionHandler : MonoBehaviour
                     Debug.Log("Unit mightve dissapeared");
                 }
             }
-            if (!closestUnit.isDead)
                 return closestUnit;
-            else
-                return null;
     }
 
 

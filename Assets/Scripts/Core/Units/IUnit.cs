@@ -15,8 +15,9 @@ public abstract class Unit : MonoBehaviour
     public StateMachine stateMachine;
     public bool isDead;
     public float cooldown;
-    public float onHitSlowdown;
     public bool isOnCooldown;
+    public float onHitSlowdown;
+    public bool isAgainstWall;
     public EffectsHandler effectsHandler;
     public Animator anim;
     public DetectionHandler detectionHandler;
@@ -33,7 +34,9 @@ public abstract class Unit : MonoBehaviour
     {
         //If need performance move WaitForSeconds to start
         isOnCooldown = true;
+        //Debug.Log("Is on Cooldown");
         yield return new WaitForSeconds(cooldown);
+        //Debug.Log("Is OFFF Cooldown");
         isOnCooldown = false;
     }
     public void TakeDamage(float damageAmount)

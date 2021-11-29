@@ -20,6 +20,7 @@ public class HumanDeath : State
         unit.stateMachine.StopStateMachine();
         unit.StopAllCoroutines();
         unit.effectsHandler.ResetEffects();
+        unit.locomotionHandler.isMoving = false;
         
         yield return null;
     }

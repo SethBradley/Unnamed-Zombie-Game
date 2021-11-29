@@ -54,30 +54,37 @@ public class WeaponHandler : MonoBehaviour
         for (int i = 0; i < targetsInRange.Length; i++)
         {
             Unit currentTarget = targetsInRange[i].transform.gameObject.GetComponent<Unit>();
-            Debug.Log(currentTarget.name);
+//            Debug.Log(currentTarget.name);
             currentTarget.TakeDamage(heldWeapon.damage);
-            currentTarget.StartCoroutine(currentTarget.locomotionHandler.GetKnockedBack(heldWeapon.knockbackAmount, transform.position));
+            if (!currentTarget.locomotionHandler.isGettingKnockedBack)
+                currentTarget.StartCoroutine(currentTarget.locomotionHandler.GetKnockedBack(heldWeapon.knockbackAmount, transform.position));
         }
     }
     public void EquipWeapon(Transform weapon)
     {
         Debug.Log("Equipping Weapon");
-        heldWeaponGameObject = weapon.gameObject;
-        
-        heldWeapon = weapon.GetComponent<WeaponModel>().weapon;
-        
-        equippedWeapon.transform.position = Vector3.zero;
-        equippedWeapon.localPosition = heldWeapon.offsetPosition;
-        equippedWeapon.localRotation = heldWeapon.offsetRotation;
-        equippedWeapon.GetComponent<SpriteRenderer>().sprite = heldWeapon.sprite;
-        //equippedWeapon.gameObject.AddComponent<BoxCollider2D>();
 
-        unit.attackDamage += heldWeapon.damage;
+        try
+        {
+            
+            heldWeaponGameObject = weapon.gameObject;
+        
+            heldWeapon = weapon.GetComponent<WeaponModel>().weapon;
+            equippedWeapon.GetComponent<SpriteRenderer>().sprite = heldWeapon.sprite;
+            Object.Destroy(weapon.gameObject);
 
-        Object.Destroy(weapon.gameObject);
-        //weapon.transform.SetParent(this.transform);
-        //Need to destroy weapon then instantiate new held weapon
-        //weapon.SetPositionAndRotation(heldWeapon.offsetPosition, heldWeapon.offsetRotation);
+            equippedWeapon.transform.position = Vector3.zero;
+            equippedWeapon.localPosition = heldWeapon.offsetPosition;
+            equippedWeapon.localRotation = heldWeapon.offsetRotation;
+            
+            unit.attackDamage += heldWeapon.damage;
+   
+        }
+        catch
+        {
+            Debug.Log("Weapon already picked up - carry on without it");
+        }
+
     }
 
 

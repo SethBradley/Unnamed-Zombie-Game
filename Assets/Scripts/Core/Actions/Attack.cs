@@ -19,8 +19,8 @@ public class Attack : State
     public override IEnumerator Enter()
     {
         Debug.Log("Entering new attack");
-        Unit newTarget = zombie.detectionHandler.GetClosestUnitInRange();
-        zombie.target = newTarget;
+        
+        zombie.target = zombie.detectionHandler.GetClosestUnitInRange();
         zombie.locomotionHandler.MoveToTarget(zombie.target.transform.position);        
         yield return Execute();
     }
@@ -29,43 +29,49 @@ public class Attack : State
     {
 //        Debug.Log("executing new attack");
         
-        while(zombie.target != null)
+        while(zombie.target != null && zombie.detectionHandler.nearbyHumans.Count > 0)
         {
+    
             yield return buffer;
             Unit closestUnit = zombie.detectionHandler.GetClosestUnitInRange();
 
             if(closestUnit != zombie.target && closestUnit != null)
+            {
                 yield return Enter();
+                break;
+            }
+                
 
             if( !zombie.isOnCooldown && Vector3.Distance(zombie.transform.position, zombie.target.transform.position) <= zombie.attackRange)
             {
                 zombie.anim.SetTrigger("MeleeAttack");
-
-                yield return buffer;
-
                 zombie.StartCoroutine(zombie.StartCooldown());
                 zombie.target.TakeDamage(zombie.attackDamage, zombie); 
             }
 
             zombie.locomotionHandler.UpdatePathToTarget(zombie.target.transform);
-            if (closestUnit == null || zombie.target.isDead)
+            if (closestUnit == null)
             {
                 zombie.target = null;
                 zombie.stateMachine.ChangeState(wander);
                 yield break;
             }
+            if(zombie.target.isDead)
+                break;
+            
+                
 
             yield return null;
             
         }
-
-        yield return null;
+        zombie.target = null;
+        zombie.stateMachine.ChangeState(wander);
+        yield break;
     }
+
 
     public override IEnumerator Exit()
     {
-        zombie.StopCoroutine(Execute());
-        zombie.StopCoroutine(Enter());
         yield return null;
     }
 }

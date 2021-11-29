@@ -44,15 +44,14 @@ public class Wander : State
     {
 
         //Debug.Log("Done with wander");
-        zombie.StopCoroutine(Execute());
-        zombie.StopCoroutine(Enter());
+
         yield return null;
     }
 
 
     public void WanderAroundLeader()
     {
-        zombie.locomotionHandler.isMoving = true;
+        
         float xCoord = UnityEngine.Random.Range((zombie.leader.transform.position.x - zombie.leader.circleRadius.bounds.extents.x), (zombie.leader.transform.position.x + zombie.leader.circleRadius.bounds.extents.x));
         float yCoord = UnityEngine.Random.Range((zombie.leader.transform.position.y - zombie.leader.circleRadius.bounds.extents.y), (zombie.leader.transform.position.y + zombie.leader.circleRadius.bounds.extents.y));
         Vector3 randomPosInLeaderRadius = new Vector3(xCoord,yCoord, 0f);
@@ -67,7 +66,7 @@ public class Wander : State
             return;
         }
             
-//        Debug.Log("Should be starting to walk " + randomPosInLeaderRadius);
+        //Debug.Log("Should be starting to walk " + randomPosInLeaderRadius);
         zombie.locomotionHandler.MoveToTarget(randomPosInLeaderRadius);
     }
 }
