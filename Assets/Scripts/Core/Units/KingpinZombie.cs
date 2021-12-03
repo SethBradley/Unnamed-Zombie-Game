@@ -10,13 +10,17 @@ public class KingpinZombie : LeaderZombie, ISelectable, IMovable
     public List<NormalZombie> zombiesInCommandList = new List<NormalZombie>();
 
 
-    private void Start() 
+    private void Awake() 
     {
+        base.Awake();
         circleRadius = GetComponent<CircleCollider2D>();
         circleRadius.radius = minionWanderRadius;
 
         //stateMachine = new StateMachine(this);
         
     }    
-
+    private void Start() 
+    {
+        
+    }
 }

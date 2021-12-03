@@ -36,47 +36,56 @@ public class HumanAttack : State
             UpdateThresholds();
             if(unitThreshold >= zombieThreshold)
                 {
-                    unit.locomotionHandler.MoveToTarget(unit.target.transform.position);
+                   if(unit.weaponHandler.heldWeapon.isRanged)
+                   {
+                       Debug.Log("BIG IRON");
+                       unit.weaponHandler.Shoot();
+                       unit.StartCooldown();
+                       //first - shoot and go on cooldown
+                       //check distance of all nearby zombies
+                        //if zombies are closer than say 2? 
+                            //(while)then pace away from opp direction of zombie til human threshold is large AND no zombies are close
+                                //If pacing for longer than 3 seconds head for exit 
+                   }
+
+                   else
+                   {
+                        unit.locomotionHandler.MoveToTarget(unit.target.transform.position);
                     
-                    while(Vector3.Distance(unit.transform.position, unit.target.transform.position) > unit.weaponHandler.heldWeapon.attackRange + 0.25f)
-                    {
-                        if(unit.target.isDead)
+                        while(Vector3.Distance(unit.transform.position, unit.target.transform.position) > unit.weaponHandler.heldWeapon.attackRange + 0.25f)
                         {
-                            try
+                            if(unit.target.isDead)
                             {
-                                 unit.target = unit.detectionHandler.nearbyZombies[0];
+                                try
+                                {
+                                    unit.target = unit.detectionHandler.nearbyZombies[0];
+                                }
+                                catch
+                                {
+                                    Debug.Log("Enemy died while walking, continuing");
+                                }
                             }
-                            catch
+                            else if(!unit.detectionHandler.nearbyZombies.Contains((Zombie)unit.target))
                             {
-                                
-                                Debug.Log("Enemy died while walking, continuing");
+                                GoToSanctuary();
                             }
-                        }
-                        else if(!unit.detectionHandler.nearbyZombies.Contains((Zombie)unit.target))
-                        {
-                            GoToSanctuary();
-                        }
 
                     
-                        Debug.Log("Current distance is " + Vector3.Distance(unit.transform.position, unit.target.transform.position) + " Must be under " + unit.weaponHandler.heldWeapon.attackRange + 0.25f ); 
+                            Debug.Log("Current distance is " + Vector3.Distance(unit.transform.position, unit.target.transform.position) + " Must be under " + unit.weaponHandler.heldWeapon.attackRange + 0.25f ); 
                         
-                        unit.locomotionHandler.UpdatePathToTarget(unit.target.transform);
-                        yield return buffer;
-                    }
+                            unit.locomotionHandler.UpdatePathToTarget(unit.target.transform);
+                            yield return buffer;
+                        }
                 
-                    Debug.Log("SWING");
-                    unit.weaponHandler.UseMeleeWeapon();
+                        Debug.Log("SWING");
+                        unit.weaponHandler.UseMeleeWeapon();
+                    }
+                        yield return buffer;
                 }
-            else
-            {
-                GoToSanctuary();
-
-            }
-
-
-
-            yield return buffer;
-        }
+                        else
+                        {
+                        GoToSanctuary();
+                        }   
 
             if(unit.detectionHandler.nearbyZombies.Count > 0)
             {
@@ -90,8 +99,8 @@ public class HumanAttack : State
                 GoToSanctuary();
             }
         yield return Exit();
+        }
     }
-
     private void GoToSanctuary()
     {
         GoToSanctuary goToSanctuary = new GoToSanctuary(unit);

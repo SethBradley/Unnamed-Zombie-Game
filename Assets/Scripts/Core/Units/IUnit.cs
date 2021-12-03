@@ -22,7 +22,7 @@ public abstract class Unit : MonoBehaviour
     public Animator anim;
     public DetectionHandler detectionHandler;
     public LocomotionHandler locomotionHandler;
-    private void Awake() 
+    public virtual void Awake() 
     {
         effectsHandler = GetComponent<EffectsHandler>();
         locomotionHandler = GetComponent<LocomotionHandler>();
@@ -41,21 +41,16 @@ public abstract class Unit : MonoBehaviour
     }
     public void TakeDamage(float damageAmount)
     {
-        if(health <= 0)
-            return;
-        
-        if(!effectsHandler.onHitEffectRunning)
-            StartCoroutine(effectsHandler.TakeDamageEffect());
-        
         health -= damageAmount;
+        if(this is Human)
+            DamagePopup.Create(transform.position, damageAmount, effectsHandler.pfDamagePopup.transform);
+            
+        //if(!effectsHandler.onHitEffectRunning)
+        StartCoroutine(effectsHandler.TakeDamageEffect());
         Debug.Log(health);
-        
-        //Apply slowdown on attack
         if(health <= 0)
         {
             Die();
-
-            //anim playdeath?
         }
     }
 
@@ -65,14 +60,17 @@ public abstract class Unit : MonoBehaviour
         {
             Debug.Log("Transition to Human Death state"); 
             HumanDeath humanDeath = new HumanDeath(this);
+            anim.SetTrigger("Death");
             stateMachine.ChangeState(humanDeath);
         }
 
         else if (this is Zombie)
         {
             Debug.Log("Transition to Zombie Death state"); 
+            anim.SetTrigger("Death");
             ZombieDeath zombieDeath = new ZombieDeath(this);
             stateMachine.ChangeState(zombieDeath);
+           
         }
     }
 

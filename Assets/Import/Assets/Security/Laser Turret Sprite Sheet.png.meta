@@ -1,0 +1,1740 @@
+fileFormatVersion: 2
+guid: 37cffac9061bf604baeca375d66443c5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -80293218506143665
+    second: Laser Turret Sprite Sheet_0
+  - first:
+      213: -2360968944180908236
+    second: Laser Turret Sprite Sheet_1
+  - first:
+      213: 9029961374265917985
+    second: Laser Turret Sprite Sheet_2
+  - first:
+      213: -5258082515324843891
+    second: Laser Turret Sprite Sheet_3
+  - first:
+      213: -4080140640669809733
+    second: Laser Turret Sprite Sheet_4
+  - first:
+      213: -2597733329761218220
+    second: Laser Turret Sprite Sheet_5
+  - first:
+      213: -5478977383000674608
+    second: Laser Turret Sprite Sheet_6
+  - first:
+      213: -2107451987550744104
+    second: Laser Turret Sprite Sheet_7
+  - first:
+      213: -7845614631698591758
+    second: Laser Turret Sprite Sheet_8
+  - first:
+      213: -7059063444729778209
+    second: Laser Turret Sprite Sheet_9
+  - first:
+      213: -3995357543578909119
+    second: Laser Turret Sprite Sheet_10
+  - first:
+      213: 4884279984934490468
+    second: Laser Turret Sprite Sheet_11
+  - first:
+      213: 1999288567749735066
+    second: Laser Turret Sprite Sheet_12
+  - first:
+      213: 8402833386651337285
+    second: Laser Turret Sprite Sheet_13
+  - first:
+      213: -7646480792999875459
+    second: Laser Turret Sprite Sheet_14
+  - first:
+      213: -1412373189083512381
+    second: Laser Turret Sprite Sheet_15
+  - first:
+      213: 8704676258786680732
+    second: Laser Turret Sprite Sheet_16
+  - first:
+      213: 3532767025447151149
+    second: Laser Turret Sprite Sheet_17
+  - first:
+      213: -4742378055722106887
+    second: Laser Turret Sprite Sheet_18
+  - first:
+      213: -2659321501127085166
+    second: Laser Turret Sprite Sheet_19
+  - first:
+      213: 8970820222870171936
+    second: Laser Turret Sprite Sheet_20
+  - first:
+      213: 1994809104366659893
+    second: Laser Turret Sprite Sheet_21
+  - first:
+      213: -5222794211234687456
+    second: Laser Turret Sprite Sheet_22
+  - first:
+      213: 260003989381288031
+    second: Laser Turret Sprite Sheet_23
+  - first:
+      213: -1607448193960066521
+    second: Laser Turret Sprite Sheet_24
+  - first:
+      213: -2950687275578947190
+    second: Laser Turret Sprite Sheet_25
+  - first:
+      213: 8679534177216295943
+    second: Laser Turret Sprite Sheet_26
+  - first:
+      213: 5770202761727376875
+    second: Laser Turret Sprite Sheet_27
+  - first:
+      213: 2001088609307808810
+    second: Laser Turret Sprite Sheet_28
+  - first:
+      213: -5294077636604364615
+    second: Laser Turret Sprite Sheet_29
+  - first:
+      213: -7487616743926566506
+    second: Laser Turret Sprite Sheet_30
+  - first:
+      213: 6564344749946335
+    second: Laser Turret Sprite Sheet_31
+  - first:
+      213: 6241541043385684871
+    second: Laser Turret Sprite Sheet_32
+  - first:
+      213: -2137769536120666452
+    second: Laser Turret Sprite Sheet_33
+  - first:
+      213: -7696289774818512359
+    second: Laser Turret Sprite Sheet_34
+  - first:
+      213: 1993829801658946522
+    second: Laser Turret Sprite Sheet_35
+  - first:
+      213: -4285072828571674039
+    second: Laser Turret Sprite Sheet_36
+  - first:
+      213: -3881913630313555519
+    second: Laser Turret Sprite Sheet_37
+  - first:
+      213: -5252119274302954588
+    second: Laser Turret Sprite Sheet_38
+  - first:
+      213: 2444430961581623061
+    second: Laser Turret Sprite Sheet_39
+  - first:
+      213: 4466437793440785813
+    second: Laser Turret Sprite Sheet_40
+  - first:
+      213: 5182001875158019571
+    second: Laser Turret Sprite Sheet_41
+  - first:
+      213: -478016156715247960
+    second: Laser Turret Sprite Sheet_42
+  - first:
+      213: 6575816042991255335
+    second: Laser Turret Sprite Sheet_43
+  - first:
+      213: 7305336858341931102
+    second: Laser Turret Sprite Sheet_44
+  - first:
+      213: -858476424145502480
+    second: Laser Turret Sprite Sheet_45
+  - first:
+      213: 4825192544105286681
+    second: Laser Turret Sprite Sheet_46
+  - first:
+      213: -5866470574275935947
+    second: Laser Turret Sprite Sheet_47
+  - first:
+      213: 5766882800990769147
+    second: Laser Turret Sprite Sheet_48
+  - first:
+      213: -2034384417790689991
+    second: Laser Turret Sprite Sheet_49
+  - first:
+      213: 3437434127371062993
+    second: Laser Turret Sprite Sheet_50
+  - first:
+      213: -7312515710102490487
+    second: Laser Turret Sprite Sheet_51
+  - first:
+      213: -7199979856867256496
+    second: Laser Turret Sprite Sheet_52
+  - first:
+      213: 6422783666168336459
+    second: Laser Turret Sprite Sheet_53
+  - first:
+      213: 7680512698917839795
+    second: Laser Turret Sprite Sheet_54
+  - first:
+      213: 5881727337105141202
+    second: Laser Turret Sprite Sheet_55
+  - first:
+      213: -7146347995349166884
+    second: Laser Turret Sprite Sheet_56
+  - first:
+      213: -8213092239225113922
+    second: Laser Turret Sprite Sheet_57
+  - first:
+      213: 4350010672721799669
+    second: Laser Turret Sprite Sheet_58
+  - first:
+      213: -3921895847597837419
+    second: Laser Turret Sprite Sheet_59
+  - first:
+      213: -2557977301925577384
+    second: Laser Turret Sprite Sheet_60
+  - first:
+      213: 4503117181029462906
+    second: Laser Turret Sprite Sheet_61
+  - first:
+      213: -1841113970647420888
+    second: Laser Turret Sprite Sheet_62
+  - first:
+      213: 8295599982437608904
+    second: Laser Turret Sprite Sheet_63
+  - first:
+      213: 1679998305142345899
+    second: Laser Turret Sprite Sheet_64
+  - first:
+      213: -6334613185066193330
+    second: Laser Turret Sprite Sheet_65
+  - first:
+      213: 2148664529779322438
+    second: Laser Turret Sprite Sheet_66
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 193
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4881114ebdb2eef0800000000000000
+      internalID: -80293218506143665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 193
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43f2e5411472c3fd0800000000000000
+      internalID: -2360968944180908236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 193
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1224e90f60ed05d70800000000000000
+      internalID: 9029961374265917985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 193
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d88ce529fc98707b0800000000000000
+      internalID: -5258082515324843891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 193
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb3cd3f64bd6067c0800000000000000
+      internalID: -4080140640669809733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 193
+        width: 19
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 451d36acc4ff2fbd0800000000000000
+      internalID: -2597733329761218220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 193
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0de68d95913c6f3b0800000000000000
+      internalID: -5478977383000674608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 193
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d1d8d44593d0c2e0800000000000000
+      internalID: -2107451987550744104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 193
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ff8ff07f07ce1390800000000000000
+      internalID: -7845614631698591758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 193
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdfafe1923b290e90800000000000000
+      internalID: -7059063444729778209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 193
+        width: 18
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1464d408b73ad88c0800000000000000
+      internalID: -3995357543578909119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 193
+        width: 18
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 461129da4c278c340800000000000000
+      internalID: 4884279984934490468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 193
+        width: 18
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a92f8341c56eebb10800000000000000
+      internalID: 1999288567749735066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 193
+        width: 18
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 542452ee17cdc9470800000000000000
+      internalID: 8402833386651337285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 193
+        width: 18
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7c25674b3e32e590800000000000000
+      internalID: -7646480792999875459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 161
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c1446e411e366ce0800000000000000
+      internalID: -1412373189083512381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 161
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9f91c120f83dc870800000000000000
+      internalID: 8704676258786680732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 161
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d26adf964e8e60130800000000000000
+      internalID: 3532767025447151149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 161
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ff7316d840bf2eb0800000000000000
+      internalID: -4742378055722106887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 161
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 293f2c53f21381bd0800000000000000
+      internalID: -2659321501127085166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 161
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02131189671ce7c70800000000000000
+      internalID: 8970820222870171936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 129
+        width: 18
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5396d7cbf4cfeab10800000000000000
+      internalID: 1994809104366659893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 129
+        width: 18
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 026d3602658e487b0800000000000000
+      internalID: -5222794211234687456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 129
+        width: 18
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5091433048bb9300800000000000000
+      internalID: 260003989381288031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 129
+        width: 18
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 722ca2c526231b9e0800000000000000
+      internalID: -1607448193960066521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 129
+        width: 18
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a890ad76e8d0d07d0800000000000000
+      internalID: -2950687275578947190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 129
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 704f6d81956e37870800000000000000
+      internalID: 8679534177216295943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_27
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 129
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bedfcb607d0e31050800000000000000
+      internalID: 5770202761727376875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_28
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 129
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a245fd9ec7b45cb10800000000000000
+      internalID: 2001088609307808810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_29
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 129
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b87bd05078a786b0800000000000000
+      internalID: -5294077636604364615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_30
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 129
+        width: 19
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6917df31e34a61890800000000000000
+      internalID: -7487616743926566506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_31
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 129
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd5f00d9c32571000800000000000000
+      internalID: 6564344749946335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_32
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 129
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 783560682886e9650800000000000000
+      internalID: 6241541043385684871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_33
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 129
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca640ebeeed1552e0800000000000000
+      internalID: -2137769536120666452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_34
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 129
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 912b87bf939413590800000000000000
+      internalID: -7696289774818512359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_35
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 129
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad3187e04a18bab10800000000000000
+      internalID: 1993829801658946522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_36
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 97
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94a9e4837fc5884c0800000000000000
+      internalID: -4285072828571674039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_37
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 97
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c9d968de1ca02ac0800000000000000
+      internalID: -3881913630313555519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_38
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 97
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a3a031d859bc17b0800000000000000
+      internalID: -5252119274302954588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_39
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 97
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5170a07220d5ce120800000000000000
+      internalID: 2444430961581623061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_40
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 97
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 595ea694289fbfd30800000000000000
+      internalID: 4466437793440785813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_41
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 97
+        width: 29
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fda332004b2ae740800000000000000
+      internalID: 5182001875158019571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_42
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 97
+        width: 29
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a6171e86debd59f0800000000000000
+      internalID: -478016156715247960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_43
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 97
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72ffec6d9ddf14b50800000000000000
+      internalID: 6575816042991255335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_44
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 65
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e58f906da25c16560800000000000000
+      internalID: 7305336858341931102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_45
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 90
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fe72ca9d341614f0800000000000000
+      internalID: -858476424145502480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_46
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 87
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91c424ccd0786f240800000000000000
+      internalID: 4825192544105286681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_47
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 65
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5314007381c169ea0800000000000000
+      internalID: -5866470574275935947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_48
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 65
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bff4d5e6a55180050800000000000000
+      internalID: 5766882800990769147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_49
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 65
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93dfef0962a64c3e0800000000000000
+      internalID: -2034384417790689991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_50
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 27
+        width: 23
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dec1c4602834bf20800000000000000
+      internalID: 3437434127371062993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_51
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 33
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 982b0ec74b9b48a90800000000000000
+      internalID: -7312515710102490487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_52
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 55
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0579571a778841c90800000000000000
+      internalID: -7199979856867256496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_53
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 52
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b40152b07bf422950800000000000000
+      internalID: 6422783666168336459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_54
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 29
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b3efd74b99a69a60800000000000000
+      internalID: 7680512698917839795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_55
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 33
+        width: 25
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dd2bd1b9d710a150800000000000000
+      internalID: 5881727337105141202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_56
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 33
+        width: 25
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd453e77c5213dc90800000000000000
+      internalID: -7146347995349166884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_57
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 33
+        width: 25
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb2387d8f1c350e80800000000000000
+      internalID: -8213092239225113922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_58
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 33
+        width: 25
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f9adb4d8a75e5c30800000000000000
+      internalID: 4350010672721799669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_59
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 27
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 593f9d57180a299c0800000000000000
+      internalID: -3921895847597837419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_60
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 22
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85db637523d308cd0800000000000000
+      internalID: -2557977301925577384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_61
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 19
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a733835b7394e7e30800000000000000
+      internalID: 4503117181029462906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_62
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 23
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8203d8c299c0376e0800000000000000
+      internalID: -1841113970647420888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_63
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 25
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cd2ee76b34ef1370800000000000000
+      internalID: 8295599982437608904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_64
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 1
+        width: 25
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba09449be8d805710800000000000000
+      internalID: 1679998305142345899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_65
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 1
+        width: 25
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4eaf92dedee618a0800000000000000
+      internalID: -6334613185066193330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Laser Turret Sprite Sheet_66
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 1
+        width: 25
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64e6af6710791dd10800000000000000
+      internalID: 2148664529779322438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

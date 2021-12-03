@@ -22,6 +22,33 @@ public class WeaponHandler : MonoBehaviour
         unit = GetComponent<Unit>();
         equippedWeapon = transform.Find("EquippedWeapon"); 
     }
+
+    public void Shoot()
+    {
+        //Get Shoot Direction/Rotation
+        float hitChance = UnityEngine.Random.Range(0,1);
+        Vector3 bulletDir;
+        if (hitChance < 0.9f)
+        {
+            bulletDir = unit.target.transform.position - transform.position;
+        }
+        else
+            bulletDir = new Vector3(UnityEngine.Random.Range(unit.target.transform.position.x - 2, unit.target.transform.position.x + 2 ), UnityEngine.Random.Range(unit.target.transform.position.y - 2, unit.target.transform.position.y + 2 ), 0f) - transform.position;
+         
+        //if(heldWeapon is a pistol)
+        ShootPistol(bulletDir);
+    }
+
+    public void ShootPistol(Vector3 bulletDir)
+    {
+        
+        
+        //Quaternion bulletRotation = new Quaternion(0f,0f,Vector2.Angle(transform.position, unit.target.transform.position),0);
+        //Debug.Log(Vector2.SignedAngle(transform.position, unit.target.transform.position));
+        GameObject newBullet = Instantiate(heldWeapon.projectile, transform.position + heldWeapon.shootPoint, Quaternion.identity );
+        
+        newBullet.GetComponent<BulletProjectile>().Init(bulletDir, heldWeapon.damage);
+    }
     
 
 
@@ -64,26 +91,27 @@ public class WeaponHandler : MonoBehaviour
     {
         Debug.Log("Equipping Weapon");
 
-        try
-        {
-            
+        //try
+        //{
             heldWeaponGameObject = weapon.gameObject;
         
             heldWeapon = weapon.GetComponent<WeaponModel>().weapon;
             equippedWeapon.GetComponent<SpriteRenderer>().sprite = heldWeapon.sprite;
             Object.Destroy(weapon.gameObject);
 
+            
+            unit.cooldown = heldWeapon.cooldown;
             equippedWeapon.transform.position = Vector3.zero;
             equippedWeapon.localPosition = heldWeapon.offsetPosition;
             equippedWeapon.localRotation = heldWeapon.offsetRotation;
             
             unit.attackDamage += heldWeapon.damage;
    
-        }
-        catch
-        {
-            Debug.Log("Weapon already picked up - carry on without it");
-        }
+        //}
+        //catch
+        //{
+       //     Debug.Log("Weapon already picked up - carry on without it");
+        //}
 
     }
 

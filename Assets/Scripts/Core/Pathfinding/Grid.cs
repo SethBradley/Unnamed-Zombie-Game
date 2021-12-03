@@ -7,7 +7,7 @@ public class Grid : MonoBehaviour {
 	public LayerMask unwalkableMask;
 	private LayerMask walkableMask;
 	public Dictionary<int,int> walkableRegionsDictionary = new Dictionary<int, int>();
-	public TerrainType[] walkableRegions;
+	//public TerrainType[] walkableRegions;
 	public Vector3 gridWorldSize;
 	public float nodeRadius;
 	Node[,] grid;
@@ -24,12 +24,12 @@ public class Grid : MonoBehaviour {
 		gridSizeY = Mathf.RoundToInt(gridWorldSize.y/nodeDiameter);
 		CreateGrid();
 
-		foreach(TerrainType region in walkableRegions)
+/*		foreach(TerrainType region in walkableRegions)
 		{
 			float terrainMaskValue = (float)region.terrainMask.value;
 			walkableMask.value += region.terrainMask.value;
 			walkableRegionsDictionary.Add((int)Mathf.Log(terrainMaskValue, 2f) ,region.terrainPenalty);
-		}
+		}*/
 	}
 
 	void CreateGrid() {
@@ -45,18 +45,18 @@ public class Grid : MonoBehaviour {
 				
 				int movementPenalty = 0;
 
-				if(walkable)
-				{
+// 				if(walkable)
+// 				{
 					
-					RaycastHit2D hit = Physics2D.Raycast((worldPoint + Vector2.up), -Vector2.down, walkableMask);
-					if (hit.collider != null)
-					{
-						walkableRegionsDictionary.TryGetValue(hit.collider.gameObject.layer, out movementPenalty);	
-//						Debug.Log("Adding Movement penalty to " + hit.collider.name);
-					}
+// 					RaycastHit2D hit = Physics2D.Raycast((worldPoint + Vector2.up), -Vector2.down, walkableMask);
+// 					if (hit.collider != null)
+// 					{
+// 						walkableRegionsDictionary.TryGetValue(hit.collider.gameObject.layer, out movementPenalty);	
+// //						Debug.Log("Adding Movement penalty to " + hit.collider.name);
+// 					}
 					
 					
-				}
+// 				}
 
 				grid[x,y] = new Node(walkable,worldPoint, x,y,movementPenalty);
 			}
@@ -97,7 +97,7 @@ public class Grid : MonoBehaviour {
 
 
 	void OnDrawGizmos() {
-		Gizmos.DrawWireCube(transform.position,new Vector3(gridWorldSize.x,gridWorldSize.y));
+		/*Gizmos.DrawWireCube(transform.position,new Vector3(gridWorldSize.x,gridWorldSize.y));
 
 		if (grid != null && displayGridGizmos)
 		{
@@ -114,6 +114,7 @@ public class Grid : MonoBehaviour {
 	{
 		public LayerMask terrainMask;
 		public int terrainPenalty;
+		*/
 	}
 }
 

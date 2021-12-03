@@ -16,7 +16,8 @@ public class Weapon : ScriptableObject
     public Vector3 attackPoint; 
     public AudioClip weaponAttackSound;
     public Sprite sprite;
-    public Sprite projectile;
+    public GameObject projectile;
+    public Vector3 shootPoint;
     public Vector3 offsetPosition;
     public Quaternion offsetRotation;
 

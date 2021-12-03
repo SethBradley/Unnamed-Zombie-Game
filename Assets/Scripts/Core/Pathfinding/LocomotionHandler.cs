@@ -78,7 +78,7 @@ public class LocomotionHandler : MonoBehaviour
         
         while (isMoving)
         {
-
+            unit.effectsHandler.StartRunningAnimation();
            //Debug.Log(targetIndex + " " + path.Length);
             if (transform.position == currentWaypoint)
             {
@@ -86,6 +86,7 @@ public class LocomotionHandler : MonoBehaviour
                 if (targetIndex >= path.Length)
                 {
                     isMoving = false;
+                    unit.effectsHandler.StopRunningAnimation();
                     yield break;
                 }
                 currentWaypoint = path[targetIndex];

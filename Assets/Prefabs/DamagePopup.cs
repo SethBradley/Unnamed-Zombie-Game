@@ -4,41 +4,51 @@ using UnityEngine;
 using TMPro;
 public class DamagePopup : MonoBehaviour
 {
-    
-    public static DamagePopup Create(Vector3 position, int attackDamage,Transform pfDamagePopup)
-    {
-        Transform damagePopupTransform = Instantiate(pfDamagePopup, position, Quaternion.identity);
-
-        DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
-
-        //int randomNum = UnityEngine.Random.Range(1,100);
-        damagePopup.Setup(attackDamage);
-
-        return damagePopup;
-        
-    }
-    
     private static int sortingOrder;
 
     private TextMeshPro textMesh;
     private float dissappearTimer;
     private Color textColor;
-    private void Awake() {
-        textMesh = transform.GetComponent<TextMeshPro>();
+    private Vector3 randomPoint;
+    private float random;
+    
+    public static DamagePopup Create(Vector3 position, float attackDamage,Transform pfDamagePopup)
+    {
+        Transform damagePopupTransform = Instantiate(pfDamagePopup, position, Quaternion.identity);
+        
+        
+        DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
+
+        //int randomNum = UnityEngine.Random.Range(1,100);
+        damagePopup.Setup(attackDamage,position);
+
+        return damagePopup;
+        
     }
-  public void Setup(float attackDamage){
+    
+
+    private void Awake() 
+    {
+      random = UnityEngine.Random.Range(-1f,1f);
+      textMesh = transform.GetComponent<TextMeshPro>();
+        
+    }
+  public void Setup(float attackDamage, Vector3 position){
     textMesh.SetText(attackDamage.ToString());
     textColor =textMesh.color;
     dissappearTimer = 1f;
     sortingOrder++;
     textMesh.sortingOrder = sortingOrder;
+    randomPoint = new Vector3(position.x + UnityEngine.Random.Range(-1f,1f), position.y + UnityEngine.Random.Range(-1f,1f), 0f);
 
       
   }
 
    private void Update() {
-    float moveYspeed = 5f;
-    transform.position += new Vector3(0, moveYspeed) * Time.deltaTime;
+    //float moveYspeed = 5f;
+
+    transform.position += new Vector3(random, random) * Time.deltaTime;
+    transform.localScale -= new Vector3(0.01f,0.01f,0);// * Time.deltaTime;
     dissappearTimer -= Time.deltaTime;
     if(dissappearTimer < 0) {
         float dissappearSpeed = 3f;

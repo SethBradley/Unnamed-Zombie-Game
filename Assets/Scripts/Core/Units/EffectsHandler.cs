@@ -11,14 +11,20 @@ public class EffectsHandler : MonoBehaviour
     public ParticleSystem[] particles;
     private Animator anim;
     public Unit unit;
-    public Image Healthbar;
     public GameObject xpGameObj;
     public AnimationCurve xpPositionCurve;
     
     public bool onHitEffectRunning;
+    private Vector2 oldPosition;
+    private Quaternion flipX = Quaternion.Euler(0f,180f,0f);
+    [Header("HealthBar and Combat Text")]
+    public Image healthBar;
+    private float maxHealth;
+    public GameObject pfDamagePopup;
     
-
-    private void Start() {
+    private void Start() 
+    {
+        oldPosition = transform.position;
         unit = GetComponent<Unit>();
         anim = GetComponent<Animator>();
         spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
@@ -26,8 +32,24 @@ public class EffectsHandler : MonoBehaviour
         //StartCoroutine(DropExp());
         
 
-//        Healthbar = unit.transform.Find("Healthbar").GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
-//        Healthbar.transform.parent.gameObject.SetActive(false);
+        healthBar = unit.transform.Find("Healthbar").GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
+        healthBar.transform.parent.gameObject.SetActive(false);
+        maxHealth = unit.health;
+    }
+    private void Update() 
+    {
+        if(!unit.locomotionHandler.isGettingKnockedBack)
+        {
+            if(transform.position.x < oldPosition.x)
+            {
+                transform.rotation = flipX;
+            }
+            else if (transform.position.x > oldPosition.x)
+                transform.rotation = Quaternion.Euler(0,0,0);
+    
+            oldPosition = transform.position;
+        }
+
     }
 
 
@@ -35,8 +57,9 @@ public class EffectsHandler : MonoBehaviour
     {
         onHitEffectRunning = true;
         spriteRenderer.color = Color.white;
-        anim.SetTrigger("Hit");
-        //DecreaseHealthUI();
+        
+        //anim.SetTrigger("Hit");
+        DecreaseHealthUI();
         Instantiate(particles[0], this.transform.position + spriteEffectOffset, this.transform.rotation, this.transform);
         float elapsedTime = 0f;
         while(elapsedTime <= waitTime)
@@ -59,15 +82,17 @@ public class EffectsHandler : MonoBehaviour
     }
  public void DecreaseHealthUI()
     { 
-        if (!Healthbar.transform.parent.gameObject.activeSelf)
+        if (!healthBar.transform.parent.gameObject.activeSelf)
         {
-            Healthbar.transform.parent.gameObject.SetActive(true);
+            healthBar.transform.parent.gameObject.SetActive(true);
         }
-        Healthbar.fillAmount = unit.health;
 
-        if (Healthbar.fillAmount <= 0)
+        Debug.Log($"{unit.health} / {maxHealth}");
+        healthBar.fillAmount = (unit.health / maxHealth);
+
+        if (unit.isDead)
         {
-            Healthbar.transform.parent.gameObject.SetActive(false);
+            healthBar.transform.parent.gameObject.SetActive(false);
         }
 
     }
@@ -110,5 +135,14 @@ public class EffectsHandler : MonoBehaviour
 
         }
         
+    }
+
+    public void StartRunningAnimation()
+    {
+        anim.SetBool("Moving", true);
+    }
+    public void StopRunningAnimation()
+    {
+        anim.SetBool("Moving", false);
     }
 }
