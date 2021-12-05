@@ -38,7 +38,7 @@ public class UnitSelectController : MonoBehaviour
     private void MoveSelectedUnit()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        currentSelected.GetComponent<LocomotionHandler>().MoveToMouseLocation(mousePos);
+        //currentSelected.GetComponent<LocomotionHandler>().MoveToMouseLocation(mousePos);
 
     }
 

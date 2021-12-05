@@ -83,8 +83,8 @@ public class WeaponHandler : MonoBehaviour
             Unit currentTarget = targetsInRange[i].transform.gameObject.GetComponent<Unit>();
 //            Debug.Log(currentTarget.name);
             currentTarget.TakeDamage(heldWeapon.damage);
-            if (!currentTarget.locomotionHandler.isGettingKnockedBack)
-                currentTarget.StartCoroutine(currentTarget.locomotionHandler.GetKnockedBack(heldWeapon.knockbackAmount, transform.position));
+            //if (!currentTarget.locomotionHandler.isGettingKnockedBack)
+                //currentTarget.StartCoroutine(currentTarget.locomotionHandler.GetKnockedBack(heldWeapon.knockbackAmount, transform.position));
         }
     }
     public void EquipWeapon(Transform weapon)

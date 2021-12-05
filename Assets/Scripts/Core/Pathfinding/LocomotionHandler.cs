@@ -2,13 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Pathfinding;
 public class LocomotionHandler : MonoBehaviour
 {
   public float movespeed;
     public Transform target;
     [Header("Pathfinding")]
-    public Vector3[] path;
     int targetIndex = 1;
     public bool isMoving;
     Unit unit;
@@ -20,15 +19,93 @@ public class LocomotionHandler : MonoBehaviour
     public bool isCheckingForOutOfBounds; 
     public Vector3 knockbackLocation;
     public Vector2 OOBDetectionSize;
+    public Vector2 targetDestination;
+    Seeker seeker;
+    public Path path;
+    int currentWaypoint;
+    float nextWaypointDistance = 3f;
+    public AIPath aiPath;
 
     private void Start() 
     {
+        
         unit = GetComponent<Unit>();
-        //isCheckingForOutOfBounds = true;
-        //StartCoroutine(CheckForOutOfBounds());
+        seeker = GetComponent<Seeker>();
+        aiPath = GetComponent<AIPath>(); 
+        
     }
 
-    private IEnumerator CheckForOutOfBounds()
+    WaitForSeconds buffer = new WaitForSeconds(0.2f);
+
+    public IEnumerator MoveToLocation(Vector2 location)
+    {
+        
+        aiPath.isStopped = false;
+        seeker.StartPath(transform.position, location, OnPathGenerationCompleted);
+        while(path == null)
+            yield return null;
+        
+        isMoving = true;
+        while(!aiPath.reachedEndOfPath)
+        {
+            
+            unit.effectsHandler.StartRunningAnimation();
+            Debug.Log("Walking to path");
+            UpdatePath(location);
+            float distance = Vector2.Distance(transform.position, path.vectorPath[currentWaypoint]);
+            if(distance < aiPath.pickNextWaypointDist)
+                currentWaypoint++;
+            if(currentWaypoint >= path.vectorPath.Count)
+                yield break;
+            yield return buffer;
+        }
+        EndPathing();
+    }
+
+    public void EndPathing()
+    {
+        Debug.Log("reached end of path");
+        isMoving = false;
+        aiPath.isStopped = true;
+        unit.effectsHandler.StopRunningAnimation();
+    }
+    void UpdatePath(Vector2 targetDestination)
+    {
+        if(seeker == null)
+        {
+            return;
+        }
+        if(seeker.IsDone())
+        {
+            Debug.Log("Requesting new path");
+            seeker.StartPath(this.transform.position, targetDestination, OnPathGenerationCompleted);
+        }
+    }
+    void OnPathGenerationCompleted(Path p)
+    {
+        if(!p.error)
+        {
+            path = p;
+            Debug.Log("Set the path --------------");
+            currentWaypoint = 0 ;
+        }
+    }
+
+    public void MoveToTarget(Vector2 pos)
+    {
+        if(isMoving)
+        {
+            StopCoroutine("MoveToLocation");
+            isMoving = false;
+        }
+        StartCoroutine(MoveToLocation(pos));
+    }
+    public void GetKnockedBack(float x, Vector3 y)
+    {
+
+    }
+}
+    /*private IEnumerator CheckForOutOfBounds()
     {
         while(isCheckingForOutOfBounds)
         {
@@ -134,7 +211,7 @@ public IEnumerator GetKnockedBack(float knockbackAmount, Vector3 attackOrigin)
             isCheckingForOutOfBounds = true;
             StartCoroutine(CheckForOutOfBounds());
         }*/
-
+/*
         isGettingKnockedBack = true;
         Vector3 unitPos = transform.position;
         Vector3 knockbackDirection = (unitPos - attackOrigin ).normalized;
@@ -179,7 +256,7 @@ public IEnumerator GetKnockedBack(float knockbackAmount, Vector3 attackOrigin)
             StopCoroutine(CheckForOutOfBounds());
             isCheckingForOutOfBounds = false;
         }*/
-        unit.isAgainstWall = false; 
+  /*     unit.isAgainstWall = false; 
         Debug.Log("Done getting knocked back");
         yield return null;
     }
@@ -215,3 +292,4 @@ public IEnumerator GetKnockedBack(float knockbackAmount, Vector3 attackOrigin)
         }
     }
 }
+*/

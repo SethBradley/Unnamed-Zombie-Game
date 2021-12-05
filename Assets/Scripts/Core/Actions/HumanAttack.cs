@@ -73,7 +73,7 @@ public class HumanAttack : State
                     
                             Debug.Log("Current distance is " + Vector3.Distance(unit.transform.position, unit.target.transform.position) + " Must be under " + unit.weaponHandler.heldWeapon.attackRange + 0.25f ); 
                         
-                            unit.locomotionHandler.UpdatePathToTarget(unit.target.transform);
+                            
                             yield return buffer;
                         }
                 

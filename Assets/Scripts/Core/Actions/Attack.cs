@@ -49,7 +49,7 @@ public class Attack : State
                 zombie.target.TakeDamage(zombie.attackDamage, zombie); 
             }
 
-            zombie.locomotionHandler.UpdatePathToTarget(zombie.target.transform);
+            
             if (closestUnit == null)
             {
                 zombie.target = null;

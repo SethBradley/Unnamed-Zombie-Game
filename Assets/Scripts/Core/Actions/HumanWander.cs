@@ -14,13 +14,13 @@ public class HumanWander : State
     public override IEnumerator Enter()
     {
         Transform waypoint = WaypointManager.instance.GetRandomWaypoint();
-        unit.locomotionHandler.MoveToTarget(waypoint.position);
+        unit.StartCoroutine(unit.locomotionHandler.MoveToLocation(waypoint.position));
         yield return Execute();
     }
 
     public override IEnumerator Execute()
     {
-        while(unit.locomotionHandler.isMoving)
+        while(!unit.locomotionHandler.aiPath.reachedEndOfPath)
         {
             Unit zombie = unit.detectionHandler.GetClosestUnitInRange();
             if (zombie != null)
