@@ -32,9 +32,9 @@ public class Attack : State
         while(zombie.target != null && zombie.detectionHandler.nearbyHumans.Count > 0)
         {
     
-            yield return buffer;
+           
             Unit closestUnit = zombie.detectionHandler.GetClosestUnitInRange();
-
+            
             if(closestUnit != zombie.target && closestUnit != null)
             {
                 yield return Enter();
@@ -42,7 +42,7 @@ public class Attack : State
             }
                 
 
-            if( !zombie.isOnCooldown && Vector3.Distance(zombie.transform.position, zombie.target.transform.position) <= zombie.attackRange)
+            if( !zombie.isOnCooldown && Vector2.Distance(zombie.transform.position, zombie.target.transform.position) <= zombie.attackRange)
             {
                 zombie.anim.SetTrigger("MeleeAttack");
                 zombie.StartCoroutine(zombie.StartCooldown());
@@ -60,11 +60,12 @@ public class Attack : State
                 break;
             
                 
-
-            yield return null;
+             zombie.locomotionHandler.MoveToTarget(closestUnit.transform.position);
+             yield return buffer;
             
         }
         zombie.target = null;
+        
         zombie.stateMachine.ChangeState(wander);
         yield break;
     }

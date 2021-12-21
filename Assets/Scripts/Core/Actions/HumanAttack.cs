@@ -8,6 +8,7 @@ public class HumanAttack : State
     protected Human unit;
     private int zombieThreshold;
     private int unitThreshold;
+    public bool isShooting; 
     public HumanAttack(Human _unit)
     {
         unit = _unit;
@@ -32,28 +33,49 @@ public class HumanAttack : State
 
                 yield return null;
             }
-
             UpdateThresholds();
             if(unitThreshold >= zombieThreshold)
                 {
+#region Ranged
                    if(unit.weaponHandler.heldWeapon.isRanged)
                    {
                        Debug.Log("BIG IRON");
-                       unit.weaponHandler.Shoot();
-                       unit.StartCooldown();
+
+                       while(!unit.isOnCooldown)
+                       {
+                           unit.locomotionHandler.DisableMovement(); 
+                           unit.weaponHandler.Shoot();
+                           yield return new WaitForSeconds(0.5f);
+                           float shootAgainChance = UnityEngine.Random.Range(0f,1f);
+                           if(shootAgainChance > 0.5f)
+                           {
+                               Debug.Log("Shoot again " + shootAgainChance);
+                               yield return null;
+                           }
+                           else
+                           {
+                               unit.locomotionHandler.EnableMovement();
+                               unit.StartCoroutine(unit.StartCooldown());   
+                           }
+
+                           yield return null;
+                       }
+                       
+                       unit.effectsHandler.spriteRenderer.flipX = false;
+                       
                        //first - shoot and go on cooldown
                        //check distance of all nearby zombies
                         //if zombies are closer than say 2? 
                             //(while)then pace away from opp direction of zombie til human threshold is large AND no zombies are close
                                 //If pacing for longer than 3 seconds head for exit 
                    }
-
+#endregion
                    else
+#region Melee
                    {
-                        unit.locomotionHandler.MoveToTarget(unit.target.transform.position);
-                    
                         while(Vector3.Distance(unit.transform.position, unit.target.transform.position) > unit.weaponHandler.heldWeapon.attackRange + 0.25f)
                         {
+                            unit.locomotionHandler.MoveToTarget(unit.target.transform.position);
                             if(unit.target.isDead)
                             {
                                 try
@@ -80,6 +102,7 @@ public class HumanAttack : State
                         Debug.Log("SWING");
                         unit.weaponHandler.UseMeleeWeapon();
                     }
+#endregion
                         yield return buffer;
                 }
                         else

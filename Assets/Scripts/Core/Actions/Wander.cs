@@ -12,19 +12,23 @@ public class Wander : State
         WaitForSeconds buffer = new WaitForSeconds(1.5f);
     public override IEnumerator Enter()
     {
-        //Debug.Log("Entering new Wander");
-        WanderAroundLeader();
+        Debug.Log("Entering new Wander");
+        
         
         yield return Execute();
     }
 
     public override IEnumerator Execute()
     {
+
+
 //        Debug.Log("start of wander execute ");
-        
-         while(zombie.locomotionHandler.isMoving)
+         while(true)
          {
-            //Debug.Log("Is moving");
+             if(!zombie.locomotionHandler.isMoving)
+                WanderAroundLeader();
+
+            Debug.Log("Is Wandering");
             yield return buffer;
             if(zombie.detectionHandler.GetClosestUnitInRange() != null)
             {
@@ -32,12 +36,9 @@ public class Wander : State
                 zombie.stateMachine.ChangeState(attack);
                 yield break;
             }
+            
             yield return null;
          }
-       
-        
-        //Debug.Log("end of wander execute ");
-        yield return Enter();
     }
 
     public override IEnumerator Exit()
@@ -54,10 +55,10 @@ public class Wander : State
         
         float xCoord = UnityEngine.Random.Range((zombie.leader.transform.position.x - zombie.leader.circleRadius.bounds.extents.x), (zombie.leader.transform.position.x + zombie.leader.circleRadius.bounds.extents.x));
         float yCoord = UnityEngine.Random.Range((zombie.leader.transform.position.y - zombie.leader.circleRadius.bounds.extents.y), (zombie.leader.transform.position.y + zombie.leader.circleRadius.bounds.extents.y));
-        Vector3 randomPosInLeaderRadius = new Vector3(xCoord,yCoord, 0f);
+        Vector2 randomPosInLeaderRadius = new Vector2(xCoord,yCoord);
 
 
-        Collider2D[] collisions = Physics2D.OverlapCircleAll(randomPosInLeaderRadius, 1f, zombie.unwalkableMask);
+        Collider2D[] collisions = Physics2D.OverlapCircleAll(randomPosInLeaderRadius, 2f, zombie.unwalkableMask);
         //Debug.Log(collisions.Length);
         if(collisions.Length != 0)
         {

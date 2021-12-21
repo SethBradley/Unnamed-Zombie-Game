@@ -8,12 +8,13 @@ public class BulletProjectile : MonoBehaviour
     public Vector3 travelDirection;
     public GameObject hitTarget;
     public int damage;
+    public float knockBack;
 
-    public void Init(Vector3 _travelDirection, int _damage)
+    public void Init(Vector3 _travelDirection, int _damage, float _knockBack)
     {
         damage = _damage;
         travelDirection = _travelDirection;
-
+        knockBack = _knockBack;
         transform.eulerAngles = new Vector3(0,0, GetAngleFromVectorFloat(travelDirection));
     }
     private void FixedUpdate() 
@@ -53,6 +54,10 @@ public class BulletProjectile : MonoBehaviour
         if(!zombie.isDead)
         {
             Debug.Log("shot zombie");
+            zombie.locomotionHandler.knockBack_Co = zombie.locomotionHandler.GetKnockedBack(knockBack, transform.position);
+            zombie.locomotionHandler.StartCoroutine(zombie.locomotionHandler.knockBack_Co);
+            zombie.locomotionHandler.slow_Co = zombie.locomotionHandler.SlowMovement();
+            zombie.locomotionHandler.StartCoroutine(zombie.locomotionHandler.slow_Co);
             zombie.TakeDamage(damage);
             Destroy(this.gameObject);
         }

@@ -16,6 +16,7 @@ public class WeaponHandler : MonoBehaviour
     public Vector3 AoEOffset;
     [Header("Debugging")]
     public bool enableAoESizeDebugger;
+    
 
     private void Start() 
     {
@@ -36,18 +37,14 @@ public class WeaponHandler : MonoBehaviour
             bulletDir = new Vector3(UnityEngine.Random.Range(unit.target.transform.position.x - 2, unit.target.transform.position.x + 2 ), UnityEngine.Random.Range(unit.target.transform.position.y - 2, unit.target.transform.position.y + 2 ), 0f) - transform.position;
          
         //if(heldWeapon is a pistol)
+        unit.effectsHandler.ShootGunEffect(); 
         ShootPistol(bulletDir);
     }
 
     public void ShootPistol(Vector3 bulletDir)
     {
-        
-        
-        //Quaternion bulletRotation = new Quaternion(0f,0f,Vector2.Angle(transform.position, unit.target.transform.position),0);
-        //Debug.Log(Vector2.SignedAngle(transform.position, unit.target.transform.position));
         GameObject newBullet = Instantiate(heldWeapon.projectile, transform.position + heldWeapon.shootPoint, Quaternion.identity );
-        
-        newBullet.GetComponent<BulletProjectile>().Init(bulletDir, heldWeapon.damage);
+        newBullet.GetComponent<BulletProjectile>().Init(bulletDir, heldWeapon.damage, heldWeapon.knockbackAmount);
     }
     
 
@@ -83,6 +80,12 @@ public class WeaponHandler : MonoBehaviour
             Unit currentTarget = targetsInRange[i].transform.gameObject.GetComponent<Unit>();
 //            Debug.Log(currentTarget.name);
             currentTarget.TakeDamage(heldWeapon.damage);
+            if(!currentTarget.locomotionHandler.isGettingKnockedBack)
+            {
+                currentTarget.locomotionHandler.knockBack_Co = currentTarget.locomotionHandler.GetKnockedBack(heldWeapon.knockbackAmount, transform.position);
+                currentTarget.locomotionHandler.StartCoroutine(currentTarget.locomotionHandler.knockBack_Co);
+            }
+
             //if (!currentTarget.locomotionHandler.isGettingKnockedBack)
                 //currentTarget.StartCoroutine(currentTarget.locomotionHandler.GetKnockedBack(heldWeapon.knockbackAmount, transform.position));
         }

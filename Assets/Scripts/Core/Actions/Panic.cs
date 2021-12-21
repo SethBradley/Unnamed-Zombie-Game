@@ -29,7 +29,6 @@ public class Panic : State
     public override IEnumerator Execute()
     {
         Debug.Log("Executing panic");
-        unit.locomotionHandler.StopCoroutine("MoveToLocation");
         Transform nearbyWeapon = unit.detectionHandler.DetectNearestWeapon();
         Debug.Log("Nearest Weapon is " + nearbyWeapon);
         
@@ -42,7 +41,7 @@ public class Panic : State
         }
             
 
-        unit.StartCoroutine(unit.locomotionHandler.MoveToLocation(nearestExit.position));
+        unit.locomotionHandler.MoveToTarget(nearestExit.position);
         /*while(nearestZombie  && !unit.isArmed)
         {
             //run for the exit
@@ -65,7 +64,7 @@ public class Panic : State
         Vector3 zombiePos = nearestZombie.transform.position;
         Vector3 directionAwayFromZombie = (humanPos -zombiePos);
 
-        unit.StartCoroutine(unit.locomotionHandler.MoveToLocation(directionAwayFromZombie));
+        unit.locomotionHandler.MoveToTarget(directionAwayFromZombie * 5);
         
     }
 
@@ -77,15 +76,13 @@ public class Panic : State
             if(nearbyWeapon.gameObject == null)
                 yield break;
             Debug.Log("Running to weapon  " + Vector2.Distance(unit.transform.position, nearbyWeapon.position) );
-            unit.StartCoroutine(unit.locomotionHandler.MoveToLocation(nearbyWeapon.position));
+            unit.locomotionHandler.MoveToTarget(nearbyWeapon.position);
 
-            if(Vector2.Distance(unit.transform.position, nearbyWeapon.position) < 1f)
+            if(Vector2.Distance(unit.transform.position, nearbyWeapon.position) < 0.5f)
             {
                 Debug.Log("Close enough; breaking");
                 break;
             }
-                
-                
             yield return shortbuffer;
         }
 

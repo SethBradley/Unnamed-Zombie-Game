@@ -14,7 +14,7 @@ public class HumanWander : State
     public override IEnumerator Enter()
     {
         Transform waypoint = WaypointManager.instance.GetRandomWaypoint();
-        unit.StartCoroutine(unit.locomotionHandler.MoveToLocation(waypoint.position));
+        unit.locomotionHandler.MoveToTarget(waypoint.position);
         yield return Execute();
     }
 

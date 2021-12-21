@@ -21,6 +21,8 @@ public class HumanDeath : State
         unit.StopAllCoroutines();
         unit.effectsHandler.ResetEffects();
         unit.locomotionHandler.isMoving = false;
+        unit.locomotionHandler.StopCoroutine(unit.locomotionHandler.move);
+        unit.locomotionHandler.aiPath.isStopped = true;
         
         yield return null;
     }

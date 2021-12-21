@@ -13,6 +13,7 @@ public class LocomotionHandler : MonoBehaviour
     Unit unit;
     [Header("Knockback Collision")]
     public bool isGettingKnockedBack;
+    public bool isSlowed;
     public Vector3 collisionSize;
     public Vector3 collisionPosOffset;
     public AnimationCurve knockbackSpeedCurve;
@@ -20,39 +21,60 @@ public class LocomotionHandler : MonoBehaviour
     public Vector3 knockbackLocation;
     public Vector2 OOBDetectionSize;
     public Vector2 targetDestination;
-    Seeker seeker;
+    public Seeker seeker;
     public Path path;
-    int currentWaypoint;
+    public int currentWaypoint;
     float nextWaypointDistance = 3f;
     public AIPath aiPath;
-
-    private void Start() 
+    public Vector2 targetLocation;
+    public Rigidbody2D rb;
+    [Header("Coroutines")]
+    public IEnumerator move;
+    public IEnumerator knockBack_Co;
+    public IEnumerator slow_Co;
+    public LayerMask wallLayer;
+    private void Awake() 
     {
         
         unit = GetComponent<Unit>();
         seeker = GetComponent<Seeker>();
         aiPath = GetComponent<AIPath>(); 
+        rb = GetComponent<Rigidbody2D>();
+        move = null;
+        knockBack_Co = null;
+        slow_Co = null;
         
+        aiPath.maxSpeed = movespeed;
     }
 
     WaitForSeconds buffer = new WaitForSeconds(0.2f);
 
     public IEnumerator MoveToLocation(Vector2 location)
     {
-        
-        aiPath.isStopped = false;
+        aiPath.canMove = true;
         seeker.StartPath(transform.position, location, OnPathGenerationCompleted);
         while(path == null)
             yield return null;
         
+        unit.effectsHandler.StartRunningAnimation();
         isMoving = true;
-        while(!aiPath.reachedEndOfPath)
+        while(isMoving)
         {
             
-            unit.effectsHandler.StartRunningAnimation();
-            Debug.Log("Walking to path");
+            Debug.Log("Walking to path " + location);
             UpdatePath(location);
+            if(currentWaypoint < 0)
+                yield return null;
+
+            
             float distance = Vector2.Distance(transform.position, path.vectorPath[currentWaypoint]);
+            Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+            Vector2 force = direction * movespeed * Time.deltaTime;
+            rb.AddForce(force);
+
+            if(Vector2.Distance(rb.position, location) < aiPath.endReachedDistance)
+                EndPathing();
+                
             if(distance < aiPath.pickNextWaypointDist)
                 currentWaypoint++;
             if(currentWaypoint >= path.vectorPath.Count)
@@ -66,9 +88,28 @@ public class LocomotionHandler : MonoBehaviour
     {
         Debug.Log("reached end of path");
         isMoving = false;
-        aiPath.isStopped = true;
+        StopCoroutine(move);
+        aiPath.canMove = false;
         unit.effectsHandler.StopRunningAnimation();
     }
+    public void DisableMovement()
+    {
+        //aiPath.canMove = false;
+        //isMoving = false;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        //rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+        if(unit.anim.GetBool("Moving"))
+            unit.effectsHandler.StopRunningAnimation();
+    }
+    public void EnableMovement()
+    {
+        //aiPath.canMove = true;
+        //isMoving = true;
+        rb.constraints = RigidbodyConstraints2D.None;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        unit.effectsHandler.StartRunningAnimation();
+    }
+
     void UpdatePath(Vector2 targetDestination)
     {
         if(seeker == null)
@@ -77,7 +118,7 @@ public class LocomotionHandler : MonoBehaviour
         }
         if(seeker.IsDone())
         {
-            Debug.Log("Requesting new path");
+     //       Debug.Log("Requesting new path");
             seeker.StartPath(this.transform.position, targetDestination, OnPathGenerationCompleted);
         }
     }
@@ -85,25 +126,133 @@ public class LocomotionHandler : MonoBehaviour
     {
         if(!p.error)
         {
+            
             path = p;
-            Debug.Log("Set the path --------------");
+            ValidatePath(p);
+//            Debug.Log("Set the path --------------");
             currentWaypoint = 0 ;
         }
+        else
+        Debug.Log("Error in path generation");
     }
 
-    public void MoveToTarget(Vector2 pos)
+    public void MoveToTarget(Vector2 newPos)
     {
-        if(isMoving)
+        aiPath.canMove = true;
+        if(move == null)
         {
-            StopCoroutine("MoveToLocation");
-            isMoving = false;
+            move = MoveToLocation(newPos);
+            StartCoroutine(move);
         }
-        StartCoroutine(MoveToLocation(pos));
+        else
+        {
+            isMoving = false;
+            StopCoroutine(move);
+            move = MoveToLocation(newPos);
+            StartCoroutine(move);
+        }
     }
-    public void GetKnockedBack(float x, Vector3 y)
+    public bool ValidatePath(Path p)
     {
+        if(p.vectorPath.Count <= 2)
+        {
+            Debug.Log("Checking for wall");
+            Vector2 direction = p.vectorPath[currentWaypoint] - transform.position;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction.normalized,10f, wallLayer);
+            if(hit.collider != null)
+            {
+                Debug.Log("path crossing a wall - ending path");
+                EndPathing();
+            }
+
+        }
+//         foreach(Vector3 waypoint in p.vectorPath)
+//         {
+// //            Debug.Log(waypoint + " Vector path count " + p.vectorPath.Count);
+//         }
+        return true;
 
     }
+public IEnumerator GetKnockedBack(float knockbackAmount, Vector3 attackOrigin)
+    {
+        if(isGettingKnockedBack)
+            yield break;
+        
+        unit.isAgainstWall = false;
+        aiPath.canMove = false;
+        isGettingKnockedBack = true;
+        Vector3 unitPos = transform.position;
+        Vector3 knockbackDirection = (unitPos - attackOrigin ).normalized;
+        knockbackLocation = transform.position + (knockbackDirection * knockbackAmount); 
+        Debug.Log("knockback location " + knockbackLocation);
+        float timeElapsed = 0;
+        float lerpDuration = 1f;
+
+        while(timeElapsed < lerpDuration)
+        {
+            if(unit.isAgainstWall)
+            {
+                StopCoroutine(knockBack_Co);
+                StartCoroutine(FreezeMovementForSeconds(0.5f));
+            }
+            Vector3 newUnitpos = Vector3.Lerp(unitPos, knockbackLocation, knockbackSpeedCurve.Evaluate(timeElapsed));
+            rb.MovePosition(newUnitpos);
+
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        aiPath.canMove = true;
+        isGettingKnockedBack = false;
+        Debug.Log("Done getting knocked back");
+        yield return null;
+    }
+    private void CollideWithWall()
+    {
+        Debug.Log("HIT WALL");
+        unit.isAgainstWall = true;
+        isGettingKnockedBack = false;
+
+        
+    }
+    IEnumerator FreezeMovementForSeconds(float waitTime)
+    {
+        WaitForSeconds buffer = new WaitForSeconds(waitTime); 
+        float timeElapsed = 0;
+        while(timeElapsed < waitTime)
+        {
+            isMoving = false;
+            aiPath.canMove = false;
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        isMoving = true;
+        aiPath.canMove = true;
+    }
+
+    public IEnumerator SlowMovement()
+    {
+        //if unit is already slowed
+        if(isSlowed)
+            yield break;
+
+        isSlowed = true;
+        while(isSlowed)
+        {
+            aiPath.maxSpeed = 1f;
+            yield return new WaitForSeconds(2f);
+            isSlowed = false;
+        }
+        aiPath.maxSpeed = movespeed;
+    }
+    private void OnCollisionEnter2D(Collision2D collision) 
+    {
+        if(collision.gameObject.layer == 6 && isGettingKnockedBack)
+        {
+            CollideWithWall();
+        }
+    }
+
 }
     /*private IEnumerator CheckForOutOfBounds()
     {
@@ -205,12 +354,6 @@ public class LocomotionHandler : MonoBehaviour
 public IEnumerator GetKnockedBack(float knockbackAmount, Vector3 attackOrigin)
     {
         StopCoroutine(FollowPath());
-
-        /*if(!isCheckingForOutOfBounds)
-        {
-            isCheckingForOutOfBounds = true;
-            StartCoroutine(CheckForOutOfBounds());
-        }*/
 /*
         isGettingKnockedBack = true;
         Vector3 unitPos = transform.position;

@@ -6,19 +6,10 @@ public abstract class State
 {
 
     
-    public virtual IEnumerator Enter()
-    {
-        yield return null;
-    }
+    public abstract IEnumerator Enter();
 
-    public virtual IEnumerator Execute()
-    {
-        yield return null;
-    }
+    public abstract IEnumerator Execute();
 
-    public virtual IEnumerator Exit()
-    {
-        yield return null;
-    }
+    public abstract IEnumerator Exit();
 
 }

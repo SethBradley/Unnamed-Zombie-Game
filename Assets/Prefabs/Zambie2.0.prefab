@@ -70,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 19
   m_Sprite: {fileID: 21300000, guid: 6951e6c383029334c984fd46be8e96ae, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -91,13 +91,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3314195812182437920}
-  - component: {fileID: 5973581716342148911}
   - component: {fileID: 4959613743628854633}
+  - component: {fileID: 1817566965}
+  - component: {fileID: 1817566959}
   - component: {fileID: 8003119298390556977}
   - component: {fileID: 638832192319438517}
   - component: {fileID: 5016236601417745300}
   - component: {fileID: 235522226610435572}
   - component: {fileID: 8501457797600574995}
+  - component: {fileID: 1817566967}
+  - component: {fileID: 1817566968}
   m_Layer: 8
   m_Name: Zambie2.0
   m_TagString: Untagged
@@ -121,32 +124,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &5973581716342148911
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8958704499017076891}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
-    newSize: {x: 4, y: 4}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4, y: 4}
-  m_EdgeRadius: 0
 --- !u!212 &4959613743628854633
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -198,6 +175,43 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1817566965
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8958704499017076891}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.06547928, y: 0.36939496}
+  serializedVersion: 2
+  m_Radius: 0.37382635
+--- !u!50 &1817566959
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8958704499017076891}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!95 &8003119298390556977
 Animator:
   serializedVersion: 3
@@ -229,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e0b1b99441116449064a113ff4bc07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 201.19
   attackDamage: 10
   xpYield: 0
   threshold: 1
@@ -243,7 +257,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   detectionHandler: {fileID: 0}
   locomotionHandler: {fileID: 0}
-  attackRange: 11.73
+  attackRange: 6.82
   leader: {fileID: 0}
   unwalkableMask:
     serializedVersion: 2
@@ -265,7 +279,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movespeed: 3
   target: {fileID: 0}
-  path: []
   isMoving: 0
   isGettingKnockedBack: 0
   collisionSize: {x: 0, y: 0, z: 0}
@@ -306,6 +319,14 @@ MonoBehaviour:
   isCheckingForOutOfBounds: 0
   knockbackLocation: {x: 0, y: 0, z: 0}
   OOBDetectionSize: {x: 0, y: 0}
+  targetDestination: {x: 0, y: 0}
+  seeker: {fileID: 0}
+  currentWaypoint: 0
+  aiPath: {fileID: 0}
+  targetLocation: {x: 0, y: 0}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &235522226610435572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,7 +343,7 @@ MonoBehaviour:
   nearbyHumans: []
   nearbyZombies: []
   nearbyWeapons: []
-  unitDetectionRadius: 6.77
+  unitDetectionRadius: 12.49
   detectableUnits:
     serializedVersion: 2
     m_Bits: 128
@@ -357,6 +378,70 @@ MonoBehaviour:
   onHitEffectRunning: 0
   healthBar: {fileID: 0}
   pfDamagePopup: {fileID: 0}
+--- !u!114 &1817566967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8958704499017076891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 2
+  radius: 1
+  height: 1.69
+  repathRate: 1
+  canSearch: 1
+  canMove: 1
+  maxSpeed: 8.25
+  gravity: {x: 0, y: 0, z: 0}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  centerOffsetCompatibility: NaN
+  orientation: 1
+  enableRotation: 0
+  targetCompatibility: {fileID: 0}
+  maxAcceleration: -2.5
+  rotationSpeed: 360
+  slowdownDistance: 0.48
+  pickNextWaypointDist: 1.97
+  endReachedDistance: 1.59
+  alwaysDrawGizmos: 1
+  slowWhenNotFacingTarget: 1
+  whenCloseToDestination: 0
+  constrainInsideGraph: 0
+--- !u!114 &1817566968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8958704499017076891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 1
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
 --- !u!1001 &8681802714272932020
 PrefabInstance:
   m_ObjectHideFlags: 0

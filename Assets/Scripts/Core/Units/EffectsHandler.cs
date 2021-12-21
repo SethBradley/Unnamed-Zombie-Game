@@ -38,21 +38,30 @@ public class EffectsHandler : MonoBehaviour
     }
     private void Update() 
     {
-        if(!unit.locomotionHandler.isGettingKnockedBack)
+        if(!unit.locomotionHandler.isGettingKnockedBack && unit.target == null)
         {
             if(transform.position.x < oldPosition.x)
             {
-                transform.rotation = flipX;
+                spriteRenderer.flipX = true;
             }
             else if (transform.position.x > oldPosition.x)
-                transform.rotation = Quaternion.Euler(0,0,0);
+                spriteRenderer.flipX = false;
     
             oldPosition = transform.position;
         }
-
     }
 
-
+    public void ShootGunEffect()
+    {
+        //play noise
+        //face target
+        if((transform.position.x - unit.target.transform.position.x) > transform.position.x )
+        {
+            spriteRenderer.flipX = true;
+        }
+        else
+            spriteRenderer.flipX = false;
+    }
     public IEnumerator TakeDamageEffect()
     {
         onHitEffectRunning = true;
@@ -139,6 +148,7 @@ public class EffectsHandler : MonoBehaviour
 
     public void StartRunningAnimation()
     {
+        if(anim.GetBool("Moving") == false)
         anim.SetBool("Moving", true);
     }
     public void StopRunningAnimation()
