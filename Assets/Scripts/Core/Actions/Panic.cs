@@ -23,6 +23,9 @@ public class Panic : State
         
         nearestExit = WaypointManager.instance.GetNearestExit(unit.transform);
         nearestZombie = unit.detectionHandler.GetClosestUnitInRange();
+        unit.emoticonHandler.InstantiateScreamEmoticon();
+        unit.audioSource.PlayOneShot(DatabaseMaster.instance.GetSoundFXByName("PanicEntrance"));
+        GameplayHandler.instance.IncreasePanic(12);
         yield return Execute();
     }
 
@@ -34,7 +37,7 @@ public class Panic : State
         
         PanicAwayFromNearestZombie();
         yield return buffer; 
-        
+        unit.emoticonHandler.EndActiveEmoticon();
         if (nearbyWeapon != null && !unit.isArmed)
         {
              yield return PickUpWeapon(nearbyWeapon);

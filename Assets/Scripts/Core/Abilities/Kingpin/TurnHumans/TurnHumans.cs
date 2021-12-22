@@ -10,15 +10,21 @@ public class TurnHumans : Ability
     float humanInRadiusCount; 
     GameObject indicator;
     public List<Human> humansWithinRadius = new List<Human>();
-    
     public AudioClip countSound;
     public AudioSource audioSource;
     WaitForSeconds shortBuffer = new WaitForSeconds(0.10f);
+    
+    
+    
+    
     public override IEnumerator Enter()
     {
+        
         audioSource = GetComponent<AudioSource>();
         Debug.Log("Beginning To Cast TurnHumans");
+      
         isAimingAbility = true;
+        
         
         indicator = Instantiate(abilityIndicator, Input.mousePosition, transform.rotation);
         

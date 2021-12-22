@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 574754104971604086}
   - component: {fileID: 574754104971604087}
   - component: {fileID: 574754104971604088}
+  - component: {fileID: 8373952039376686958}
   - component: {fileID: 574754104971604089}
   - component: {fileID: 574754104971604090}
   - component: {fileID: 6338819318645802520}
@@ -41,6 +42,7 @@ Transform:
   - {fileID: 4466233500981464312}
   - {fileID: 574754105432386222}
   - {fileID: 574754105422939400}
+  - {fileID: 1427216707678802996}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -192,10 +194,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aa922e51c2fe2443a228c61ed9f7504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 3
+  movespeed: 4.27
   target: {fileID: 0}
   isMoving: 0
   isGettingKnockedBack: 0
+  isSlowed: 0
   collisionSize: {x: 0, y: 0, z: 0}
   collisionPosOffset: {x: 0, y: 0, z: 0}
   knockbackSpeedCurve:
@@ -212,6 +215,7 @@ MonoBehaviour:
   currentWaypoint: 0
   aiPath: {fileID: 0}
   targetLocation: {x: 0, y: 0}
+  rb: {fileID: 0}
   wallLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -261,6 +265,18 @@ MonoBehaviour:
   onHitEffectRunning: 0
   healthBar: {fileID: 0}
   pfDamagePopup: {fileID: 8866206214475842191, guid: 4aa1603177dc4c24e85221b59bb9f90e, type: 3}
+--- !u!114 &8373952039376686958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574754104971604091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a76dfa621d82b84b8e10f1d0a4a0dfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &574754104971604089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,7 +333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 2
-  radius: 1
+  radius: 1.61
   height: 1.69
   repathRate: 1
   canSearch: 1
@@ -334,8 +350,8 @@ MonoBehaviour:
   maxAcceleration: -2.5
   rotationSpeed: 360
   slowdownDistance: 0.48
-  pickNextWaypointDist: 2
-  endReachedDistance: 1.59
+  pickNextWaypointDist: 1.77
+  endReachedDistance: 0.31
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
@@ -356,7 +372,7 @@ MonoBehaviour:
   drawGizmos: 1
   detailedGizmos: 0
   startEndModifier:
-    addPoints: 1
+    addPoints: 0
     exactStartPoint: 3
     exactEndPoint: 3
     useRaycasting: 0
@@ -647,7 +663,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4466233500981464312
 Transform:
   m_ObjectHideFlags: 0
@@ -814,3 +830,85 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &5693742946460970747
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1427216707678802996}
+  - component: {fileID: 4625206216039702663}
+  m_Layer: 0
+  m_Name: Emoticon Slot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1427216707678802996
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5693742946460970747}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.451, y: 0.695, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 574754104971604083}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &4625206216039702663
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5693742946460970747}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 29
+  m_Sprite: {fileID: 4556693123190931683, guid: 5cd15bb041360594d8a96e14664a5a33, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.875, y: 0.8125}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0

@@ -19,10 +19,17 @@ public class AudioManager : MonoBehaviour
       }
    }
 
-   public void Play (AudioClip sound, Vector3 unitPos) {
+   public void Play ( string sound, Vector3 unitPos) {
       {
-        
-        AudioSource.PlayClipAtPoint(sound, unitPos);
+        foreach (Sound s in sounds)
+        {
+            if (s.name == sound) 
+            {
+             s.source.PlayOneShot(s.clip);  
+            }
+
+        }
+       
       }
    }
 

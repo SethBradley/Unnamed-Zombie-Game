@@ -16,7 +16,7 @@ MonoBehaviour:
   isRanged: 1
   isSingleTarget: 1
   attackRange: 10
-  knockbackAmount: 0.75
+  knockbackAmount: 1.55
   attackRadius: 0
   cooldown: 2
   damage: 25

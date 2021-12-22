@@ -21,7 +21,7 @@ public class UnitSelectController : MonoBehaviour
     {
         if(!AbilityCastController.instance.isCastingAbility)
         {
-            if (Input.GetMouseButtonDown(0))
+           if (Input.GetMouseButtonDown(0))
             {
                 currentSelected = GetUnitUnderMouse();
             }
@@ -29,7 +29,7 @@ public class UnitSelectController : MonoBehaviour
             if (Input.GetMouseButtonDown(1) && currentSelected.GetComponent<IMovable>() != null)
             {
             MoveSelectedUnit();
-            }
+           }
         }
      
         

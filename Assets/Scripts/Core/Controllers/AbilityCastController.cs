@@ -8,6 +8,9 @@ public class AbilityCastController : MonoBehaviour
     public static AbilityCastController instance;
     GameObject selectedLeaderZombie;
     public bool isCastingAbility;
+    public  KingpinZombie kingpinZombie;
+    
+
     private void Start() 
     {
         if (instance != null && instance != this)
@@ -46,6 +49,7 @@ public class AbilityCastController : MonoBehaviour
 
     private void CastAbilityTwo()
     {
+    if(kingpinZombie.CanTurnHumans()){
         if(isCastingAbility)
         {
             CancelAllAbilities();
@@ -55,7 +59,7 @@ public class AbilityCastController : MonoBehaviour
         isCastingAbility = true;
         StartCoroutine(selectedLeaderZombie.transform.Find("Abilities").GetChild(1).GetComponent<Ability>().Enter());
     }
-
+}
     private void CancelAllAbilities()
     {
         Transform abilitiesParent = selectedLeaderZombie.transform.Find("Abilities").transform;

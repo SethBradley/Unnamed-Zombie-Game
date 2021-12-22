@@ -19,17 +19,21 @@ public abstract class Unit : MonoBehaviour
     public bool isOnCooldown;
     public float onHitSlowdown;
     public bool isAgainstWall;
+    public AudioSource audioSource;
     public EffectsHandler effectsHandler;
     public Animator anim;
     public DetectionHandler detectionHandler;
     public LocomotionHandler locomotionHandler;
+    public EmoticonHandler emoticonHandler;
     public virtual void Awake() 
     {
         effectsHandler = GetComponent<EffectsHandler>();
         locomotionHandler = GetComponent<LocomotionHandler>();
         detectionHandler = GetComponent<DetectionHandler>();
+        emoticonHandler = GetComponent<EmoticonHandler>();
         stateMachine = new StateMachine(this);
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
     public IEnumerator StartCooldown()
     {
