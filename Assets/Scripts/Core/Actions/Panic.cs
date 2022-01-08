@@ -26,6 +26,7 @@ public class Panic : State
         unit.emoticonHandler.InstantiateScreamEmoticon();
         unit.audioSource.PlayOneShot(DatabaseMaster.instance.GetSoundFXByName("PanicEntrance"));
         GameplayHandler.instance.IncreasePanic(12);
+        unit.debugHandler.SetDebugText("Panic : Enter");
         yield return Execute();
     }
 
@@ -34,16 +35,16 @@ public class Panic : State
         Debug.Log("Executing panic");
         Transform nearbyWeapon = unit.detectionHandler.DetectNearestWeapon();
         Debug.Log("Nearest Weapon is " + nearbyWeapon);
-        
+        unit.debugHandler.SetDebugText("Panic : Execute");
         PanicAwayFromNearestZombie();
         yield return buffer; 
-        unit.emoticonHandler.EndActiveEmoticon();
+        unit.emoticonHandler.ExitActiveEmoticon();
         if (nearbyWeapon != null && !unit.isArmed)
         {
              yield return PickUpWeapon(nearbyWeapon);
         }
             
-
+        yield return CallPolice(); 
         unit.locomotionHandler.MoveToTarget(nearestExit.position);
         /*while(nearestZombie  && !unit.isArmed)
         {
@@ -99,5 +100,23 @@ public class Panic : State
         //enter civilianAttack state
         yield return null;
     }
+
+
+    private IEnumerator CallPolice()
+    {
+        
+        unit.locomotionHandler.DisableMovement();
+        unit.emoticonHandler.InstantiatePhoneCallEmote();
+        unit.debugHandler.SetDebugText("Panic : CallPolice");
+        while(unit.emoticonHandler.elapsedPhoneCallTime <= 6)
+            yield return null;
+        
+        unit.debugHandler.SetDebugText("Panic : Execute > MoveToExit");
+        unit.locomotionHandler.EnableMovement();
+        unit.emoticonHandler.ExitActiveEmoticon();
+        GameplayHandler.instance.IncreasePanic(60);
+
+    }
+
 
 }

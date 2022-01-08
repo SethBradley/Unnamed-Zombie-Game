@@ -25,6 +25,7 @@ public abstract class Unit : MonoBehaviour
     public DetectionHandler detectionHandler;
     public LocomotionHandler locomotionHandler;
     public EmoticonHandler emoticonHandler;
+    public DebugHandler debugHandler;
     public virtual void Awake() 
     {
         effectsHandler = GetComponent<EffectsHandler>();
@@ -34,6 +35,7 @@ public abstract class Unit : MonoBehaviour
         stateMachine = new StateMachine(this);
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        debugHandler = GetComponent<DebugHandler>(); 
     }
     public IEnumerator StartCooldown()
     {
@@ -91,13 +93,6 @@ public abstract class Unit : MonoBehaviour
         
         if(health <= 0)
             effectsHandler.StartCoroutine(effectsHandler.DropExpFor(expOwner));
-        
-        
-    }
-
-    private void DropExp()
-    {
-        
     }
 
 

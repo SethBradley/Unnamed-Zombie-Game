@@ -61,7 +61,7 @@ public class LocomotionHandler : MonoBehaviour
         while(isMoving)
         {
             
-            Debug.Log("Walking to path " + location);
+//            Debug.Log("Walking to path " + location);
             UpdatePath(location);
             if(currentWaypoint < 0)
                 yield return null;
@@ -97,6 +97,7 @@ public class LocomotionHandler : MonoBehaviour
         //aiPath.canMove = false;
         //isMoving = false;
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        Debug.Log("Unit movement frozen");
         //rb.constraints = RigidbodyConstraints2D.FreezePositionY;
         if(unit.anim.GetBool("Moving"))
             unit.effectsHandler.StopRunningAnimation();
@@ -105,6 +106,7 @@ public class LocomotionHandler : MonoBehaviour
     {
         //aiPath.canMove = true;
         //isMoving = true;
+        Debug.Log("Unit movement enabled");
         rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         unit.effectsHandler.StartRunningAnimation();
@@ -176,10 +178,14 @@ public class LocomotionHandler : MonoBehaviour
 public IEnumerator GetKnockedBack(float knockbackAmount, Vector3 attackOrigin)
     {
         if(isGettingKnockedBack)
+        {
+            isGettingKnockedBack = false;
             yield break;
+        }
+            
         
         unit.isAgainstWall = false;
-        aiPath.canMove = false;
+        aiPath.canMove = false; 
         isGettingKnockedBack = true;
         Vector3 unitPos = transform.position;
         Vector3 knockbackDirection = (unitPos - attackOrigin ).normalized;
@@ -190,6 +196,7 @@ public IEnumerator GetKnockedBack(float knockbackAmount, Vector3 attackOrigin)
 
         while(timeElapsed < lerpDuration)
         {
+            Debug.Log(timeElapsed); 
             if(unit.isAgainstWall)
             {
                 StopCoroutine(knockBack_Co);
@@ -201,7 +208,8 @@ public IEnumerator GetKnockedBack(float knockbackAmount, Vector3 attackOrigin)
             timeElapsed += Time.deltaTime;
             yield return null;
         }
-        aiPath.canMove = true;
+        FreezeMovementForSeconds(0.5f);
+        aiPath.canMove = true; 
         isGettingKnockedBack = false;
         Debug.Log("Done getting knocked back");
         yield return null;
@@ -214,20 +222,14 @@ public IEnumerator GetKnockedBack(float knockbackAmount, Vector3 attackOrigin)
 
         
     }
-    IEnumerator FreezeMovementForSeconds(float waitTime)
+    public IEnumerator FreezeMovementForSeconds(float waitTime)
     {
         WaitForSeconds buffer = new WaitForSeconds(waitTime); 
-        float timeElapsed = 0;
-        while(timeElapsed < waitTime)
-        {
-            isMoving = false;
-            aiPath.canMove = false;
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        isMoving = true;
-        aiPath.canMove = true;
+        DisableMovement();
+        unit.debugHandler.SetDebugText("Movement is Frozen");
+        yield return buffer;
+        unit.debugHandler.SetDebugText("MOVING AGAIN");
+        EnableMovement(); 
     }
 
     public IEnumerator SlowMovement()

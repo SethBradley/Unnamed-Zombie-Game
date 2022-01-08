@@ -146,6 +146,10 @@ public class EffectsHandler : MonoBehaviour
         
     }
 
+    public void SetSelectIndicatorActive(bool status) => transform.Find("UnitSelectIndicator").gameObject.SetActive(status);
+    
+
+
     public void StartRunningAnimation()
     {
         if(anim.GetBool("Moving") == false)

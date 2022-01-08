@@ -15,11 +15,13 @@ public class HumanWander : State
     {
         Transform waypoint = WaypointManager.instance.GetRandomWaypoint();
         unit.locomotionHandler.MoveToTarget(waypoint.position);
+        unit.debugHandler.SetDebugText("Wander : Enter");
         yield return Execute();
     }
 
     public override IEnumerator Execute()
     {
+        unit.debugHandler.SetDebugText("Wander : Execute");
         while(!unit.locomotionHandler.aiPath.reachedEndOfPath)
         {
             Unit zombie = unit.detectionHandler.GetClosestUnitInRange();

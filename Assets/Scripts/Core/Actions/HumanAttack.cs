@@ -100,6 +100,7 @@ public class HumanAttack : State
                         }
                 
                         Debug.Log("SWING");
+                        unit.StartCoroutine(unit.locomotionHandler.FreezeMovementForSeconds(unit.weaponHandler.heldWeapon.cooldown/2));
                         unit.weaponHandler.UseMeleeWeapon();
                     }
 #endregion
