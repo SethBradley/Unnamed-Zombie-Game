@@ -15,8 +15,6 @@ public class KingpinZombie : LeaderZombie, ISelectable, IMovable
     private void Awake() 
     {
         base.Awake();
-        circleRadius = GetComponent<CircleCollider2D>();
-        circleRadius.radius = minionWanderRadius;
         
         playerSkills = new PlayerSkills();// Teddy change 
         //stateMachine = new StateMachine(this);

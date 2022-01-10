@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SethB.Utilities;
 
 public class UnitSelectController : MonoBehaviour
 {
@@ -32,11 +33,12 @@ public class UnitSelectController : MonoBehaviour
         if(Input.GetMouseButtonDown(0) && !AbilityCastController.instance.isCastingAbility)
         {
             // Left Mouse Button Pressed
-            clickStartPos = GetMouseWorldPosition();
-            
+            clickStartPos = Utilities.GetMouseWorldPosition();
             if(Input.GetKey(KeyCode.LeftControl))
+            {
                 SingleSelectZombie();
-            else if (dragSelection_Co == null)
+            }
+            if (dragSelection_Co == null)
             {
                 dragSelection_Co = DragSelection();
                 StartCoroutine(dragSelection_Co);
@@ -60,14 +62,17 @@ public class UnitSelectController : MonoBehaviour
 
     public IEnumerator DragSelection()
     {
-        if(!Input.GetKey(KeyCode.LeftControl))
-            DeselectAllZombies();
+
         while(Input.GetMouseButton(0))
         {
+            if(!Input.GetKey(KeyCode.LeftControl))
+                DeselectAllZombies();
             DrawSelectionBox();
             SelectZombiesWithinDragArea();
             yield return null;
         }
+
+        
         selectionArea.SetActive(false);
         dragSelection_Co = null;
     }
@@ -85,7 +90,7 @@ public class UnitSelectController : MonoBehaviour
     private void DrawSelectionBox()
     {
         selectionArea.SetActive(true);
-        Vector3 currentMousePos = GetMouseWorldPosition();
+        Vector3 currentMousePos = Utilities.GetMouseWorldPosition();
         Vector3 lowerLeft = new Vector3(
             Mathf.Min(clickStartPos.x, currentMousePos.x),
             Mathf.Min(clickStartPos.y, currentMousePos.y)
@@ -102,15 +107,18 @@ public class UnitSelectController : MonoBehaviour
 
     private void SelectZombiesWithinDragArea()
     {
-        collider2DArray = Physics2D.OverlapAreaAll(clickStartPos, GetMouseWorldPosition());
+        collider2DArray = Physics2D.OverlapAreaAll(clickStartPos, Utilities.GetMouseWorldPosition());
 
         foreach (Collider2D collider2D in collider2DArray)
         {
             NormalZombie selectedZombie = collider2D.GetComponent<NormalZombie>();
             if (selectedZombie != null)
             {
+
                 if(!selectedZombiesList.Contains(selectedZombie))
                 {
+                    if(Input.GetKey(KeyCode.LeftControl) && GetZombieUnderMouse() == selectedZombie) continue;
+                    
                     Debug.Log("Zombie has been selected");
                     SelectZombie(selectedZombie);
                 }
@@ -120,7 +128,7 @@ public class UnitSelectController : MonoBehaviour
     }
     private NormalZombie GetZombieUnderMouse()
     {
-        RaycastHit2D[] hit =  Physics2D.RaycastAll(GetMouseWorldPosition(), Vector2.zero);
+        RaycastHit2D[] hit =  Physics2D.RaycastAll(Utilities.GetMouseWorldPosition(), Vector2.zero);
         if(hit.Length > 0)
             return hit[0].transform.GetComponent<NormalZombie>();
         else
@@ -142,13 +150,5 @@ public class UnitSelectController : MonoBehaviour
         foreach (Zombie zombie in selectedZombiesList)
             zombie.effectsHandler.SetSelectIndicatorActive(false);
         selectedZombiesList.Clear();
-    }
-
-
-    public Vector3 GetMouseWorldPosition() 
-    {
-            Vector3 worldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            worldPosition.z = 0f;
-            return worldPosition;
     }
 }
