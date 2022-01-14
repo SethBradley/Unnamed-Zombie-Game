@@ -1,0 +1,828 @@
+fileFormatVersion: 2
+guid: ec575ecf72211c54f8114230bce5ee1b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7565800621368961037
+    second: deco_bathroom_0
+  - first:
+      213: -2067121592126367373
+    second: deco_bathroom_1
+  - first:
+      213: 2010657734929140717
+    second: deco_bathroom_2
+  - first:
+      213: 7101139600004585128
+    second: deco_bathroom_3
+  - first:
+      213: -6986371345627894388
+    second: deco_bathroom_4
+  - first:
+      213: -9037293141639408357
+    second: deco_bathroom_5
+  - first:
+      213: -6567393388383772567
+    second: deco_bathroom_6
+  - first:
+      213: -8587570711775162252
+    second: deco_bathroom_7
+  - first:
+      213: 7194532585660580313
+    second: deco_bathroom_8
+  - first:
+      213: 2601197576621024985
+    second: deco_bathroom_9
+  - first:
+      213: -5682169775943306487
+    second: deco_bathroom_10
+  - first:
+      213: 6713030065298864089
+    second: deco_bathroom_11
+  - first:
+      213: 1998114510178360378
+    second: deco_bathroom_12
+  - first:
+      213: 3982945793964615817
+    second: deco_bathroom_13
+  - first:
+      213: 2547392568055447910
+    second: deco_bathroom_14
+  - first:
+      213: -5574854080524080986
+    second: deco_bathroom_15
+  - first:
+      213: 6296787544467659639
+    second: deco_bathroom_16
+  - first:
+      213: -9099932187388283575
+    second: deco_bathroom_17
+  - first:
+      213: -1261742787016762841
+    second: deco_bathroom_18
+  - first:
+      213: 175376710432096464
+    second: deco_bathroom_19
+  - first:
+      213: -5101946121727244998
+    second: deco_bathroom_20
+  - first:
+      213: -376328791813771476
+    second: deco_bathroom_21
+  - first:
+      213: -8159548761444114657
+    second: deco_bathroom_22
+  - first:
+      213: 2876303012254298767
+    second: deco_bathroom_23
+  - first:
+      213: -9169201695769229137
+    second: deco_bathroom_24
+  - first:
+      213: 2713909197949864817
+    second: deco_bathroom_25
+  - first:
+      213: 4679647026964905601
+    second: deco_bathroom_26
+  - first:
+      213: 5076219737378584185
+    second: deco_bathroom_27
+  - first:
+      213: -1074942890862882591
+    second: deco_bathroom_28
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: deco_bathroom_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 56
+        width: 80
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f79fd19b60e00790800000000000000
+      internalID: -7565800621368961037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_1
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 56
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37994c13ddb1053e0800000000000000
+      internalID: -2067121592126367373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_2
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 56
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: debc7579e8a47eb10800000000000000
+      internalID: 2010657734929140717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_3
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 56
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a69bbeb7d05c8260800000000000000
+      internalID: 7101139600004585128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_4
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 56
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8da1eac64c6b0f90800000000000000
+      internalID: -6986371345627894388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_5
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 56
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b155281f4c5159280800000000000000
+      internalID: -9037293141639408357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_6
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 39
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 960e221428eebd4a0800000000000000
+      internalID: -6567393388383772567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_7
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 39
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 470d711cfe1d2d880800000000000000
+      internalID: -8587570711775162252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_8
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 39
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d18545b44d18d360800000000000000
+      internalID: 7194532585660580313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_9
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 39
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d66a190a6f491420800000000000000
+      internalID: 2601197576621024985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_10
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 39
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9033077b1b0e421b0800000000000000
+      internalID: -5682169775943306487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_11
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 39
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d7f7a8f649792d50800000000000000
+      internalID: 6713030065298864089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_12
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 39
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3c1cbf7f8ababb10800000000000000
+      internalID: 1998114510178360378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_13
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 39
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 988a5e8d814464730800000000000000
+      internalID: 3982945793964615817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_14
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 39
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6614a624b082a5320800000000000000
+      internalID: 2547392568055447910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_15
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 39
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a8a9b720c322a2b0800000000000000
+      internalID: -5574854080524080986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_16
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 23
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77b591ee8eea26750800000000000000
+      internalID: 6296787544467659639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_17
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 23
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 945f39a93eb86b180800000000000000
+      internalID: -9099932187388283575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_18
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 23
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72a54f5ce936d7ee0800000000000000
+      internalID: -1261742787016762841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_19
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 23
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d08e2f50301f6200800000000000000
+      internalID: 175376710432096464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_20
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 23
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a350447980f3239b0800000000000000
+      internalID: -5101946121727244998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_21
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 23
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2f203d25f207caf0800000000000000
+      internalID: -376328791813771476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_22
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 23
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1f15a2f1a573ce80800000000000000
+      internalID: -8159548761444114657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_23
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 23
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f82bdcfa95eaae720800000000000000
+      internalID: 2876303012254298767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_24
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 23
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa804c163a370c080800000000000000
+      internalID: -9169201695769229137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_25
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 23
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17b8770690eb9a520800000000000000
+      internalID: 2713909197949864817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_26
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 7
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18eb47c5d2271f040800000000000000
+      internalID: 4679647026964905601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_27
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 7
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 976f648c4fa527640800000000000000
+      internalID: 5076219737378584185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deco_bathroom_28
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 5
+        width: 48
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e05944d2290511f0800000000000000
+      internalID: -1074942890862882591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
